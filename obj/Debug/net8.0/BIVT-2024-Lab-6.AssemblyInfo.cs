@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BIVT-2024-Lab-6")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8e7a80031c9982c8e85aa2588d3ccc486ff05568")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5df3cd1086bea39ee15736d762b66c92499db21")]
 [assembly: System.Reflection.AssemblyProductAttribute("BIVT-2024-Lab-6")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BIVT-2024-Lab-6")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -43,7 +43,21 @@ namespace Lab_6 {
         if (array == null) {
           return;
         }
-        Array.Sort(array, (s1, s2) => s2.BestJump.CompareTo(s1.BestJump));
+        int n = array.Length;
+        for (int i = 0; i < n - 1; i++)
+        {
+            for (int j = 0; j < n - i - 1; j++)
+            {
+                // Сравниваем средние баллы групп
+                if (array[j].BestJump < array[j + 1].BestJump)
+                {
+                    // Меняем местами группы
+                    Participant temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }      
       }
     }
   }

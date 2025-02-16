@@ -87,7 +87,21 @@ namespace Lab_6 {
           {
             return;
           }
-          Array.Sort(array, (s1, s2) => s2.AvgMark.CompareTo(s1.AvgMark));
+          int n = array.Length;
+          for (int i = 0; i < n - 1; i++)
+          {
+              for (int j = 0; j < n - i - 1; j++)
+              {
+                  // Сравниваем средние баллы групп
+                  if (array[j].AvgMark < array[j + 1].AvgMark)
+                  {
+                      // Меняем местами группы
+                      Group temp = array[j];
+                      array[j] = array[j + 1];
+                      array[j + 1] = temp;
+                  }
+              }
+          }
       }
     }
   }
