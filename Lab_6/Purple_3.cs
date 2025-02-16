@@ -16,7 +16,7 @@ namespace Lab_6 {
 
             public string Name => _name;
             public string Surname => _surname;
-            public double[] Marks => (double[])_marks.Clone();
+            public double[] Marks => (double[])_marks.Clone(); // shallow copy for safety
             public int[] Places => (int[])_places.Clone();
             public int Score {
                 get { return _places.Sum(); } 
@@ -37,44 +37,47 @@ namespace Lab_6 {
             }
 
             public static void SetPlaces(Participant[] participants) {
-                int n = participants.Length; // check each participant's reference types?
-
+                if (participants == null) return;
+                
                 for (int judge = 0; judge < 7; judge++) {
-                    Array.Sort(participants, (a, b) => b.Marks[judge].CompareTo(a.Marks[judge]));
+                    participants = participants.OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
 
                     int curPlace = 0;
                     double lastScore = -1;
 
-                    for (int p = 0; p < n; p++) {
-                        if (participants[p].Marks[judge] != lastScore)
+                    foreach (var p in participants) {
+                        if (p.Marks[judge] != lastScore)
                             curPlace++;
 
-                        participants[p].Places[judge] = curPlace;
-                        lastScore = participants[p].Marks[judge];
+                        p.Places[judge] = curPlace;
+                        lastScore = p.Marks[judge];
                     }
                 }
             }
 
             public static void Sort(Participant[] array) {
-                Array.Sort(array, (a, b) => { // check each participant's reference types?
-                    int result = a.Score.CompareTo(b.Score);
+                if (array == null) return;
 
-                    if (result != 0) return result;
+                array = array.OrderBy(x => x, Comparer<Participant>.Create((a, b) => { // stable complex sort
+                            int result = a.Score.CompareTo(b.Score);
 
-                    int aSecondCriteria = 0, bSecondCriteria = 0;
+                            if (result != 0) return result;
 
-                    for (int judge = 0; judge < 7; judge++) {
-                        if (a.Places[judge] < b.Places[judge])
-                            aSecondCriteria = 1;
-                        else if (b.Places[judge] < a.Places[judge])
-                            bSecondCriteria = 1;
-                    }
+                            int aSecondCriteria = 0, bSecondCriteria = 0;
 
-                    if (aSecondCriteria != bSecondCriteria)
-                        return bSecondCriteria.CompareTo(aSecondCriteria);
-                    
-                    return a.Marks.Sum().CompareTo(b.Marks.Sum());
-                });
+                            for (int judge = 0; judge < 7; judge++) {
+                                if (a.Places[judge] < b.Places[judge]) // check for Places and Marks nullability?
+                                    aSecondCriteria = 1;
+                                else if (b.Places[judge] < a.Places[judge])
+                                    bSecondCriteria = 1;
+                            }
+
+                            if (aSecondCriteria != bSecondCriteria)
+                                return bSecondCriteria.CompareTo(aSecondCriteria);
+                            
+                            return b.Marks.Sum().CompareTo(a.Marks.Sum());
+                        }))
+                        .ToArray();
             }
 
         }

@@ -15,7 +15,7 @@ namespace Lab_6 {
             public string Name => _name;
             public string Surname => _surname;
             public int Distance => _distance;
-            public int[] Marks => (int[])_marks.Clone(); // shallow copy
+            public int[] Marks => (int[])_marks.Clone(); // shallow copy for safety
             public int Result {get; private set; }
 
             public Participant(string name, string surname) {
@@ -25,7 +25,8 @@ namespace Lab_6 {
             }
 
             public void Jump(int distance, int[] marks) {
-                if (_marks == null) return;
+                if (_marks == null || marks == null)
+                    return;
 
                 for (int i = 0; i < 5; i++) 
                     _marks[i] = marks[i];
@@ -35,7 +36,7 @@ namespace Lab_6 {
             }
 
             public static void Sort(Participant[] array) {
-                Array.Sort(array, (a, b) => b.Result.CompareTo(a.Result));
+                array = array.OrderByDescending(x => x.Result).ToArray(); // stable sort
             }
         }
     }

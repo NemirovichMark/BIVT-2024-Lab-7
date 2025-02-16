@@ -32,7 +32,7 @@ namespace Lab_6 {
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen => _sportsmen;
+            public Sportsman[] Sportsmen => (Sportsman[])_sportsmen.Clone(); // shallow copy for safety
 
             public Group(string name) {
                 _name = name;
@@ -56,6 +56,8 @@ namespace Lab_6 {
             }
 
             public void Add(Sportsman[] sportsmen) {
+                if (sportsmen == null) return;
+
                 int n = _sportsmen.Length;
                 var newSportsmen = new Sportsman[n + sportsmen.Length];
 
@@ -70,7 +72,7 @@ namespace Lab_6 {
             }
 
             public void Sort() {
-                Array.Sort(_sportsmen, (a, b) => a.Time.CompareTo(b.Time));
+                _sportsmen = _sportsmen.OrderBy(x => x.Time).ToArray(); // stable sort
             }
 
             public static Group Merge(Group group1, Group group2) {
@@ -81,6 +83,7 @@ namespace Lab_6 {
                 int m = group2.Sportsmen.Length;
 
                 var mergedSportsmen = new Sportsman[n + m];
+
                 int i = 0, j = 0, k = 0;
 
                 while (i < n && j < m) {

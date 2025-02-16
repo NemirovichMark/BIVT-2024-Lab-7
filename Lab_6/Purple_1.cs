@@ -11,11 +11,11 @@ namespace Lab_6 {
             private string _surname;
             private double[] _coefs;
             private double[,] _marks;
-            public int _jumpsCount;
+            private int _jumpsCount;
 
             public string Name => _name;
             public string Surname => _surname;
-            public double[] Coefs => (double[])_coefs.Clone(); // shallow copy
+            public double[] Coefs => (double[])_coefs.Clone(); // shallow copy for safety
             public double[,] Marks => (double[,])_marks.Clone();
             public double TotalScore {get; private set; }
 
@@ -27,7 +27,7 @@ namespace Lab_6 {
             }
 
             public void SetCriterias(double[] coefs) {
-                if (_coefs == null) 
+                if (_coefs == null || coefs == null) 
                     return;
 
                 for (int i = 0; i < 4; i++) 
@@ -35,7 +35,7 @@ namespace Lab_6 {
             }
 
             public void Jump(int[] marks) {
-                if (marks == null || _jumpsCount >= 4) 
+                if (_marks == null || marks == null || _jumpsCount >= 4) 
                     return;
 
                 for (int j = 0; j < 7; j++) 
@@ -45,7 +45,9 @@ namespace Lab_6 {
             }
 
             public static void Sort(Participant[] array) {
-                Array.Sort(array, (a, b) => b.TotalScore.CompareTo(a.TotalScore));
+                if (array == null) return;
+
+                array = array.OrderByDescending(x => x.TotalScore).ToArray(); // stable sort
             }
         }
     }
