@@ -11,6 +11,7 @@ namespace Lab_6{
             private string _surname;
             private double[] _marks;
             private int[] _places;
+            private int _currentMark = 0;
 
             public string Name => _name;
             public string Surname => _surname;
@@ -51,9 +52,13 @@ namespace Lab_6{
 
             public void Evaluate(double result){
                 for (int i = 0; i < _marks.Length; i++){
-                    if (_marks[i] == 0){
-                        _marks[i] = result;
-                        break;
+                    // if (_marks[i] == 0){
+                    //     _marks[i] = result;
+                    //     break;
+                    // }
+                    if (_currentMark < _marks.Length){
+                        _marks[_currentMark] = result;
+                        _currentMark++;
                     }
                 }
             }
