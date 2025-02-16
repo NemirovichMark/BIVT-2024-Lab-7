@@ -76,8 +76,16 @@ namespace Lab_6{
                 if (_jumpCount >= 4){
                     return;
                 }
+
+                if (marks.Length > 7){
+                    for (int j = 0; j < 7; j++){
+                    _marks[_jumpCount, j] = marks[j];
+                }
+                }
+                else{
                 for (int j = 0; j < marks.Length; j++){
                     _marks[_jumpCount, j] = marks[j];
+                }
                 }
                 _jumpCount++;
             }
@@ -88,8 +96,8 @@ namespace Lab_6{
                     while(j >= 0){
                         if (array[j].TotalScore < array[k].TotalScore){
                             Participant temp = array[k];
-                            array[k] = array[k - 1];
-                            array[k - 1] = temp;
+                            array[k] = array[j];
+                            array[j] = temp;
                         }
                         k = j;
                         j--;
