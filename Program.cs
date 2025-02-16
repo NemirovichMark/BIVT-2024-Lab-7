@@ -13,43 +13,43 @@ namespace Lab_6
             Console.WriteLine("Green_1:");
             Green_1.Participant participant1 = new Green_1.Participant("Степанова", "Спартак", "Зайцев");
             participant1.Run(41.94);
-            Console.WriteLine($"{participant1.Surname} {participant1.Group} {participant1.CoachSurname} {participant1.Result} {participant1.HasPassed}");
+            Console.WriteLine($"{participant1.Surname} {participant1.Group} {participant1.Trainer} {participant1.Result} {participant1.HasPassed}");
 
             Green_1.Participant participant2 = new Green_1.Participant("Кристиан", "Русь", "Жарков");
             participant2.Run(55.29);
-            Console.WriteLine($"{participant2.Surname} {participant2.Group} {participant2.CoachSurname} {participant2.Result} {participant2.HasPassed}");
+            Console.WriteLine($"{participant2.Surname} {participant2.Group} {participant2.Trainer} {participant2.Result} {participant2.HasPassed}");
 
             Green_1.Participant participant3 = new Green_1.Participant("Чехова", "Юность", "Свиридов");
             participant3.Run(72.01);
-            Console.WriteLine($"{participant3.Surname} {participant3.Group} {participant3.CoachSurname} {participant3.Result} {participant3.HasPassed}");
+            Console.WriteLine($"{participant3.Surname} {participant3.Group} {participant3.Trainer} {participant3.Result} {participant3.HasPassed}");
 
             Green_1.Participant participant4 = new Green_1.Participant("Зайцева", "Быки", "Свиридов");
             participant4.Run(140.78);
-            Console.WriteLine($"{participant4.Surname} {participant4.Group} {participant4.CoachSurname} {participant4.Result} {participant4.HasPassed}");
+            Console.WriteLine($"{participant4.Surname} {participant4.Group} {participant4.Trainer} {participant4.Result} {participant4.HasPassed}");
 
             Green_1.Participant participant5 = new Green_1.Participant("Смирнова", "Русь", "Павлов");
             participant5.Run(95.45);
-            Console.WriteLine($"{participant5.Surname} {participant5.Group} {participant5.CoachSurname} {participant5.Result} {participant5.HasPassed}");
+            Console.WriteLine($"{participant5.Surname} {participant5.Group} {participant5.Trainer} {participant5.Result} {participant5.HasPassed}");
 
             Green_1.Participant participant6 = new Green_1.Participant("Кристиан", "Химик", "Распутин");
             participant6.Run(79.63);
-            Console.WriteLine($"{participant6.Surname} {participant6.Group} {participant6.CoachSurname} {participant6.Result} {participant6.HasPassed}");
+            Console.WriteLine($"{participant6.Surname} {participant6.Group} {participant6.Trainer} {participant6.Result} {participant6.HasPassed}");
 
             Green_1.Participant participant7 = new Green_1.Participant("Иванова", "Байкал", "Иванов");
             participant7.Run(29.67);
-            Console.WriteLine($"{participant7.Surname} {participant7.Group} {participant7.CoachSurname} {participant7.Result} {participant7.HasPassed}");
+            Console.WriteLine($"{participant7.Surname} {participant7.Group} {participant7.Trainer} {participant7.Result} {participant7.HasPassed}");
 
             Green_1.Participant participant8 = new Green_1.Participant("Жаркова", "Югра", "Жарков");
             participant8.Run(18.41);
-            Console.WriteLine($"{participant8.Surname} {participant8.Group} {participant8.CoachSurname} {participant8.Result} {participant8.HasPassed}");
+            Console.WriteLine($"{participant8.Surname} {participant8.Group} {participant8.Trainer} {participant8.Result} {participant8.HasPassed}");
 
             Green_1.Participant participant9 = new Green_1.Participant("Чехова", "Метеор", "Тихонов");
             participant9.Run(140.87);
-            Console.WriteLine($"{participant9.Surname} {participant9.Group} {participant9.CoachSurname} {participant9.Result} {participant9.HasPassed}");
+            Console.WriteLine($"{participant9.Surname} {participant9.Group} {participant9.Trainer} {participant9.Result} {participant9.HasPassed}");
 
             Green_1.Participant participant10 = new Green_1.Participant("Степанова", "Энергия", "Свиридов");
             participant10.Run(75.52);
-            Console.WriteLine($"{participant10.Surname} {participant10.Group} {participant10.CoachSurname} {participant10.Result} {participant10.HasPassed}");
+            Console.WriteLine($"{participant10.Surname} {participant10.Group} {participant10.Trainer} {participant10.Result} {participant10.HasPassed}");
 
 
             Console.WriteLine($"Количество прошедших норматив: {Green_1.Participant.PassedTheStandart}");

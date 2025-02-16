@@ -10,23 +10,23 @@ namespace Lab_6 {
   public class Green_2 {
     public struct Student {
       // Поля
-      private string _name;
-      private string _surname;
+      private string? _name;
+      private string? _surname;
       private int[] _marks;
 
       private const int _examsCount = 4;
       
       // Свойства
-      public string Name => _name is not null ? _name : "Нет данных";
-      public string Surname => _surname is not null ? _surname : "Нет данных";
+      public string? Name => _name is not null ? _name : null;
+      public string? Surname => _surname is not null ? _surname : null;
       public int[] Marks => _marks is not null ? _marks : new int[_examsCount];
       public double AvgMark => _marks is not null ? (double)_marks.Sum() / _examsCount : 0;
       public bool IsExcellent => _marks is not null && Array.TrueForAll(_marks, m => m >= 4);
 
       // Конструктор
       public Student(string name, string surname) {
-        this._name = name is not null ? name :  throw new ArgumentNullException(nameof(name), "Имя не может быть null");;
-        this._surname = surname is not null ? surname : throw new ArgumentException(nameof(surname), "Фамилия не может быть null");
+        this._name = name is not null ? name :  null;
+        this._surname = surname is not null ? surname : null;
         this._marks = new int[_examsCount];
       }
 

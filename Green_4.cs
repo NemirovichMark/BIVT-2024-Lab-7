@@ -8,21 +8,21 @@ namespace Lab_6 {
   public class Green_4 {
     public struct Participant {
       // Поля
-      private string _name;
-      private string _surname;
+      private string? _name;
+      private string? _surname;
       private double[] _jumps;
       private const int _jumpsCount = 3;
 
       // Свойства
-      public string Name => _name is not null ? _name : "Нет данных";
-      public string Surname => _surname is not null ? _surname : "Нет данных";
+      public string? Name => _name is not null ? _name : null;
+      public string? Surname => _surname is not null ? _surname : null;
       public double[] Jumps => _jumps is not null ? _jumps : new double[_jumpsCount];
       public double BestJump => _jumps is not null ? Math.Round(_jumps.Max(), 2) : 0;
 
       // Конструктор
       public Participant(string name, string surname) {
-        this._name = name is not null ? name :  throw new ArgumentNullException(nameof(name), "Имя не может быть null");;
-        this._surname = surname is not null ? surname : throw new ArgumentException(nameof(surname), "Фамилия не может быть null");
+        this._name = name is not null ? name :  null;
+        this._surname = surname is not null ? surname : null;
         this._jumps = new double[_jumpsCount];
       }
 
