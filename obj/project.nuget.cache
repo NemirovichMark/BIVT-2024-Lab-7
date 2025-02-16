@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "jXQPHh5XCv1ZzvqpUl8+t6ex06a4QPBVLhts3kTLMsXZwzdSeYussGfk+ylQPQWw5bLbSosQrkADXTky+TxY9w==",
+  "success": true,
+  "projectFilePath": "/home/qquerell/programming/uni/BIVT-2024-Lab-6/BIVT-2024-Lab-6.csproj",
+  "expectedPackageFiles": [
+    "/home/qquerell/.nuget/packages/microsoft.aspnetcore.app.ref/8.0.10/microsoft.aspnetcore.app.ref.8.0.10.nupkg.sha512"
+  ],
+  "logs": []
+}
