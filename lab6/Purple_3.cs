@@ -132,6 +132,8 @@ namespace Lab_6{
                     }
                 }
             }   
+
+            public void Print(){}
         }
 
     }

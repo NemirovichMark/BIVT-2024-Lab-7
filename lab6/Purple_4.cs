@@ -47,7 +47,7 @@ namespace Lab_6{
             }
 
             public Group(Group otherGroup){
-                if (otherGroup._sportsmen == null) return;
+                if (otherGroup._sportsmen == null || _sportsmen == null) return;
 
                 _name = otherGroup.Name;
                 _sportsmen = new Sportsman[otherGroup.Sportsmen.Length];
@@ -55,12 +55,14 @@ namespace Lab_6{
             }
 
             public void Add(Sportsman sportsman){
+                if (_sportsmen == null) return;
+
                 Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                 _sportsmen[_sportsmen.Length-1] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen){
-                if (sportsmen == null) return;
+                if (sportsmen == null || _sportsmen == null) return;
 
                 Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
                 for (int i = 0; i < sportsmen.Length; i++){
@@ -69,6 +71,8 @@ namespace Lab_6{
             }
 
             public void Add(Group group){
+                if (_sportsmen == null || group._sportsmen == null) return;
+
                 for (int i = 0; i < group.Sportsmen.Length; i++){
                     Add(group.Sportsmen[i]);
                 }
@@ -92,6 +96,8 @@ namespace Lab_6{
             }
 
             public static Group Merge(Group group1, Group group2){
+                //if (group1._sportsmen == null || group2._sportsmen == null) return new Group();
+
                 Group newGroup = new Group("Финалисты");
                 int g1 = 0, g2 = 0;
                 while (g1 < group1.Sportsmen.Length && g2 < group2.Sportsmen.Length){
@@ -114,6 +120,8 @@ namespace Lab_6{
                 }
                 return newGroup;
             }
+
+            public void Print(){}
         }
     }
 }

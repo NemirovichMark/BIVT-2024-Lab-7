@@ -62,7 +62,7 @@ namespace Lab_6{
                 }
 
                 public void Add(string[] answers){
-                    if (answers == null || answers.Length == 0) return;
+                    if (answers == null || answers.Length == 0 || _responses == null) return;
                     
                     if (answers.Length != 3){
                         return;
@@ -79,7 +79,7 @@ namespace Lab_6{
                 }
 
                 public string[] GetTopResponses(int question){
-                    if (question < 1 || question > 3){
+                    if (question < 1 || question > 3 || _responses == null){
                         return null;
                     }
 
@@ -154,6 +154,8 @@ namespace Lab_6{
                     return topResponses;
 
                 } 
+
+                public void Print(){}
             }
     }
 }

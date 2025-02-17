@@ -30,6 +30,7 @@ namespace Lab_6{
             public int[,] Marks{
                 get{
                     if (_marks == null) return null;
+
                     int[,] copy = new int[_marks.GetLength(0), _marks.GetLength(1)];
                     for (int i = 0; i < _marks.GetLength(0); i++){
                         for (int j = 0; j < _marks.GetLength(1); j++){
@@ -41,7 +42,7 @@ namespace Lab_6{
             }
             public double TotalScore{
                 get{
-                    if (_marks == null) return 0;
+                    if (_marks == null || _coefs == null) return 0;
 
                     double total = 0;
                     for (int jump = 0; jump < _marks.GetLength(0); jump++){
@@ -67,14 +68,15 @@ namespace Lab_6{
                 _coefs = new double[4]{2.5, 2.5, 2.5, 2.5};
                 _marks = new int[4,7];   
             }
+            
             public void SetCriterias(double[] coefs){
-                if (coefs == null) return;
+                if (coefs == null || _coefs == null) return;
                 if (coefs.Length != 4) return;
                 Array.Copy(coefs, _coefs, coefs.Length);
             }
 
             public void Jump(int[] marks){
-                if (marks == null) return;
+                if (marks == null || _marks == null) return;
 
                 if (_jumpCount >= 4){
                     return;
@@ -109,6 +111,8 @@ namespace Lab_6{
                     } 
             }
             }
+
+            public void Print(){}
         }
     }
 }

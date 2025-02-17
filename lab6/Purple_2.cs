@@ -70,7 +70,7 @@ namespace Lab_6{
             }
 
             public void Jump(int distance, int[] marks){
-                if (marks == null) return;
+                if (marks == null || _marks == null) return;
 
                 if (marks.Length != 5){
                     return;
@@ -101,6 +101,8 @@ namespace Lab_6{
                     }
                 }
             }
+
+            public void Print(){}
         }
     }
 }
