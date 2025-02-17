@@ -8,8 +8,8 @@ namespace Lab_6{
         private int _Distance;
         private int[] _Marks;
 
-        public string Name { get => _Name;}
-        public string Surname { get => _Surname;}
+        public string Name  => _Name;
+        public string Surname => _Surname;
         public int[] Marks 
         {
             get{
@@ -49,12 +49,15 @@ namespace Lab_6{
 
         for (int i = 0; i < n - 1; i++){
             for (int j = 0; j < n - 1 - i; j++){
-                if (array[j].Result < array[j + 1].Result)
-                {
+                if (array[j].Result < array[j + 1].Result){
                    (array[j], array[j + 1]) = (array[j + 1], array[j]);
                     }
                 }
             }
+        }
+
+        public void Print(){
+             Console.WriteLine($"{_Name,-12} {_Surname,-12} {Result,-11}");
         }
 
         }

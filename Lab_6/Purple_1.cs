@@ -9,8 +9,8 @@ public class Purple_1
         private int[,] _Marks;
         private int _NumberJump;
 
-        public string Name { get => _Name;}
-        public string Surname { get => _Surname;}
+        public string Name  => _Name;
+        public string Surname => _Surname;
         public double[] Coefs 
         { 
             get{
@@ -27,7 +27,7 @@ public class Purple_1
                 return copy;
             }
         }
-        public int NumberJump {get => _NumberJump;}
+        public int NumberJump => _NumberJump;
 
         public double TotalScore{
             get{
@@ -38,6 +38,7 @@ public class Purple_1
                     int s = Enumerable.Range(0, Marks.GetLength(1)).Sum(j => copy[i, j]);
                     int mn = Enumerable.Range(0, Marks.GetLength(1)).Min(j => copy[i, j]); 
                     int mx = Enumerable.Range(0, Marks.GetLength(1)).Max(j => copy[i, j]);
+                    
                     score += (s-mn-mx)*_Coefs[i];
                  }
                 return score;
@@ -75,6 +76,9 @@ public class Purple_1
                     }
                 }
             }
+        }
+        public void Print(){
+            Console.WriteLine($"{_Name,-12} {_Surname,-12} {Math.Round(TotalScore,1),-11}");
         }
     }
 }
