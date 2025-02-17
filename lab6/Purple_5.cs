@@ -16,6 +16,8 @@ namespace Lab_6{
             }
 
             public int CountVotes(Response[] responses, int questionNumber){
+                if (responses == null) return 0;
+
                 int count = 0;
                 for (int i = 0; i < responses.Length; i++){
                     string ans;
@@ -45,7 +47,14 @@ namespace Lab_6{
                 private Response[] _responses;
 
                 public string Name => _name;
-                public Response[] Responses => _responses;
+                public Response[] Responses {
+                    get{
+                        if (_responses == null) return null;
+                        Response[] copy = new Response[_responses.Length];
+                        Array.Copy(_responses, copy, _responses.Length);
+                        return copy;
+                    }
+                }
 
                 public Research(string name){
                     _name = name;
@@ -53,6 +62,8 @@ namespace Lab_6{
                 }
 
                 public void Add(string[] answers){
+                    if (answers == null || answers.Length == 0) return;
+                    
                     if (answers.Length != 3){
                         return;
                     }

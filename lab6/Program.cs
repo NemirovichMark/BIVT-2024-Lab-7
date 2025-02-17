@@ -111,14 +111,6 @@ namespace Lab_6
         participants1[3].Evaluate(6.0);
         participants1[3].Evaluate(5.5);
 
-        // foreach (var participant in participants1)
-        // {
-        //     Console.WriteLine($"{participant.Surname} {participant.Name}: " +
-        //         $"Оценки: {string.Join(", ", participant.Marks), 10}, " +
-        //         $"Места: {string.Join(", ", participant.Places), 10}, " +
-        //         $"Сумма мест: {participant.Score}");
-        // }
-
         Purple_3.Participant.SetPlaces(participants1);
 
         Console.WriteLine("Результаты соревнований:");
@@ -155,9 +147,9 @@ namespace Lab_6
         //4
         System.Console.WriteLine("Purple4");
         Purple_4.Sportsman sportsman1 = new Purple_4.Sportsman("Иван", "Иванов");
-        sportsman1.Run(30.5);
+        sportsman1.Run(28.7);
         Purple_4.Sportsman sportsman2 = new Purple_4.Sportsman("Петр", "Петров");
-        sportsman2.Run(28.7);
+        sportsman2.Run(30.5);
 
         Purple_4.Group group1 = new Purple_4.Group("Группа 1");
         group1.Add(sportsman1);

@@ -68,11 +68,14 @@ namespace Lab_6{
                 _marks = new int[4,7];   
             }
             public void SetCriterias(double[] coefs){
+                if (coefs == null) return;
                 if (coefs.Length != 4) return;
                 Array.Copy(coefs, _coefs, coefs.Length);
             }
 
             public void Jump(int[] marks){
+                if (marks == null) return;
+
                 if (_jumpCount >= 4){
                     return;
                 }
@@ -91,6 +94,8 @@ namespace Lab_6{
             }
 
             public static void Sort(Participant[] array){
+                if (array == null) return;
+                
                 for (int i = 1; i < array.Length; i++){
                     int k = i, j = k - 1;
                     while(j >= 0){

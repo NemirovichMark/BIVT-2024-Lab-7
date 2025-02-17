@@ -70,6 +70,8 @@ namespace Lab_6{
             }
 
             public void Jump(int distance, int[] marks){
+                if (marks == null) return;
+
                 if (marks.Length != 5){
                     return;
                 }
@@ -84,6 +86,8 @@ namespace Lab_6{
             }
 
             public static void Sort(Participant[] array){
+                if (array == null) return;
+                
                 for (int i = 1; i < array.Length; i++){
                     int k = i, j = k - 1;
                     while (j >= 0){

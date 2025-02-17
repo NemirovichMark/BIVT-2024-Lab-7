@@ -32,7 +32,14 @@ namespace Lab_6{
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen => _sportsmen;
+            public Sportsman[] Sportsmen {
+                get{
+                    if (_sportsmen == null) return null;
+                    Sportsman[] copy = new Sportsman[_sportsmen.Length];
+                    Array.Copy(_sportsmen, copy, _sportsmen.Length);
+                    return copy;
+                }
+            }
 
             public Group(string name){
                 _name = name;
@@ -40,6 +47,8 @@ namespace Lab_6{
             }
 
             public Group(Group otherGroup){
+                if (otherGroup._sportsmen == null) return;
+
                 _name = otherGroup.Name;
                 _sportsmen = new Sportsman[otherGroup.Sportsmen.Length];
                 Array.Copy(otherGroup.Sportsmen, _sportsmen, otherGroup.Sportsmen.Length);
@@ -51,6 +60,8 @@ namespace Lab_6{
             }
 
             public void Add(Sportsman[] sportsmen){
+                if (sportsmen == null) return;
+
                 Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
                 for (int i = 0; i < sportsmen.Length; i++){
                     _sportsmen[_sportsmen.Length+i] = sportsmen[i];
@@ -64,13 +75,15 @@ namespace Lab_6{
             }
 
             public void Sort(){
-                for (int i = 1; i < Sportsmen.Length; i++){
+                if (_sportsmen == null) return;
+
+                for (int i = 1; i < _sportsmen.Length; i++){
                     int k = i, j = k - 1;
                     while (j >= 0){
-                        if (Sportsmen[j].Time > Sportsmen[k].Time){
-                            Sportsman tmp = Sportsmen[j];
-                            Sportsmen[j] = Sportsmen[k];
-                            Sportsmen[k] = tmp;
+                        if (_sportsmen[j].Time > _sportsmen[k].Time){
+                            Sportsman tmp = _sportsmen[j];
+                            _sportsmen[j] = _sportsmen[k];
+                            _sportsmen[k] = tmp;
                         }
                         k = j;
                         j--;
@@ -80,9 +93,25 @@ namespace Lab_6{
 
             public static Group Merge(Group group1, Group group2){
                 Group newGroup = new Group("Финалисты");
-                newGroup.Add(group1);
-                newGroup.Add(group2);
-                newGroup.Sort();
+                int g1 = 0, g2 = 0;
+                while (g1 < group1.Sportsmen.Length && g2 < group2.Sportsmen.Length){
+                    if (group1.Sportsmen[g1].Time < group2.Sportsmen[g2].Time){
+                        newGroup.Add(group1.Sportsmen[g1]);
+                        g1++;
+                    }
+                    else{
+                        newGroup.Add(group2.Sportsmen[g2]);
+                        g2++;
+                    }
+                }
+                while (g1 < group1.Sportsmen.Length){
+                    newGroup.Add(group1.Sportsmen[g1]);
+                    g1++;
+                }
+                while (g2 < group2.Sportsmen.Length){
+                    newGroup.Add(group2.Sportsmen[g2]);
+                    g2++;
+                }
                 return newGroup;
             }
         }

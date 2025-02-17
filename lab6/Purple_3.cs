@@ -51,26 +51,18 @@ namespace Lab_6{
             }
 
             public void Evaluate(double result){
-                for (int i = 0; i < _marks.Length; i++){
-                    // if (_marks[i] == 0){
-                    //     _marks[i] = result;
-                    //     break;
-                    // }
-                    if (_currentMark < _marks.Length){
-                        _marks[_currentMark] = result;
-                        _currentMark++;
-                    }
+                if (_marks == null) return;
+
+                if (_currentMark < _marks.Length){
+                    _marks[_currentMark] = result;
+                    _currentMark++;
                 }
             }
 
             public static void SetPlaces(Participant[] participants){
+                if (participants == null) return;
+
                 for (int judje = 0; judje < 7; judje++){
-                    // //int[] places = new int[participants.Length];
-
-                    // for (int i = 0; i < participants.Length; i++){
-                    //     places[i] = i;
-                    // }
-
                     for (int i = 1; i < participants.Length; i++){
                         int k = i, j = k - 1;
                         while (j >= 0){
@@ -88,23 +80,24 @@ namespace Lab_6{
                     for (int place = 0; place < participants.Length; place++){
                         participants[place]._places[judje] = place + 1;
                     }
-
-                    // for (int i = 1; i < participants.Length; i++){
-                    //     int k = i, j = k-1;
-                    //     while (j >= 0){
-                    //         if (participants[j].Places[6] < participants[k].Places[6]){
-                    //             Participant tmp = participants[k];
-                    //             participants[k] = participants[j];
-                    //             participants[j] = tmp;
-                    //         }
-                    //         k = j;
-                    //         j--;
-                    //     }
-                    // }
                 }
+                // for (int i = 1; i < participants.Length; i++){
+                //     int k = i, j = k-1;
+                //     while (j >= 0){
+                //         if (participants[j].Places[6] < participants[k].Places[6]){
+                //             Participant tmp = participants[k];
+                //             participants[k] = participants[j];
+                //             participants[j] = tmp;
+                //         }
+                //         k = j;
+                //         j--;
+                //     }
+                //     }
             }
 
             public static void Sort(Participant[] array){
+                if (array == null) return;
+                
                 for (int i = 1; i < array.Length; i++){
                     int k = i, j = k - 1;
                     while (j >= 0){
