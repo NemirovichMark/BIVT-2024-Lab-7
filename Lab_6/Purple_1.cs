@@ -15,8 +15,8 @@ namespace Lab_6 {
 
             public string Name => _name;
             public string Surname => _surname;
-            public double[] Coefs => (double[])_coefs.Clone(); // shallow copy for safety
-            public double[,] Marks => (double[,])_marks.Clone();
+            public double[] Coefs => (_coefs == null) ? _coefs : (double[])_coefs.Clone(); // shallow copy for safety
+            public double[,] Marks => (_marks == null) ? _marks : (double[,])_marks.Clone();
             public double TotalScore {get; private set; }
 
             public Participant(string name, string surname) {

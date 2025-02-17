@@ -16,8 +16,8 @@ namespace Lab_6 {
 
             public string Name => _name;
             public string Surname => _surname;
-            public double[] Marks => (double[])_marks.Clone(); // shallow copy for safety
-            public int[] Places => (int[])_places.Clone();
+            public double[] Marks => (_marks == null) ? _marks : (double[])_marks.Clone(); // shallow copy for safety
+            public int[] Places => (_places == null) ? _places : (int[])_places.Clone();
             public int Score {
                 get { return _places.Sum(); } 
             }

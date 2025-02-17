@@ -52,7 +52,7 @@ namespace Lab_6
             private Response[] _responses;
 
             public string Name => _name;
-            public Response[] Responses => _responses;
+            public Response[] Responses => (_responses == null) ? null : (Response[])_responses.Clone();
 
             public Research(string name)
             {

@@ -30,9 +30,8 @@ namespace Lab_6 {
         public struct Group {
             private string _name;
             private Sportsman[] _sportsmen;
-
             public string Name => _name;
-            public Sportsman[] Sportsmen => (Sportsman[])_sportsmen.Clone(); // shallow copy for safety
+            public Sportsman[] Sportsmen => (_sportsmen == null) ? _sportsmen : (Sportsman[])_sportsmen.Clone(); // shallow copy for safety
 
             public Group(string name) {
                 _name = name;
@@ -40,42 +39,41 @@ namespace Lab_6 {
             }
 
             public Group(Group group) {
+                if (group.Sportsmen == null) return;
+
                 _name = group.Name;
                 Array.Copy(group.Sportsmen, _sportsmen, group.Sportsmen.Length);
             }
 
             public void Add(Sportsman sportsman) {
                 int n = _sportsmen.Length;
-                var newSportsmen = new Sportsman[n + 1];
-
-                Array.Copy(_sportsmen, newSportsmen, n);
-
-                newSportsmen[n] = sportsman;
-
-                _sportsmen = newSportsmen;
+                Array.Resize(ref _sportsmen, n + 1);
+                _sportsmen[n] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen) {
                 if (sportsmen == null) return;
 
                 int n = _sportsmen.Length;
-                var newSportsmen = new Sportsman[n + sportsmen.Length];
 
-                Array.Copy(_sportsmen, newSportsmen, n);
-                Array.Copy(sportsmen, 0, newSportsmen, n, sportsmen.Length);
-
-                _sportsmen = newSportsmen;
+                Array.Resize(ref _sportsmen, n + sportsmen.Length);
+                Array.Copy(sportsmen, 0, _sportsmen, n, sportsmen.Length);
             }
 
             public void Add(Group group) {
+                if (group.Sportsmen == null) return;
+
                 Add(group.Sportsmen);
             }
-
+            
             public void Sort() {
                 _sportsmen = _sportsmen.OrderBy(x => x.Time).ToArray(); // stable sort
             }
 
             public static Group Merge(Group group1, Group group2) {
+                if (group1.Sportsmen == null) return group2;
+                if (group2.Sportsmen == null) return group1;
+                
                 group1.Sort();
                 group2.Sort();
 

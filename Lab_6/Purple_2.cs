@@ -15,7 +15,7 @@ namespace Lab_6 {
             public string Name => _name;
             public string Surname => _surname;
             public int Distance => _distance;
-            public int[] Marks => (int[])_marks.Clone(); // shallow copy for safety
+            public int[] Marks => (_marks == null) ? _marks : (int[])_marks.Clone(); // shallow copy for safety
             public int Result {get; private set; }
 
             public Participant(string name, string surname) {
