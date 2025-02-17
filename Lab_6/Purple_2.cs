@@ -32,11 +32,31 @@ namespace Lab_6 {
                     _marks[i] = marks[i];
 
                 Result = Math.Max(0, marks.Sum() - marks.Min() - marks.Max() 
-                                    + (distance - 120) * 2);            
+                                    + 60 + (distance - 120) * 2);            
             }
 
             public static void Sort(Participant[] array) {
-                array = array.OrderByDescending(x => x.Result).ToArray(); // stable sort
+                var sortedArray = array.OrderByDescending(x => x.Result).ToArray(); // stable sort
+                Array.Copy(sortedArray, array, array.Length);
+            }
+
+            private void PrintArray<T>(T[] array, string label) {
+                Console.Write(label + " ");
+                if (array == null) {
+                    Console.WriteLine("N/A");
+                    return;
+                }
+                
+                foreach (var element in array)
+                    Console.Write(element + " ");
+                Console.WriteLine();
+            }
+
+            public void Print() {
+                Console.WriteLine($"Name: {_name ?? "N/A"}");
+                Console.WriteLine($"Surname: {_surname ?? "N/A"}");
+                Console.WriteLine($"Distance: {_distance}");
+                PrintArray(_marks, "Marks:");
             }
         }
     }

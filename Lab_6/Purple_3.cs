@@ -18,16 +18,22 @@ namespace Lab_6 {
             public string Surname => _surname;
             public double[] Marks => (_marks == null) ? _marks : (double[])_marks.Clone(); // shallow copy for safety
             public int[] Places => (_places == null) ? _places : (int[])_places.Clone();
-            public int Score {
-                get { return _places.Sum(); } 
-            }
+            public int Score => (_places == null) ? 0 : _places.Sum(); 
 
-            public Participant(string name, string surname) {
-                _name = name;
+            
+
+            public Participant(string name, string surname, params double[] marks) { // TEMPORARY !!!!!!!!!!!!!!!!!!!!!!!!!!!!1
+                _name = name; 
                 _surname = surname;
 
                 _marks = new double[7];
                 _places = new int[7];
+
+
+                // temporary!
+                int k = 0;
+                foreach (var i in marks)
+                    _marks[k++] = i;
             }
 
             public void Evaluate(double result) {
@@ -40,25 +46,29 @@ namespace Lab_6 {
                 if (participants == null) return;
                 
                 for (int judge = 0; judge < 7; judge++) {
-                    participants = participants.OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
+                    var sortedParticipants = participants.OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
 
                     int curPlace = 0;
                     double lastScore = -1;
 
-                    foreach (var p in participants) {
+                    foreach (var p in sortedParticipants) {
                         if (p.Marks[judge] != lastScore)
                             curPlace++;
 
-                        p.Places[judge] = curPlace;
+                        p._places[judge] = curPlace;
                         lastScore = p.Marks[judge];
                     }
+
+                    if (judge == 6)
+                        Array.Copy(sortedParticipants, participants, participants.Length);
                 }
+
             }
 
             public static void Sort(Participant[] array) {
                 if (array == null) return;
 
-                array = array.OrderBy(x => x, Comparer<Participant>.Create((a, b) => { // stable complex sort
+                var sortedArray = array.OrderBy(x => x, Comparer<Participant>.Create((a, b) => { // stable complex sort
                             int result = a.Score.CompareTo(b.Score);
 
                             if (result != 0) return result;
@@ -78,6 +88,28 @@ namespace Lab_6 {
                             return b.Marks.Sum().CompareTo(a.Marks.Sum());
                         }))
                         .ToArray();
+                    
+                Array.Copy(sortedArray, array, array.Length);
+            }
+
+            private void PrintArray<T>(T[] array, string label) {
+                Console.Write(label + " ");
+                if (array == null) {
+                    Console.WriteLine("N/A");
+                    return;
+                }
+                
+                foreach (var element in array)
+                    Console.Write(element + " ");
+                Console.WriteLine();
+            }
+            
+            public void Print() {
+                Console.WriteLine($"Name: {_name ?? "N/A"}");
+                Console.WriteLine($"Surname: {_surname ?? "N/A"}");
+                PrintArray(_marks, "Marks:");
+                PrintArray(_places, "Places:");
+                Console.WriteLine($"Score: {Score}");
             }
 
         }

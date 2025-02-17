@@ -25,6 +25,11 @@ namespace Lab_6 {
             public void Run(double time) {
                 if (_time == 0) _time = time;
             }
+            public void Print() {
+                Console.WriteLine($"Name: {_name ?? "N/A"}");
+                Console.WriteLine($"Surname: {_surname ?? "N/A"}");
+                Console.WriteLine($"Time: {_time}");
+            }
         }
 
         public struct Group {
@@ -46,9 +51,8 @@ namespace Lab_6 {
             }
 
             public void Add(Sportsman sportsman) {
-                int n = _sportsmen.Length;
-                Array.Resize(ref _sportsmen, n + 1);
-                _sportsmen[n] = sportsman;
+                Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
+                _sportsmen[_sportsmen.Length - 1] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen) {
@@ -61,13 +65,12 @@ namespace Lab_6 {
             }
 
             public void Add(Group group) {
-                if (group.Sportsmen == null) return;
-
                 Add(group.Sportsmen);
             }
             
             public void Sort() {
-                _sportsmen = _sportsmen.OrderBy(x => x.Time).ToArray(); // stable sort
+                var sortedSportsmen = _sportsmen.OrderBy(x => x.Time).ToArray(); // stable sort
+                Array.Copy(sortedSportsmen, _sportsmen, _sportsmen.Length);
             }
 
             public static Group Merge(Group group1, Group group2) {
@@ -101,6 +104,25 @@ namespace Lab_6 {
                 MergedGroup.Add(mergedSportsmen);
 
                 return MergedGroup;
+            }
+
+            private void PrintArray(Sportsman[] array, string label) {
+                if (array == null) {
+                    Console.WriteLine($"{label} N/A");
+                    return;
+                }
+
+                Console.WriteLine(label);
+                for (int i = 0; i < array.Length; i++) {
+                    Console.WriteLine($"{i + 1} sportsman:");
+                    array[i].Print();
+                    Console.WriteLine();
+                }
+            }
+
+            public void Print() {
+                Console.WriteLine($"Name: {_name ?? "N/A"}");
+                PrintArray(_sportsmen, "Sportsmen:");
             }
         }
     }

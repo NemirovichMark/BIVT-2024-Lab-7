@@ -44,6 +44,12 @@ namespace Lab_6
                         return 0;
                 }
             }
+
+            public void Print() {
+                Console.WriteLine($"Animal: {_animal ?? "N/A"}");
+                Console.WriteLine($"Character Trait: {_characterTrait ?? "N/A"}");
+                Console.WriteLine($"Concept: {_concept ?? "N/A"}");
+            }
         }
 
         public struct Research
@@ -62,40 +68,37 @@ namespace Lab_6
 
             public void Add(string[] answers)
             {
-                if (answers == null) return;
+                if (_responses == null || answers == null) return;
 
                 var responseAnimal = answers[0];
                 var responseCharacterTrait = answers[1];
                 var responseConcept = answers[2];
 
                 var newResponse = new Response(responseAnimal, responseCharacterTrait, responseConcept);
-
-                int n = _responses.Length;
-                var newResponses = new Response[n + 1];
-                Array.Copy(_responses, newResponses, n);
-                newResponses[n] = newResponse;
-
-                _responses = newResponses;
+                Array.Resize(ref _responses, _responses.Length + 1);
+                _responses[_responses.Length - 1] = newResponse;    
             }
 
-            public string[] GetTopResponses(int question)
-            {
+            public string[] GetTopResponses(int question) {
                 switch (question)
                 {
                     case 1:
                         return _responses.GroupBy(r => r.Animal)
+                                .Where(r => r.Key != null && r.Key != "")
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
                                 .ToArray();
                     case 2:
                         return _responses.GroupBy(r => r.CharacterTrait)
+                                .Where(r => r.Key != null && r.Key != "")
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
                                 .ToArray();
                     case 3:
                         return _responses.GroupBy(r => r.Concept)
+                                .Where(r => r.Key != null && r.Key != "")
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
@@ -103,6 +106,24 @@ namespace Lab_6
                     default:
                         return new string[0];
                 }
+            }
+            
+            private void PrintArray(Response[] array, string label) {
+                if (array == null) {
+                    Console.WriteLine($"{label} N/A");
+                    return;
+                }
+
+                Console.WriteLine(label);
+                for (int i = 0; i < array.Length; i++) {
+                    Console.WriteLine($"{i + 1} response:");
+                    array[i].Print();
+                    Console.WriteLine();
+                }
+            }
+            public void Print() {
+                Console.WriteLine($"Name: {_name ?? "N/A"}");
+                PrintArray(_responses, "Responses:");
             }
         }
     }
