@@ -52,7 +52,7 @@ namespace Lab_6
             Console.WriteLine($"{participant10.Surname} {participant10.Group} {participant10.Trainer} {participant10.Result} {participant10.HasPassed}");
 
 
-            Console.WriteLine($"Количество прошедших норматив: {Green_1.Participant.PassedTheStandart}");
+            Console.WriteLine($"Количество прошедших норматив: {Green_1.Participant.PassedTheStandard}");
             Console.WriteLine();
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////

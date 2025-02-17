@@ -19,7 +19,7 @@ namespace Lab_6  {
       public string? Name => _name is not null ? _name : null;
       public string? Surname => _surname is not null ? _surname : null;
       public int[] Marks => _marks is not null ? _marks : new int[_examsCount];
-      public double AvgMark => _marks is not null ? Math.Round((double)_marks.Sum()/ _marks.Count(c => c != 0), 2) : 0;
+      public double AvgMark => _marks is not null ? (double)_marks.Sum()/ _marks.Count(c => c != 0) : 0;
       public bool IsExpelled => _isExpelled;
 
       // Конструктор
@@ -78,6 +78,9 @@ namespace Lab_6  {
             }
         }
       }
+
+      public void Print() { }
+
     }
   }
 }

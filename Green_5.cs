@@ -10,7 +10,7 @@ namespace Lab_6 {
       // Поля
       private string? _name;
       private string? _surname;
-      private int[] _marks;
+      private int[]? _marks;
       private const int _examsCount = 5;
 
       // Доп Поле
@@ -19,7 +19,7 @@ namespace Lab_6 {
       // Свойства
       public string? Name => _name is not null ? _name : null;
       public string? Surname => _surname is not null ? _surname : null;
-      public int[] Marks => _marks is not null ? _marks : new int[_examsCount];
+      public int[]? Marks => _marks;
       public double AvgMark => _marks is not null ? (double)_sumMarks/ _examsCount : 0;
 
       // Конструктор
@@ -36,6 +36,9 @@ namespace Lab_6 {
           Console.WriteLine("Неверный формат оценки");
           return;
         }
+        if (Marks == null) {
+          _marks = new int[_examsCount];
+        }
         for (int i = 0; i < _examsCount; i++) {
           if (_marks[i] == 0) {
             _marks[i] = mark;
@@ -44,10 +47,13 @@ namespace Lab_6 {
           }
         }
       }
+
+      public void Print() { }
+
     }
     public struct Group {
       // Поля 
-      private string _name;
+      private string? _name;
       private Student[] _students;
       private  int _studentsCount;
 
@@ -55,13 +61,13 @@ namespace Lab_6 {
       private double _sumAvgMarks;
 
       // Свойства
-      public string Name => _name is not null ? _name : "Нет данных";
-      public Student[] Students => _students is not null ? _students : new Student[_studentsCount];
-      public double AvgMark => _studentsCount > 0 ? Math.Round(_sumAvgMarks / _studentsCount, 2) : 0;
+      public string? Name => _name is not null ? _name : null;
+      public Student[] Students => _students;
+      public double AvgMark => _studentsCount > 0 ? _sumAvgMarks / _studentsCount : 0;
 
       // Конструктор
-      public Group(string name) {
-        this._name = name is not null ? name :  throw new ArgumentNullException(nameof(name), "Имя не может быть null");
+      public Group(string? name) {
+        this._name = name is not null ? name : null;
         this._students = new Student[100];
         this._studentsCount = 0;
         this._sumAvgMarks = 0;
@@ -69,7 +75,9 @@ namespace Lab_6 {
 
       // Методы
       public void Add(Student student)
-      {
+      {   if (_students == null) {
+        _students = new Student[_studentsCount];
+      }
           _students[_studentsCount++] = student;
           _sumAvgMarks += student.AvgMark;
       }
@@ -103,6 +111,9 @@ namespace Lab_6 {
               }
           }
       }
+
+      public void Print() { }
+
     }
   }
 }

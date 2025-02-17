@@ -10,26 +10,31 @@ namespace Lab_6 {
       // Поля
       private string? _name;
       private string? _surname;
-      private double[] _jumps;
+      private double[]? _jumps;
       private const int _jumpsCount = 3;
 
       // Свойства
       public string? Name => _name is not null ? _name : null;
       public string? Surname => _surname is not null ? _surname : null;
-      public double[] Jumps => _jumps is not null ? _jumps : new double[_jumpsCount];
-      public double BestJump => _jumps is not null ? Math.Round(_jumps.Max(), 2) : 0;
+      public double[]? Jumps => _jumps;
+      // public double[] Jumps => _jumps is not null ? _jumps : new double[_jumpsCount];
+
+      public double BestJump => _jumps is not null ? _jumps.Max() : 0;
 
       // Конструктор
       public Participant(string name, string surname) {
         this._name = name is not null ? name :  null;
         this._surname = surname is not null ? surname : null;
-        this._jumps = new double[_jumpsCount];
+        this._jumps = null;
       }
 
       // Методы
       public void Jump(double result) {
         if (result <= 0) {
           return;
+        }
+        if (_jumps == null) {
+          _jumps = new double[_jumpsCount];
         }
         for (int i = 0; i < _jumpsCount; i++) {
           if (Jumps[i] == 0) {
@@ -59,6 +64,9 @@ namespace Lab_6 {
             }
         }      
       }
+
+      public void Print() { }
+
     }
   }
 }
