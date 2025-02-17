@@ -54,9 +54,7 @@ public class Purple_1
         }
         public void SetCriterias(double[] coefs){
             if (coefs == null){return;}
-            for(int i = 0;i < coefs.Length;i++){
-                _Coefs[i] = coefs[i];
-            }
+            Array.Copy(coefs,_Coefs,coefs.Length);
         }
         public void Jump(int[] marks){
             if (marks == null){return;}

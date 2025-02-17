@@ -5,6 +5,7 @@ namespace Lab_6{
         {
             Program program = new Program();
             program.Task_1();
+            program.Task_2();
 
         }
         public void Task_1()
@@ -40,7 +41,32 @@ namespace Lab_6{
         }
         Console.WriteLine();
         }
-        public void Task_2(){}
+        public void Task_2(){
+
+        System.Console.WriteLine("Purple2");
+        
+        Purple_2.Participant p1 = new Purple_2.Participant("Имя1", "Фамилия1");
+        p1.Jump(120, new int[] { 17, 10, 16, 12, 8 });
+        Purple_2.Participant p2 = new Purple_2.Participant("Имя2", "Фамилия2");
+        p2.Jump(130, new int[] { 5, 4, 2, 0, 7 });
+        Purple_2.Participant p3 = new Purple_2.Participant("Имя3", "Фамилия3");
+        p3.Jump(119, new int[] { 15, 16, 17, 18, 19 });
+        Purple_2.Participant p4 = new Purple_2.Participant("Имя4", "Фамилия4");
+        p4.Jump(200, new int[] { 20, 20, 20, 20, 20 });
+
+        Purple_2.Participant[] participants = new Purple_2.Participant[] { p1, p2, p3, p4};
+        Purple_2.Participant.Sort(participants);
+
+        Console.WriteLine($"{"Имя",-12} {"Фамилия",-12} {"Результат",-10} {"Место",-5}");
+        Console.WriteLine(new string('-', 42));
+        int place = 0;
+        foreach (var athlete in participants)
+        {
+            Console.WriteLine($"{athlete.Name,-12} {athlete.Surname,-12} {athlete.Result,-11} {++place,-5}");
+        }
+        Console.WriteLine();
+
+        }
         public void Task_3(){}
         public void Task_4(){}
         public void Task_5(){}
