@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 namespace Lab_6{
     internal class Program
      {
@@ -8,6 +10,7 @@ namespace Lab_6{
             program.Task_2();
             program.Task_3();
             program.Task_4();
+            program.Task_5();
 
         }
         public void Task_1()
@@ -216,6 +219,22 @@ namespace Lab_6{
             Console.WriteLine();
 
         }
-        public void Task_5(){}
+        public void Task_5(){
+        Console.WriteLine("Purple5"); 
+        Purple_5.Research research = new Purple_5.Research("");
+        
+        research.Add(new string[] { "Тануки", "", "" });
+        research.Add(new string[] { "Кошка", "Амбициозность", "Аниме" });
+        research.Add(new string[] { "Серау", "Скромность", "Фудзияма" });
+        research.Add(new string[] { "Коала", "Внимательность", "Кимоно" });
+        research.Add(new string[] { "Коала", "Целеустремленность", "Самурай" });
+        research.Add(new string[] { "Панда", "Проницательность", "Манга" });
+        research.Add(new string[] { "Серау", "Скромность", "Суши" });
+        research.Add(new string[] { "Макака", "Амбициозность", "" });
+        
+
+        research.Print();
+
+        }
      }
 }

@@ -1,5 +1,3 @@
-using System.Diagnostics.Contracts;
-
 namespace Lab_6{
 
     public class Purple_4

@@ -14,6 +14,7 @@ public class Purple_1
         public double[] Coefs 
         { 
             get{
+            if (_Coefs == null) return null;
             double[] copy = new  double[6];
             Array.Copy(_Coefs,copy, _Coefs.Length);
             return copy;
@@ -22,6 +23,7 @@ public class Purple_1
         public int[,] Marks 
         {
             get{
+                if (_Marks == null) return null;
                 int[,] copy = new int[_Marks.GetLength(0), _Marks.GetLength(1)];
                 Array.Copy(_Marks, copy, _Marks.Length);
                 return copy;

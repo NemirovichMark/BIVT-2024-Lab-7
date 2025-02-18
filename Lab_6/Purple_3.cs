@@ -15,6 +15,7 @@ namespace Lab_6{
             public double[] Marks 
             {
                 get{
+                    if (_Marks == null) return null;
                     double[] copy = new double[_Marks.Length];
                     Array.Copy(_Marks, copy, _Marks.Length);
                     return copy;
@@ -23,6 +24,7 @@ namespace Lab_6{
             public int[] Places
             {
                 get{
+                    if (_Places == null) return null;
                     int[] copy = new int[_Places.Length];
                     Array.Copy(_Places, copy, _Places.Length);
                     return copy;

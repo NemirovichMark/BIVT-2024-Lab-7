@@ -13,6 +13,7 @@ namespace Lab_6{
         public int[] Marks 
         {
             get{
+                if (_Marks == null) return null;
                 int[] copy = new int[_Marks.Length];
                 Array.Copy(_Marks, copy, _Marks.Length);
                 return copy;
