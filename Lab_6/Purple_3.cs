@@ -80,26 +80,10 @@ namespace Lab_6{
                     return sum;
                 }
             }
-
             public static void Sort(Participant[] array){
-                Array.Sort(array, (p1, p2) => {
-                    int sPlaces1 = p1.Score;
-                    int sPlaces2 = p2.Score;
-
-                    if (sPlaces1 != sPlaces2){
-                        return sPlaces1.CompareTo(sPlaces2); 
-                    }
-
-                    for (int i = 0; i < p1.Places.Length; i++) {
-                        if (p1.Places[i] < p2.Places[i]) return -1; 
-                        if (p1.Places[i] > p2.Places[i]) return 1; 
-                    }
-
-                    double sMarks1 = p1.Marks_score;
-                    double sMarks2 = p2.Marks_score;
-
-                    return sMarks2.CompareTo(sMarks1);
-                });
+                if (array == null) return;
+                var sortedList = array.OrderBy(p => p.Score).ThenBy(p => string.Join(",", p.Places)).ThenByDescending(p => p.Marks_score) .ToArray(); 
+                Array.Copy(sortedList, array, array.Length);
             }
             public void Print(){
                 Console.WriteLine($"{_Name,-12} {_Surname,-12} {Score,-10} {Places.Min(),-8} {Math.Round(Marks.Sum(),2),-7}");

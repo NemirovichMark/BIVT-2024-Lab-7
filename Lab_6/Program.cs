@@ -7,6 +7,7 @@ namespace Lab_6{
             program.Task_1();
             program.Task_2();
             program.Task_3();
+            program.Task_4();
 
         }
         public void Task_1()
@@ -179,10 +180,42 @@ namespace Lab_6{
             participant.Print();
         }
         Console.WriteLine();
+        }
+        public void Task_4(){
+            Console.WriteLine("Purple4");
 
+            Purple_4.Sportsman sportsman1 = new Purple_4.Sportsman("Юлия", "Полевая");
+            sportsman1.Run(432.89);
+            Purple_4.Sportsman sportsman2 = new Purple_4.Sportsman("Лев", "Иванов");
+            sportsman2.Run(345.43);
+            Purple_4.Group group1 = new Purple_4.Group("1");
+            group1.Add(sportsman1);
+            group1.Add(sportsman2);
+            group1.Sort();
+
+            Purple_4.Sportsman sportsman3 = new Purple_4.Sportsman("Савелий", "Козлов");
+            sportsman3.Run(567.98);
+            Purple_4.Sportsman sportsman4 = new Purple_4.Sportsman("Ольга", "Павлова");
+            sportsman4.Run(234.78);
+            Purple_4.Sportsman sportsman5 = new Purple_4.Sportsman("Евгений", "Полевой");
+            sportsman5.Run(412.38);
+            Purple_4.Group group2 = new Purple_4.Group("2");
+            group2.Add(sportsman3);
+            group2.Add(sportsman4);
+            group2.Add(sportsman5);
+            group2.Sort();
+
+            Purple_4.Group mergeGroup = Purple_4.Group.Merge(group1, group2);
+
+            Console.WriteLine($"{"Name",-12} {"Surname",-12} {"TotalScore",-10}");
+            Console.WriteLine(new string('-', 35));
+            foreach (var sportsman in mergeGroup.Sportsmen)
+            {
+                sportsman.Print();
+            }
+            Console.WriteLine();
 
         }
-        public void Task_4(){}
         public void Task_5(){}
      }
 }

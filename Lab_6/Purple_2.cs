@@ -37,14 +37,14 @@ namespace Lab_6{
             _Marks = new int[5];
         }
         public void Jump(int distance, int[] marks){
-            if (marks == null){return;}
+            if (marks == null) return;
             _Distance = distance;
             Array.Copy(marks,_Marks,marks.Length);
         }
 
 
         public static void Sort(Participant[] array){
-        if (array == null){return;}
+        if (array == null) return;
         int n = array.Length;
 
         for (int i = 0; i < n - 1; i++){

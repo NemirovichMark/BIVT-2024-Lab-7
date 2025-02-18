@@ -38,7 +38,7 @@ public class Purple_1
                     int s = Enumerable.Range(0, Marks.GetLength(1)).Sum(j => copy[i, j]);
                     int mn = Enumerable.Range(0, Marks.GetLength(1)).Min(j => copy[i, j]); 
                     int mx = Enumerable.Range(0, Marks.GetLength(1)).Max(j => copy[i, j]);
-                    
+
                     score += (s-mn-mx)*_Coefs[i];
                  }
                 return score;
@@ -54,18 +54,18 @@ public class Purple_1
             _NumberJump = 0;
         }
         public void SetCriterias(double[] coefs){
-            if (coefs == null){return;}
+            if (coefs == null) return;
             Array.Copy(coefs,_Coefs,coefs.Length);
         }
         public void Jump(int[] marks){
-            if (marks == null){return;}
+            if (marks == null) return;
             for(int i = 0;i < marks.Length;i++){
                 _Marks[_NumberJump,i] = marks[i]; 
             }
             _NumberJump++;
         }
         public static void Sort(Participant[] array){
-        if (array == null){return;}
+        if (array == null) return;
         int n = array.Length;
 
         for (int i = 0; i < n - 1; i++){
