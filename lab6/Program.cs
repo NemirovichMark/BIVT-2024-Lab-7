@@ -177,37 +177,42 @@ namespace Lab_6
 
         //5
         System.Console.WriteLine("Purple5");
-        Purple_5.Response[] responses = new Purple_5.Response[]
-    {
-        new Purple_5.Response("Сакура", "Трудолюбие", "Самурай"),
-        new Purple_5.Response("", "Вежливость", "Самурай"),
-        new Purple_5.Response("Кошка", "Трудолюбие", "Чай"),
-        new Purple_5.Response("Сакура", "", "Самурай"), 
-        new Purple_5.Response("Кошка", "Вежливость", ""),
-        new Purple_5.Response("Сакура", "Трудолюбие", "Самурай")
-    };
-    Purple_5.Research research = new Purple_5.Research("Опрос о Японии");
-    foreach (var response in responses)
-    {
-        research.Add(new string[]{response.Animal, response.CharacterTrait, response.Concept});
-    }
-    Console.WriteLine("Топ-5 ответов по вопросу 1:");
-    foreach (var response in research.GetTopResponses(1))
-    {
-        Console.WriteLine(response);
-    }
-
-    Console.WriteLine("\nТоп-5 ответов по вопросу 2:");
-    foreach (var response in research.GetTopResponses(2))
-    {
-        Console.WriteLine(response);
-    }
-
-    Console.WriteLine("\nТоп-5 ответов по вопросу 3:");
-    foreach (var response in research.GetTopResponses(3))
-    {
-        Console.WriteLine(response);
-    }
+        Purple_5.Research research = new Purple_5.Research("Опрос о Японии");
+        research.Add(new string[] { "Тануки", "", "" });
+        research.Add(new string[] { "Кошка", "Амбициозность", "Аниме" });
+        research.Add(new string[] { "Серау", "Скромность", "Фудзияма" });
+        research.Add(new string[] { "Коала", "Внимательность", "Кимоно" });
+        research.Add(new string[] { "Коала", "Целеустремленность", "Самурай" });
+        research.Add(new string[] { "Панда", "Проницательность", "Манга" });
+        research.Add(new string[] { "Серау", "Скромность", "Суши" });
+        research.Add(new string[] { "Макака", "Амбициозность", "" });
+        research.Add(new string[] { "Сима энага", "Внимательность", "Фудзияма" });
+        research.Add(new string[] { "Панда", "Уважительность", "Фудзияма" });
+        research.Add(new string[] { "Тануки", "Скромность", "Манга" });
+        research.Add(new string[] { "Тануки", "Проницательность", "Сакура" });
+        research.Add(new string[] { "Тануки", "Целеустремленность", "Кимоно" });
+        research.Add(new string[] { "Кошка", "Дружелюбность", "Манга" });
+        research.Add(new string[] { "Тануки", "Проницательность", "" });
+        research.Add(new string[] { "Сима энага", "Проницательность", "Самурай" });
+        research.Add(new string[] { "Кошка", "Целеустремленность", "" });
+        research.Add(new string[] { "Сима энага", "Внимательность", "Фудзияма" });
+        research.Add(new string[] { "", "Амбициозность", "Сакура" });
+        research.Add(new string[] { "Коала", "Проницательность", "Самурай" });
+    //     Purple_5.Response[] responses = new Purple_5.Response[]
+    // {
+    //     new Purple_5.Response("Сакура", "Трудолюбие", "Самурай"),
+    //     new Purple_5.Response("", "Вежливость", "Самурай"),
+    //     new Purple_5.Response("Кошка", "Трудолюбие", "Чай"),
+    //     new Purple_5.Response("Сакура", "", "Самурай"), 
+    //     new Purple_5.Response("Кошка", "Вежливость", ""),
+    //     new Purple_5.Response("Сакура", "Трудолюбие", "Самурай")
+    // };
+    // Purple_5.Research research = new Purple_5.Research("Опрос о Японии");
+    // foreach (var response in responses)
+    // {
+    //     research.Add(new string[]{response.Animal, response.CharacterTrait, response.Concept});
+    // }
+        research.Print();
     }
     }
 }

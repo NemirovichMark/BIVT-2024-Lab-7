@@ -100,7 +100,13 @@ namespace Lab_6{
                 
                 for (int i = 1; i < array.Length; i++){
                     int k = i, j = k - 1;
+                    if (array[i]._places == null || array[k]._places == null || array[j]._places == null){
+                        continue;
+                    }
                     while (j >= 0){
+                        if (array[i]._places == null || array[k]._places == null || array[j]._places == null){
+                            continue;
+                        }
                         if (array[j]._places.Sum() > array[k]._places.Sum()){
                             Participant tmp = array[k];
                             array[k] = array[j];
@@ -120,6 +126,9 @@ namespace Lab_6{
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
+                            }
+                            if (array[j]._marks == null || array[k]._marks == null){
+                                continue;
                             }
                             if (partJ == partK && array[j]._marks.Sum() > array[k]._marks.Sum()){
                                 Participant tmp = array[k];

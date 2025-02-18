@@ -100,6 +100,11 @@ namespace Lab_6{
                         }
                     }
 
+                    // System.Console.WriteLine(answerCount);
+                    // foreach (var member in ans){
+                    //     System.Console.Write(member+" ");
+                    // }
+
                     string[] uniqueAnswers = new string[answerCount];
                     int[] counts = new int[answerCount];
                     int uniqueCount = 0;
@@ -125,20 +130,26 @@ namespace Lab_6{
                         }
                     }
 
-                    for (int i = 0; i < uniqueCount - 1; i++)
-                    {
-                        for (int j = i + 1; j < uniqueCount; j++)
-                        {
-                            if (counts[i] < counts[j])
-                            {
-                                string tempAnswer = uniqueAnswers[i];
-                                uniqueAnswers[i] = uniqueAnswers[j];
+                    // System.Console.WriteLine("unique");
+                    // foreach (var memb in counts){
+                    //     System.Console.Write(memb + " ");
+                    // }
+                    // System.Console.WriteLine();
+
+                    for (int i = 1; i < uniqueCount; i++){
+                        int k = i, j = k - 1;
+                        while (j >= 0){
+                            if (counts[j] < counts[k]){ // не сказано по какому принципу сортируются варианты с одинаковым кол-вом ответов
+                                string tempAnswer = uniqueAnswers[k];
+                                uniqueAnswers[k] = uniqueAnswers[j];
                                 uniqueAnswers[j] = tempAnswer;
 
-                                int tempCount = counts[i];
-                                counts[i] = counts[j];
+                                int tempCount = counts[k];
+                                counts[k] = counts[j];
                                 counts[j] = tempCount;
                             }
+                            k = j;
+                            j--;
                         }
                     }
 
@@ -155,7 +166,18 @@ namespace Lab_6{
 
                 } 
 
-                public void Print(){}
+                public void Print(){
+                    System.Console.WriteLine($"Name {_name}");
+                    for (int i = 1; i <= 3; i++){
+                        System.Console.WriteLine($"Top 5 of question {i}");
+                        string[] TopResp = GetTopResponses(i);
+                        if (TopResp == null) return;
+                        for (int j = 0; j < TopResp.Length; j++){
+                            System.Console.WriteLine(TopResp[j]);
+                        }
+                        System.Console.WriteLine();
+                    }
+                }
             }
     }
 }
