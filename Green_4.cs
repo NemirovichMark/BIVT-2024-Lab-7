@@ -25,7 +25,7 @@ namespace Lab_6 {
       public Participant(string name, string surname) {
         this._name = name is not null ? name :  null;
         this._surname = surname is not null ? surname : null;
-        this._jumps = null;
+        this._jumps = new double[_jumpsCount];
       }
 
       // Методы
