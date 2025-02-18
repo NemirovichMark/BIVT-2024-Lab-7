@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -22,18 +23,14 @@ namespace Lab_6 {
 
             
 
-            public Participant(string name, string surname, params double[] marks) { // TEMPORARY !!!!!!!!!!!!!!!!!!!!!!!!!!!!1
-                _name = name; 
+            public Participant(string name, string surname, params double[] marks) { // TEMPORARY: DON'T FORGET TO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                _name = name;  
                 _surname = surname;
 
                 _marks = new double[7];
+                Array.Copy(marks, _marks, marks.Length); // REMOVE!!!
+
                 _places = new int[7];
-
-
-                // temporary!
-                int k = 0;
-                foreach (var i in marks)
-                    _marks[k++] = i;
             }
 
             public void Evaluate(double result) {
@@ -46,7 +43,8 @@ namespace Lab_6 {
                 if (participants == null) return;
                 
                 for (int judge = 0; judge < 7; judge++) {
-                    var sortedParticipants = participants.OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
+                    var sortedParticipants = participants.Where(x => x.Marks != null)
+                                                         .OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
 
                     int curPlace = 0;
                     double lastScore = -1;
@@ -59,8 +57,13 @@ namespace Lab_6 {
                         lastScore = p.Marks[judge];
                     }
 
-                    if (judge == 6)
+                    if (judge == 6) {
+                        sortedParticipants = sortedParticipants.Concat(
+                                            participants.Where(x => x.Marks == null)
+                                            ).ToArray();
+
                         Array.Copy(sortedParticipants, participants, participants.Length);
+                    }
                 }
 
             }
@@ -68,27 +71,13 @@ namespace Lab_6 {
             public static void Sort(Participant[] array) {
                 if (array == null) return;
 
-                var sortedArray = array.OrderBy(x => x, Comparer<Participant>.Create((a, b) => { // stable complex sort
-                            int result = a.Score.CompareTo(b.Score);
-
-                            if (result != 0) return result;
-
-                            int aSecondCriteria = 0, bSecondCriteria = 0;
-
-                            for (int judge = 0; judge < 7; judge++) {
-                                if (a.Places[judge] < b.Places[judge]) // check for Places and Marks nullability?
-                                    aSecondCriteria = 1;
-                                else if (b.Places[judge] < a.Places[judge])
-                                    bSecondCriteria = 1;
-                            }
-
-                            if (aSecondCriteria != bSecondCriteria)
-                                return bSecondCriteria.CompareTo(aSecondCriteria);
-                            
-                            return b.Marks.Sum().CompareTo(a.Marks.Sum());
-                        }))
-                        .ToArray();
+                var sortedArray = array.Where(x => x.Marks != null && x.Places != null)
+                                    .OrderBy(x => x.Score).ThenBy(x => x.Places.Min()).ThenByDescending(x => x.Marks.Sum()).ToArray();
                     
+                sortedArray = sortedArray.Concat(
+                                array.Where(x => x.Marks == null || x.Places == null)
+                                ).ToArray();
+
                 Array.Copy(sortedArray, array, array.Length);
             }
 

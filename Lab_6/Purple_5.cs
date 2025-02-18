@@ -84,27 +84,27 @@ namespace Lab_6
                 {
                     case 1:
                         return _responses.GroupBy(r => r.Animal)
-                                .Where(r => r.Key != null && r.Key != "")
+                                .Where(r => r.Key != null && r.Key.Length > 0)
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
                                 .ToArray();
                     case 2:
                         return _responses.GroupBy(r => r.CharacterTrait)
-                                .Where(r => r.Key != null && r.Key != "")
+                                .Where(r => r.Key != null && r.Key.Length > 0)
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
                                 .ToArray();
                     case 3:
                         return _responses.GroupBy(r => r.Concept)
-                                .Where(r => r.Key != null && r.Key != "")
+                                .Where(r => r.Key != null && r.Key.Length > 0)
                                 .OrderByDescending(r => r.Count())
                                 .Take(5)
                                 .Select(r => r.Key)
                                 .ToArray();
                     default:
-                        return new string[0];
+                        return null;
                 }
             }
             
