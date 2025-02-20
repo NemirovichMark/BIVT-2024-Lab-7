@@ -7,9 +7,9 @@ namespace Lab_6{
         {
             Program program = new Program();
             //program.Task_1();
-            //program.Task_2();
+           // program.Task_2();
             //program.Task_3();
-            //program.Task_4();
+           // program.Task_4();
             //program.Task_5();
 
         }

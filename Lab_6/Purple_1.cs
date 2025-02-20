@@ -29,7 +29,6 @@ public class Purple_1
                 return copy;
             }
         }
-        public int NumberJump => _NumberJump;
 
         public double TotalScore{
             get{

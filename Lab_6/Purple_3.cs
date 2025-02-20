@@ -37,10 +37,8 @@ namespace Lab_6{
                 _Places = new int[7];
             }
             public void Evaluate(double result){
-                if (_Marks == null) return;
-                if (_NextMark < _Marks.Length){
+                if (_NextMark >= 7 || _Marks == null) return;
                     _Marks[_NextMark++] = result;
-                }
 
             }
 

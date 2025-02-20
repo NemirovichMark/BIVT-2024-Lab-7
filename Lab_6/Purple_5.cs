@@ -67,9 +67,9 @@ namespace Lab_6{
         if (_Responses == null || !_Responses.Any()) return new string[0];
         string[] answers = question switch
         {
-            1 => _Responses.Select(r => r.Animal).ToArray(),
-            2 => _Responses.Select(r => r.CharacterTrait).ToArray(),
-            3 => _Responses.Select(r => r.Concept).ToArray(),
+            1 => _Responses.Where(r => r.Animal != null).Select(r => r.Animal).ToArray(),
+            2 => _Responses.Where(r => r.CharacterTrait != null).Select(r => r.CharacterTrait).ToArray(),
+            3 => _Responses.Where(r => r.Concept != null).Select(r => r.Concept).ToArray(),
             _ =>  new string[0]
         };
 
@@ -84,7 +84,7 @@ namespace Lab_6{
         for (int i = 0; i < answerGroups.Length; i++){
             var group = answerGroups[i];
             double percentage = (double) group.Count / totalResponses * 100;
-            topResponses[i] = $"{group.Answer}: {group.Count}  ({percentage:F2}%)";
+            topResponses[i] = $"{group.Answer}: {group.Count}  ({percentage:F2})";
         }
 
         return topResponses;
