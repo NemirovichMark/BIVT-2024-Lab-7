@@ -64,6 +64,7 @@ namespace Lab_6{
 
                 for (int judje = 0; judje < 7; judje++){
                     for (int i = 1; i < participants.Length; i++){
+                        if (participants[i-1]._marks == null || participants[i]._marks == null) continue;
                         int k = i, j = k - 1;
                         while (j >= 0){
                             if (participants[j].Marks[judje] < participants[k].Marks[judje]){

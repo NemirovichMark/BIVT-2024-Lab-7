@@ -25,6 +25,8 @@ namespace Lab_6{
                 if (_time != 0) return;
                 _time = time;
             }
+
+            public void Print(){}
         }
     
         public struct Group{
@@ -32,27 +34,35 @@ namespace Lab_6{
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen {
-                get{
-                    if (_sportsmen == null) return null;
-                    Sportsman[] copy = new Sportsman[_sportsmen.Length];
-                    Array.Copy(_sportsmen, copy, _sportsmen.Length);
-                    return copy;
-                }
-            }
+            
+            public Sportsman[] Sportsmen => _sportsmen;
+            // public Sportsman[] Sportsmen {
+            //     get{
+            //         if (_sportsmen == null) return null;
+            //         Sportsman[] copy = new Sportsman[_sportsmen.Length];
+            //         Array.Copy(_sportsmen, copy, _sportsmen.Length);
+            //         return copy;
+            //     }
+            // }
 
             public Group(string name){
                 _name = name;
                 _sportsmen = new Sportsman[0];
             }
 
-            // public Group(Group otherGroup){
-            //     if (otherGroup._sportsmen == null || _sportsmen == null) return;
-
-            //     _name = otherGroup.Name;
-            //     _sportsmen = new Sportsman[otherGroup.Sportsmen.Length];
-            //     Array.Copy(otherGroup.Sportsmen, _sportsmen, otherGroup.Sportsmen.Length);
-            // }
+            public Group(Group otherGroup){
+                if (otherGroup._sportsmen == null || otherGroup._name == null) {
+                    _sportsmen = new Sportsman[0];
+                    _name = "Новая группа";
+                }
+                else{
+                    _name = otherGroup.Name;
+                    _sportsmen = otherGroup.Sportsmen;
+                }
+                
+                // _sportsmen = new Sportsman[otherGroup.Sportsmen.Length];
+                // Array.Copy(otherGroup.Sportsmen, _sportsmen, otherGroup.Sportsmen.Length);   
+            }
 
             public void Add(Sportsman sportsman){
                 if (_sportsmen == null){
@@ -64,7 +74,6 @@ namespace Lab_6{
             }
 
             public void Add(Sportsman[] sportsmen){
-                if (sportsmen == null) return;
                 if (_sportsmen == null){
                     _sportsmen = new Sportsman[0];
                 }

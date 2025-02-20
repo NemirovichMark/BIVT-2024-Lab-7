@@ -41,20 +41,24 @@ namespace Lab_6{
 
                 return count;
             }
+
+            public void Print(){}
         }
             public struct Research{
                 private string _name;
                 private Response[] _responses;
 
                 public string Name => _name;
-                public Response[] Responses {
-                    get{
-                        if (_responses == null) return null;
-                        Response[] copy = new Response[_responses.Length];
-                        Array.Copy(_responses, copy, _responses.Length);
-                        return copy;
-                    }
-                }
+
+                public Response[] Responses => _responses;
+                // public Response[] Responses {
+                //     get{
+                //         if (_responses == null) return null;
+                //         Response[] copy = new Response[_responses.Length];
+                //         Array.Copy(_responses, copy, _responses.Length);
+                //         return copy;
+                //     }
+                // }
 
                 public Research(string name){
                     _name = name;
@@ -159,7 +163,7 @@ namespace Lab_6{
                     for (int i = 0; i < topCount; i++)
                     {
                         double percentage = (counts[i] * 100.0) / answerCount;
-                        topResponses[i] = $"{uniqueAnswers[i]} ({percentage:F2}%)";
+                        topResponses[i] = $"{uniqueAnswers[i]}";
                     }
 
                     return topResponses;
