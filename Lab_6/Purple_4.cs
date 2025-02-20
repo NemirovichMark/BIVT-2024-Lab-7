@@ -17,6 +17,7 @@ namespace Lab_6{
                 _Time = 0;
             }
             public void Run(double time){
+                if (_Time != 0) return;
                 _Time = time;
             }
             public void Print(){
@@ -36,7 +37,7 @@ namespace Lab_6{
             }
 
             public Group(Group group){
-                if (group._Sportsmen == null || _Sportsmen == null) return;
+                if (group._Sportsmen == null) return;
 
                 _Name = group.Name;
                 _Sportsmen = new Sportsman[group.Sportsmen.Length];
@@ -68,6 +69,7 @@ namespace Lab_6{
             }
              public static Group Merge(Group group1, Group group2){
                 Group mergeGroup = new Group("Финалисты");
+                if (group1._Sportsmen == null || group2._Sportsmen == null || mergeGroup._Sportsmen == null) return new Group("Финалисты");
                 int i = 0, j = 0;
 
                 while (i < group1.Sportsmen.Length && j < group2.Sportsmen.Length){

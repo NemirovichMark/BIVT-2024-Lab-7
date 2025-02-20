@@ -56,7 +56,7 @@ namespace Lab_6{
             }
 
             public void Add(string[] answers){
-                if (answers == null) return;
+                if (_Responses == null || answers == null) return;
 
                 Response newResponse = new Response(answers[0], answers[1], answers[2]);
                 Array.Resize(ref _Responses, _Responses.Length + 1);
@@ -64,11 +64,13 @@ namespace Lab_6{
 
             }
       public string[] GetTopResponses(int question) {
+        if (_Responses == null || !_Responses.Any()) return new string[0];
         string[] answers = question switch
         {
             1 => _Responses.Select(r => r.Animal).ToArray(),
             2 => _Responses.Select(r => r.CharacterTrait).ToArray(),
             3 => _Responses.Select(r => r.Concept).ToArray(),
+            _ =>  new string[0]
         };
 
         answers = answers.Where(a => !string.IsNullOrWhiteSpace(a)).ToArray();

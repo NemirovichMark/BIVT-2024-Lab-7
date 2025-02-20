@@ -37,6 +37,7 @@ namespace Lab_6{
                 _Places = new int[7];
             }
             public void Evaluate(double result){
+                if (_Marks == null) return;
                 if (_NextMark < _Marks.Length){
                     _Marks[_NextMark++] = result;
                 }
@@ -44,15 +45,18 @@ namespace Lab_6{
             }
 
             public static void SetPlaces(Participant[] participants){
+                if (participants == null) return;
                 for (int judge = 0; judge < participants[0]._Marks.Length; judge++){
                     double[] scores = new double[participants.Length];
 
                     for (int i = 0; i < participants.Length; i++){
+                        if (participants[i]._Marks == null) continue;
                         scores[i] = participants[i]._Marks[judge];
                     }
 
                     int[] sortedIndexes = new int[participants.Length];
                     for (int i = 0; i < participants.Length; i++){
+                        if (participants[i]._Marks == null) continue;
                         sortedIndexes[i] = i;
                     }
 
@@ -60,12 +64,14 @@ namespace Lab_6{
                     Array.Reverse(sortedIndexes); 
 
                     for (int i = 0; i < participants.Length; i++){
+                        if (participants[i]._Marks == null) continue;
                         participants[sortedIndexes[i]]._Places[judge] = i + 1;
                     }
                 }
             }
             public int Score{
                 get{
+                    if (_Places == null) return 0;
                     int sum = 0;
                     for (int i = 0; i < _Places.Length; i++){
                         sum += _Places[i];
@@ -73,10 +79,11 @@ namespace Lab_6{
                     return sum;
                 }
             }
-            public double Marks_score{
+            private double Marks_score{
                 get{
+                    if (_Marks == null) return 0;
                     double sum = 0;
-                    for (int i = 0; i < _Places.Length; i++){
+                    for (int i = 0; i < _Marks.Length; i++){
                         sum += _Marks[i];
                     }
                     return sum;

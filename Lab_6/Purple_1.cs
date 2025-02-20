@@ -15,7 +15,7 @@ public class Purple_1
         { 
             get{
             if (_Coefs == null) return null;
-            double[] copy = new  double[6];
+            double[] copy = new  double[4];
             Array.Copy(_Coefs,copy, _Coefs.Length);
             return copy;
             }
@@ -51,16 +51,16 @@ public class Purple_1
         public Participant(string name, string surname){
             _Name = name;
             _Surname = surname;
-            _Coefs = new double[]{2.5,2.5,2.5,2.5};
+            _Coefs = new double[4]{2.5,2.5,2.5,2.5};
             _Marks = new int[4,7];
             _NumberJump = 0;
         }
         public void SetCriterias(double[] coefs){
-            if (coefs == null) return;
+            if (_Coefs == null || coefs == null) return;
             Array.Copy(coefs,_Coefs,coefs.Length);
         }
         public void Jump(int[] marks){
-            if (marks == null) return;
+            if (_Marks == null || marks == null || _NumberJump > 3) return;
             for(int i = 0;i < marks.Length;i++){
                 _Marks[_NumberJump,i] = marks[i]; 
             }

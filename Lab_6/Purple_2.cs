@@ -21,6 +21,7 @@ namespace Lab_6{
         }
         public int Result{
             get{
+                if (_Marks == null) return 0;
                 int res = 60;
                 int [] copy = new int[_Marks.Length];
                 Array.Copy(_Marks, copy, _Marks.Length);
@@ -31,6 +32,7 @@ namespace Lab_6{
 
                 return res < 0 ? 0 : res;
             }
+        
         }
         public Participant(string name, string surname){
             _Name = name;
@@ -38,7 +40,7 @@ namespace Lab_6{
             _Marks = new int[5];
         }
         public void Jump(int distance, int[] marks){
-            if (marks == null) return;
+            if (_Marks == null || marks == null) return;
             _Distance = distance;
             Array.Copy(marks,_Marks,marks.Length);
         }
@@ -60,7 +62,6 @@ namespace Lab_6{
         public void Print(){
              Console.WriteLine($"{_Name,-12} {_Surname,-12} {Result,-11}");
         }
-
         }
     }
 }

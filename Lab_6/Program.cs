@@ -6,11 +6,11 @@ namespace Lab_6{
         static void Main(string[] args)
         {
             Program program = new Program();
-            program.Task_1();
-            program.Task_2();
-            program.Task_3();
-            program.Task_4();
-            program.Task_5();
+            //program.Task_1();
+            //program.Task_2();
+            //program.Task_3();
+            //program.Task_4();
+            //program.Task_5();
 
         }
         public void Task_1()
@@ -222,7 +222,7 @@ namespace Lab_6{
         public void Task_5(){
         Console.WriteLine("Purple5"); 
         Purple_5.Research research = new Purple_5.Research("");
-        
+
         research.Add(new string[] { "Тануки", "", "" });
         research.Add(new string[] { "Кошка", "Амбициозность", "Аниме" });
         research.Add(new string[] { "Серау", "Скромность", "Фудзияма" });
