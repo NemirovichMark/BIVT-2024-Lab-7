@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab_6 {
-    class Purple_4 {
+    public class Purple_4 {
         public struct Sportsman {
             private string _name;
             private string _surname;
@@ -44,19 +44,22 @@ namespace Lab_6 {
             }
 
             public Group(Group group) {
-                if (group.Sportsmen == null) return;
+                if (group.Sportsmen == null || _sportsmen == null) 
+                    return;
 
                 _name = group.Name;
                 Array.Copy(group.Sportsmen, _sportsmen, group.Sportsmen.Length);
             }
 
             public void Add(Sportsman sportsman) {
+                if (_sportsmen == null) return;
+
                 Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                 _sportsmen[_sportsmen.Length - 1] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen) {
-                if (sportsmen == null) return;
+                if (sportsmen == null || _sportsmen == null) return;
 
                 int n = _sportsmen.Length;
 
@@ -69,11 +72,16 @@ namespace Lab_6 {
             }
             
             public void Sort() {
+                if (_sportsmen == null) return;
+                
                 var sortedSportsmen = _sportsmen.OrderBy(x => x.Time).ToArray(); // stable sort
                 Array.Copy(sortedSportsmen, _sportsmen, _sportsmen.Length);
             }
 
             public static Group Merge(Group group1, Group group2) {
+                if (group1.Sportsmen == null && group2.Sportsmen == null) 
+                    return new Group("Финалисты");
+
                 if (group1.Sportsmen == null) return group2;
                 if (group2.Sportsmen == null) return group1;
                 

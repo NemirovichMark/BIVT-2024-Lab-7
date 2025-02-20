@@ -9,7 +9,7 @@ using Microsoft.VisualBasic;
 
 namespace Lab_6
 {
-    class Purple_5
+    public class Purple_5
     {
         public struct Response
         {
@@ -80,6 +80,8 @@ namespace Lab_6
             }
 
             public string[] GetTopResponses(int question) {
+                if (_responses == null) return null;
+
                 switch (question)
                 {
                     case 1:

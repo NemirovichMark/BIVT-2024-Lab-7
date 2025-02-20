@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab_6 {
-    class Purple_3 {
+    public class Purple_3 {
         public struct Participant {
             private string _name;
             private string _surname;
@@ -23,18 +23,16 @@ namespace Lab_6 {
 
             
 
-            public Participant(string name, string surname, params double[] marks) { // TEMPORARY: DON'T FORGET TO DELETE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            public Participant(string name, string surname) { 
                 _name = name;  
                 _surname = surname;
 
                 _marks = new double[7];
-                Array.Copy(marks, _marks, marks.Length); // REMOVE!!!
-
                 _places = new int[7];
             }
 
             public void Evaluate(double result) {
-                if (_markCount >= 7) return;
+                if (_markCount >= 7 || _marks == null) return;
 
                 _marks[_markCount++] = result;
             }
@@ -43,25 +41,16 @@ namespace Lab_6 {
                 if (participants == null) return;
                 
                 for (int judge = 0; judge < 7; judge++) {
-                    var sortedParticipants = participants.Where(x => x.Marks != null)
+                    var sortedParticipants = participants.Where(x => x.Marks != null && x.Places != null)
                                                          .OrderByDescending(x => x.Marks[judge]).ToArray(); // stable sort
 
-                    int curPlace = 0;
-                    double lastScore = -1;
-
-                    foreach (var p in sortedParticipants) {
-                        if (p.Marks[judge] != lastScore)
-                            curPlace++;
-
-                        p._places[judge] = curPlace;
-                        lastScore = p.Marks[judge];
-                    }
+                    for (int p = 0; p < sortedParticipants.Length; p++) 
+                        sortedParticipants[p]._places[judge] = p + 1;
 
                     if (judge == 6) {
                         sortedParticipants = sortedParticipants.Concat(
                                             participants.Where(x => x.Marks == null)
                                             ).ToArray();
-
                         Array.Copy(sortedParticipants, participants, participants.Length);
                     }
                 }

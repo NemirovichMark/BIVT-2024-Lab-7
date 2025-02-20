@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Lab_6 {
-    class Purple_2 {
+    public class Purple_2 {
         public struct Participant {
             private string _name;
             private string _surname;
@@ -36,6 +36,8 @@ namespace Lab_6 {
             }
 
             public static void Sort(Participant[] array) {
+                if (array == null) return;
+                
                 var sortedArray = array.OrderByDescending(x => x.Result).ToArray(); // stable sort
                 Array.Copy(sortedArray, array, array.Length);
             }
