@@ -100,7 +100,7 @@ namespace Lab_6
                 int n = _sportsmen.Length, i = 1, j = 2;
                 while (i < n)
                 {
-                    if (i == 0 || _sportsmen[i - 1].Time < _sportsmen[i].Time)
+                    if (i == 0 || _sportsmen[i - 1].Time <= _sportsmen[i].Time)
                     {
                         i = j;
                         j++;

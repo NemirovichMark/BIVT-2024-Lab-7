@@ -72,7 +72,7 @@ namespace Lab_6
                     int i = 1, j = 2;
                     while (i < n)
                     {
-                        if (i == 0 || sortedParticipants[i - 1]._marks[judge] > sortedParticipants[i]._marks[judge])
+                        if (i == 0 || sortedParticipants[i - 1]._marks[judge] >= sortedParticipants[i]._marks[judge])
                         {
                             i = j;
                             j++;
@@ -103,7 +103,7 @@ namespace Lab_6
                 int n = sortedArray.Length, i = 1, j = 2;
                 while (i < n)
                 {
-                    if (i == 0 || sortedArray[i - 1].Score < sortedArray[i].Score)
+                    if (i == 0 || sortedArray[i - 1].Score <= sortedArray[i].Score)
                     {
                         i = j;
                         j++;
@@ -113,10 +113,10 @@ namespace Lab_6
                         bool flag = true;
                         for (int judge = 0; judge < 7; judge++)
                         {
-                            if (sortedArray[i - 1]._places[judge] > sortedArray[i]._places[judge]) flag = false;
+                            if (sortedArray[i - 1]._places[judge] >= sortedArray[i]._places[judge]) flag = false;
                         }
 
-                        if (flag && sortedArray[i - 1]._marks.Sum() > sortedArray[i]._marks.Sum())
+                        if (flag && sortedArray[i - 1]._marks.Sum() >= sortedArray[i]._marks.Sum())
                         {
                             i = j;
                             j++;

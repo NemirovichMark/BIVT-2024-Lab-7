@@ -114,7 +114,7 @@ namespace Lab_6
                 int n = array.Length, i = 1, j = 2;
                 while (i < n)
                 {
-                    if (i == 0 || array[i - 1].TotalScore > array[i].TotalScore)
+                    if (i == 0 || array[i - 1].TotalScore >= array[i].TotalScore)
                     {
                         i = j;
                         j++;
