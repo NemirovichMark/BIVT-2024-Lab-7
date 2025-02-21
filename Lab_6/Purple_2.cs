@@ -44,7 +44,7 @@ namespace Lab_6
 
                 _distance = distance;
                 Array.Copy(marks, _marks, marks.Length);
-                
+
                 int distancePoints = 60 + (_distance - 120) * 2;
                 if (distancePoints < 0) distancePoints = 0;
                 Result += marks.Sum() - marks.Max() - marks.Min() + distancePoints;
@@ -53,7 +53,7 @@ namespace Lab_6
             public static void Sort(Participant[] array)
             {
                 if (array == null) return;
-                
+
                 int n = array.Length, i = 1, j = 2;
                 while (i < n)
                 {
@@ -75,14 +75,15 @@ namespace Lab_6
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine($"Фамилия: {_surname}");
                 Console.WriteLine($"Расстояние: {_distance}");
-                
+
                 Console.Write($"Оценки:\t");
                 foreach (var mark in _marks)
                 {
                     Console.Write($"{mark}\t");
                 }
+
                 Console.WriteLine();
-                
+
                 Console.WriteLine($"Результат: {Result}");
                 Console.WriteLine();
             }
