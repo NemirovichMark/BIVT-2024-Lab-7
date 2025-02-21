@@ -73,6 +73,15 @@ namespace Lab_6{
                         participants[sortedIndexes[i]]._Places[judge] = i + 1; 
                     }
                 }
+                for (int i = 0; i < participants.Length - 1; i++){
+                    for (int j = 0; j < participants.Length - 1 - i; j++)
+                    {
+                        if (participants[j]._Places[participants[j]._Places.Length - 1] >  participants[j + 1]._Places[participants[j + 1]._Places.Length - 1])
+                        {
+                            (participants[j], participants[j + 1]) = (participants[j + 1], participants[j]);
+                        }
+                    }
+                }
 }
             public int Score{
                 get{
@@ -101,10 +110,8 @@ namespace Lab_6{
                 .OrderBy(p => p.Score).ThenBy(p => string.Join(",", p.Places)).
                 ThenByDescending(p => p.Marks_score).ToArray(); 
 
-                    if (sortedList.Length == array.Length) Array.Copy(sortedList, array, array.Length);
-                    else Array.Copy(sortedList, 0, array, 0, sortedList.Length);
-
-                Array.Copy(sortedList, array, array.Length);
+                int minLength = Math.Min(sortedList.Length, array.Length);
+                Array.Copy(sortedList, 0, array, 0, minLength);
             }
             public void Print(){
                 Console.WriteLine($"{_Name,-12} {_Surname,-12} {Score,-10} {Places.Min(),-8} {Math.Round(Marks.Sum(),2),-7}");
