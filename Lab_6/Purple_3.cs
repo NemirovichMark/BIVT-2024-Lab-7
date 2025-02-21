@@ -54,7 +54,7 @@ namespace Lab_6{
                     int validParticipants = 0;
 
                     for (int i = 0; i < participants.Length; i++){
-                        if (participants[i]._Marks != null && participants[i]._Places != null){
+                        if (participants[i]._Marks != null && participants[i]._Places != null && participants[i]._Marks.Length > judge){
                             scores[validParticipants] = participants[i]._Marks[judge];
                             sortedIndexes[validParticipants] = i;
                             validParticipants++;
@@ -100,6 +100,9 @@ namespace Lab_6{
                 var sortedList = array.Where(p => p.Marks != null && p.Places != null)
                 .OrderBy(p => p.Score).ThenBy(p => string.Join(",", p.Places)).
                 ThenByDescending(p => p.Marks_score).ToArray(); 
+
+                    if (sortedList.Length == array.Length) Array.Copy(sortedList, array, array.Length);
+                    else Array.Copy(sortedList, 0, array, 0, sortedList.Length);
 
                 Array.Copy(sortedList, array, array.Length);
             }

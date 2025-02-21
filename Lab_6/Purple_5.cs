@@ -79,7 +79,7 @@ namespace Lab_6{
 
         for (int i = 0; i < answerGroups.Length; i++){
             var group = answerGroups[i];
-            topResponses[i] = $"{group.Answer}: {group.Count}";
+            topResponses[i] = $"{group.Answer}";
         }
 
         return topResponses;
@@ -88,7 +88,6 @@ namespace Lab_6{
         public void Print(){
             for (int i = 1; i <= 3; i++){
                 string[] Top = GetTopResponses(i);
-                Console.WriteLine();
                 foreach(var element in Top)
                     Console.WriteLine(element);
                 }
