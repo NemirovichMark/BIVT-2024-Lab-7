@@ -1,0 +1,15 @@
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/bin/Debug/net8.0/Lab_6
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/bin/Debug/net8.0/Lab_6.deps.json
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/bin/Debug/net8.0/Lab_6.runtimeconfig.json
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/bin/Debug/net8.0/Lab_6.dll
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/bin/Debug/net8.0/Lab_6.pdb
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.GeneratedMSBuildEditorConfig.editorconfig
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.AssemblyInfoInputs.cache
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.AssemblyInfo.cs
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.csproj.CoreCompileInputs.cache
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.sourcelink.json
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.dll
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/refint/Lab_6.dll
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.pdb
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/Lab_6.genruntimeconfig.cache
+/Users/andy/RiderProjects/BIVT-2024-Lab-6/Lab_6/obj/Debug/net8.0/ref/Lab_6.dll
