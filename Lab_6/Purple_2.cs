@@ -22,6 +22,8 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_marks == null) return null;
+
                     var copy = new int[_marks.Length];
                     Array.Copy(_marks, copy, _marks.Length);
                     return copy;
@@ -40,7 +42,7 @@ namespace Lab_6
 
             public void Jump(int distance, int[] marks)
             {
-                if (distance == null || marks == null || marks.Length != 5) return;
+                if (distance == null || marks == null || marks.Length != 5 || _marks == null) return;
 
                 _distance = distance;
                 Array.Copy(marks, _marks, marks.Length);
@@ -72,6 +74,8 @@ namespace Lab_6
 
             public void Print()
             {
+                if (_marks == null) return;
+
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine($"Фамилия: {_surname}");
                 Console.WriteLine($"Расстояние: {_distance}");

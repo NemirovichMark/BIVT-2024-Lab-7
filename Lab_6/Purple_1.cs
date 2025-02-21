@@ -23,6 +23,8 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_coefs == null) return null;
+
                     var copy = new double[_coefs.Length];
                     Array.Copy(_coefs, copy, _coefs.Length);
                     return copy;
@@ -33,6 +35,8 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_marks == null) return null;
+
                     var copy = new int[_marks.GetLength(0), _marks.GetLength(1)];
                     Array.Copy(_marks, copy, _marks.Length);
                     return copy;
@@ -54,14 +58,14 @@ namespace Lab_6
 
             public void SetCriterias(double[] coefs)
             {
-                if (coefs == null || coefs.Length != 4) return;
+                if (coefs == null || coefs.Length != 4 || _coefs == null) return;
 
                 Array.Copy(coefs, _coefs, coefs.Length);
             }
 
             public void Jump(int[] marks)
             {
-                if (_curJump >= 4 || marks == null || marks.Length != 7) return;
+                if (_curJump >= 4 || marks == null || marks.Length != 7 || _marks == null || _coefs == null) return;
 
                 for (int j = 0; j < marks.Length; j++)
                 {
@@ -74,6 +78,8 @@ namespace Lab_6
 
             public void Print()
             {
+                if (_coefs == null || _marks == null) return;
+
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine($"Фамилия: {_surname}");
 
