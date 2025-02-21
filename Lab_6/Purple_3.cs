@@ -24,7 +24,7 @@ namespace Lab_6
                 get
                 {
                     if (_marks == null) return null;
-                    
+
                     var copy = new double[_marks.Length];
                     Array.Copy(_marks, copy, _marks.Length);
                     return copy;
@@ -36,7 +36,7 @@ namespace Lab_6
                 get
                 {
                     if (_places == null) return null;
-                    
+
                     var copy = new int[_places.Length];
                     Array.Copy(_places, copy, _places.Length);
                     return copy;
@@ -64,27 +64,14 @@ namespace Lab_6
             public static void SetPlaces(Participant[] participants)
             {
                 if (participants == null || participants.Length == 0) return;
-                
+
                 var sortedParticipants = participants.Where(x => x._marks != null && x._places != null).ToArray();
                 int n = sortedParticipants.Length;
                 for (int judge = 0; judge < 7; judge++)
                 {
-                    int i = 1, j = 2;
-                    while (i < n)
-                    {
-                        if (i == 0 || sortedParticipants[i - 1]._marks[judge] >= sortedParticipants[i]._marks[judge])
-                        {
-                            i = j;
-                            j++;
-                        }
-                        else
-                        {
-                            (sortedParticipants[i - 1], sortedParticipants[i]) = (sortedParticipants[i], sortedParticipants[i - 1]);
-                            i--;
-                        }
-                    }
+                    SortParticipantsByJudge(sortedParticipants, judge);
 
-                    for (i = 0; i < n; i++)
+                    for (int i = 0; i < n; i++)
                     {
                         sortedParticipants[i]._places[judge] = i + 1;
                     }
@@ -95,6 +82,25 @@ namespace Lab_6
                 Array.Copy(sortedParticipants, participants, sortedParticipants.Length);
             }
 
+            private static void SortParticipantsByJudge(Participant[] sortedParticipants, int judge)
+            {
+                int n = sortedParticipants.Length, i = 1, j = 2;
+                while (i < n)
+                {
+                    if (i == 0 || sortedParticipants[i - 1]._marks[judge] >= sortedParticipants[i]._marks[judge])
+                    {
+                        i = j;
+                        j++;
+                    }
+                    else
+                    {
+                        (sortedParticipants[i - 1], sortedParticipants[i]) =
+                            (sortedParticipants[i], sortedParticipants[i - 1]);
+                        i--;
+                    }
+                }
+            }
+
             public static void Sort(Participant[] array)
             {
                 if (array == null) return;
@@ -103,29 +109,17 @@ namespace Lab_6
                 int n = sortedArray.Length, i = 1, j = 2;
                 while (i < n)
                 {
-                    if (i == 0 || sortedArray[i - 1].Score <= sortedArray[i].Score)
+                    if (i == 0 || sortedArray[i - 1].Score < sortedArray[i].Score)
                     {
                         i = j;
                         j++;
                     }
-                    else if (sortedArray[i - 1].Score == sortedArray[i].Score)
+                    else if (sortedArray[i - 1].Score == sortedArray[i].Score &&
+                             sortedArray[i - 1]._places.Min() <= sortedArray[i]._places.Min() &&
+                             sortedArray[i - 1]._marks.Sum() >= sortedArray[i]._marks.Sum())
                     {
-                        bool flag = true;
-                        for (int judge = 0; judge < 7; judge++)
-                        {
-                            if (sortedArray[i - 1]._places[judge] >= sortedArray[i]._places[judge]) flag = false;
-                        }
-
-                        if (flag && sortedArray[i - 1]._marks.Sum() >= sortedArray[i]._marks.Sum())
-                        {
-                            i = j;
-                            j++;
-                        }
-                        else
-                        {
-                            (sortedArray[i - 1], sortedArray[i]) = (sortedArray[i], sortedArray[i - 1]);
-                            i--;
-                        }
+                        i = j;
+                        j++;
                     }
                     else
                     {
@@ -141,7 +135,7 @@ namespace Lab_6
             public void Print()
             {
                 if (_marks == null || _places == null) return;
-                
+
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine($"Фамилия: {_surname}");
 
