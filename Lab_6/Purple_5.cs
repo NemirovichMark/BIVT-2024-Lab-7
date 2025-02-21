@@ -1,7 +1,3 @@
-using System.Linq.Expressions;
-using System.Reflection.Metadata.Ecma335;
-using System.Security.Cryptography;
-
 namespace Lab_6{
 
     public class Purple_5
@@ -83,7 +79,6 @@ namespace Lab_6{
 
         for (int i = 0; i < answerGroups.Length; i++){
             var group = answerGroups[i];
-            double percentage = (double) group.Count / totalResponses * 100;
             topResponses[i] = $"{group.Answer}: {group.Count}";
         }
 
@@ -95,7 +90,7 @@ namespace Lab_6{
                 string[] Top = GetTopResponses(i);
                 Console.WriteLine();
                 foreach(var element in Top)
-                    Console.WriteLine(element );
+                    Console.WriteLine(element);
                 }
             }
         }
