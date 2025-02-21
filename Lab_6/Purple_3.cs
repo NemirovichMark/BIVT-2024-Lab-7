@@ -46,7 +46,7 @@ namespace Lab_6{
             public static void SetPlaces(Participant[] participants){
                 if (participants == null ) return;
 
-                for (int judge = 0; judge < participants[0]._Marks.Length; judge++){
+                for (int judge = 0; participants[0]._Marks != null && judge < participants[0]._Marks.Length ; judge++){
 
                     double[] scores = new double[participants.Length];
                     int[] sortedIndexes = new int[participants.Length];
