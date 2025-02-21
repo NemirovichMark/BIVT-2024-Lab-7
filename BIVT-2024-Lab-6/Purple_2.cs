@@ -109,6 +109,8 @@ namespace BIVT_2024_Lab_6
 
             public static void Sort(Participant[] array)
             {
+                if (array == null || array.Length < 2) return;
+
                 int n = array.Length;
                 for (int i = 1, j = 2; i < n;)
                 {
@@ -125,6 +127,16 @@ namespace BIVT_2024_Lab_6
                         i--;
                     }
                 }
+            }
+
+            public void Print()
+            {
+                if (_surname == "" || _name == "")
+                {
+                    return;
+                }
+
+                Console.WriteLine($"{_name} {_surname} {Result}");
             }
         }
 

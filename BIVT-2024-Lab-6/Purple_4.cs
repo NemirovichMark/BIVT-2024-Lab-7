@@ -51,6 +51,11 @@ namespace BIVT_2024_Lab_6
                 if (_time != -1) return;
                 _time = time;
             }
+
+            public void Print()
+            {
+                Console.WriteLine($"{_name} {_surname} {_time}");
+            }
         }
         public struct Group
         {
@@ -80,7 +85,8 @@ namespace BIVT_2024_Lab_6
             {
                 _name = name;
                 _sportsmen = new Sportsman[sportsmen.Length];
-                Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
+                Array.Copy(sportsmen, _sportsmen, _sportsmen.Length);
+                
             }
 
             public Group(Group group)
@@ -143,14 +149,17 @@ namespace BIVT_2024_Lab_6
                 int l = 0, r = 0, k = 0;
                 while (l < group1.Sportsmen.Length && r < group2.Sportsmen.Length)
                 {
+                    //group1.Sportsmen[l].Print();
+                    //group2.Sportsmen[r].Print();
                     if (group1.Sportsmen[l].Time < group2.Sportsmen[r].Time)
                     {
                         sportsmen[k++] = group1.Sportsmen[l++];
                     }
                     else
                     {
-                        sportsmen[k++] = group1.Sportsmen[r++];
+                        sportsmen[k++] = group2.Sportsmen[r++];
                     }
+                    
                 }
 
                 while (l < group1.Sportsmen.Length)
@@ -160,12 +169,26 @@ namespace BIVT_2024_Lab_6
 
                 while (r < group2.Sportsmen.Length)
                 {
-                    sportsmen[k++] = group1.Sportsmen[r++];
+                    sportsmen[k++] = group2.Sportsmen[r++];
                 }
+
+                //for (int i = 0; i < sportsmen.Length; i++)
+                //{
+                //    sportsmen[i].Print();
+                //}
 
                 Group final = new Group("Финалисты", sportsmen);
 
                 return final;
+            }
+
+            public void Print()
+            {
+                Console.WriteLine(_name);
+                if (_sportsmen is null)
+                    return;
+                for (int i = 0; i < _sportsmen.Length; i++)
+                    _sportsmen[i].Print();  
             }
         }
         

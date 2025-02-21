@@ -64,7 +64,12 @@ namespace BIVT_2024_Lab_6
             {
                 get
                 {
-                    if (_marks is null || _coefs is null) return 0;
+                    if (_marks is null || _coefs is null)
+                    {
+                        Console.WriteLine("error");
+                        return 0;
+                    }
+                        
                     int coefsLen = _marks.GetLength(0), marksLen = _marks.GetLength(1);
                     double score = 0;
                     for (int i = 0; i < coefsLen; i++)
@@ -73,17 +78,20 @@ namespace BIVT_2024_Lab_6
                         for (int j = 0; j < marksLen; j++)
                         {
                             markSum += _marks[i, j];
-                            if (_marks[i, j] > _marks[i, maxMarkIdx])
+                            if (_marks[i, j] >= _marks[i, maxMarkIdx])
                             {
                                 maxMarkIdx = j;
                             }
-                            if (_marks[i, j] < _marks[i, minMarkIdx])
+                            if (_marks[i, j] <= _marks[i, minMarkIdx])
                             {
                                 minMarkIdx = j;
+                                
                             }
+
                         }
                         markSum -= _marks[i, maxMarkIdx];
                         markSum -= _marks[i, minMarkIdx];
+                        
                         score += markSum * _coefs[i];
                     }
                     return score;
@@ -105,7 +113,11 @@ namespace BIVT_2024_Lab_6
 
             public void SetCriterias(double[] coefs)
             {
-                if (coefs is null || coefs.Length != 4) return;
+                if (coefs is null || coefs.Length != 4)
+                {
+                    Console.WriteLine("error");
+                    return;
+                }
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -119,7 +131,10 @@ namespace BIVT_2024_Lab_6
 
             public void Jump(int[] marks)
             {
-                if (marks is null || marks.Length != 7) return;
+                if (marks is null || marks.Length != 7)
+                {
+                    return;
+                }
 
                 for (int i = 0; i < 7; i++)
                 {
@@ -136,6 +151,8 @@ namespace BIVT_2024_Lab_6
             }
             public static void Sort(Participant[] array)
             {
+                if (array == null || array.Length < 2) return;
+
                 int n = array.Length;
                 for (int i = 1, j = 2; i < n;)
                 {
@@ -153,8 +170,44 @@ namespace BIVT_2024_Lab_6
                     }
                 }
             }
+
+            public void Print()
+            {
+                if (_surname == "" || _name == "")
+                {
+                    return;
+                }
+
+                Console.WriteLine($"{_name} {_surname} {TotalScore:F2}");
+            }
         }
 
+        public static void PrintArr(int[] arr)
+        {
+            if (arr == null || arr.Length == 0)
+                return;
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i]} ");
+            Console.WriteLine();
+        }
+
+        public static void PrintArr(double[] arr)
+        {
+            if (arr == null || arr.Length == 0)
+                return;
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i]} ");
+            Console.WriteLine();
+        }
+
+        public static void PrintArr(Participant[] arr)
+        {
+            if (arr == null || arr.Length == 0)
+                return;
+            for (int i = 0; i < arr.Length; i++)
+                Console.Write($"{arr[i].TotalScore} ");
+            Console.WriteLine();
+        }
 
     }
 }

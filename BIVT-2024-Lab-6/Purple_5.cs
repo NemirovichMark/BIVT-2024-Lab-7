@@ -45,32 +45,37 @@ namespace BIVT_2024_Lab_6
                 _characterTrait = characterTrait;
                 _concept = concept;
             }
-        }
 
-        public int CountVotes(Response[] responses, int questionNumber)
-        {
-            if (questionNumber < 1 || questionNumber > 3) return 0;
-            int count = 0;
-            for (int i = 0; i < responses.Length; i++)
+            public int CountVotes(Response[] responses, int questionNumber)
             {
-                switch (questionNumber)
+                if (questionNumber < 1 || questionNumber > 3) return 0;
+                int count = 0;
+                for (int i = 0; i < responses.Length; i++)
                 {
-                    case 1:
-                        if (responses[i].Animal != "")
-                            count++;
-                        break;
-                    case 2:
-                        if (responses[i].CharacterTrait != "")
-                            count++;
-                        break;
-                    case 3:
-                        if (responses[i].Concept != "")
-                            count++;
-                        break;
+                    switch (questionNumber)
+                    {
+                        case 1:
+                            if (responses[i].Animal != "")
+                                count++;
+                            break;
+                        case 2:
+                            if (responses[i].CharacterTrait != "")
+                                count++;
+                            break;
+                        case 3:
+                            if (responses[i].Concept != "")
+                                count++;
+                            break;
+                    }
                 }
-            }
 
-            return count;
+                return count;
+            }
+            
+            public void Print()
+            {
+                Console.WriteLine($"{_animal} ${_characterTrait} ${_concept}");
+            }
         }
 
         public struct Research
@@ -91,7 +96,9 @@ namespace BIVT_2024_Lab_6
                 get
                 {
                     if (_responses is null) return null;
-                    return _responses;
+                    Response[] responsesCopy = new Response[_responses.Length];
+                    Array.Copy(_responses, responsesCopy, _responses.Length);
+                    return responsesCopy;
                 }
             }
 
@@ -99,6 +106,63 @@ namespace BIVT_2024_Lab_6
             {
                 _name = name;
                 _responses = new Response[0];
+            }
+
+            public void Add(string[] answers)
+            {
+                if (answers == null || answers.Length != 3 || _responses == null) 
+                    return;
+
+                Response response = new Response(answers[0], answers[1], answers[2]);
+                Array.Resize(ref _responses, _responses.Length + 1);
+                _responses[_responses.Length - 1] = response;
+            }
+
+            public string[] GetTopResponses(int question)
+            {
+                if (question < 1 || question > 3 || _responses == null)
+                {
+                    return null;
+                }
+
+                string[] responses = new string[_responses.Length];
+
+                for (int i = 0; i < _responses.Length; i++)
+                {
+                    switch (question) {
+                        case 1:
+                            responses[i] = _responses[i].Animal;
+                            break;
+                        case 2:
+                            responses[i] = _responses[i].CharacterTrait;
+                            break;
+                        case 3:
+                            responses[i] = _responses[i].Concept;
+                            break;
+                    };
+                }
+
+                var topResponses = responses
+                .Where(x => x != "-")
+                .GroupBy(word => word) 
+                .OrderByDescending(group => group.Count())
+                .Take(5) 
+                .Select(group => group.Key)  
+                .ToArray();
+
+                return topResponses;
+
+            }
+
+            public void Print()
+            {
+                Console.WriteLine(_name);
+                if (_responses is null)
+                    return;
+                for (int i = 0; i < _responses.GetLength(0); i++)
+                {
+                    _responses[i].Print();  
+                }
             }
         }
     }
