@@ -13,11 +13,12 @@ namespace Lab_6
             private string _surname;
             private double[] _coefs;
             private int[,] _marks;
-            
+
             private int _curJump;
-            
+
             public string Name => _name;
             public string Surname => _surname;
+
             public double[] Coefs
             {
                 get
@@ -27,6 +28,7 @@ namespace Lab_6
                     return copy;
                 }
             }
+
             public int[,] Marks
             {
                 get
@@ -36,8 +38,9 @@ namespace Lab_6
                     return copy;
                 }
             }
-            public double TotalScore {get; private set; }
-            
+
+            public double TotalScore { get; private set; }
+
             public Participant(string name, string surname)
             {
                 _name = name != null ? name : "-";
@@ -52,18 +55,19 @@ namespace Lab_6
             public void SetCriterias(double[] coefs)
             {
                 if (coefs == null || coefs.Length != 4) return;
-                
+
                 Array.Copy(coefs, _coefs, coefs.Length);
             }
 
             public void Jump(int[] marks)
             {
                 if (_curJump >= 4 || marks == null || marks.Length != 7) return;
-                
+
                 for (int j = 0; j < marks.Length; j++)
                 {
                     _marks[_curJump, j] = marks[j];
                 }
+
                 TotalScore += (marks.Sum() - marks.Max() - marks.Min()) * _coefs[_curJump];
                 _curJump++;
             }
@@ -72,14 +76,15 @@ namespace Lab_6
             {
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine($"Фамилия: {_surname}");
-                
+
                 Console.Write("Коэффициенты:\t");
                 foreach (var coef in _coefs)
                 {
                     Console.Write($"{coef}\t");
                 }
+
                 Console.WriteLine();
-                
+
                 Console.Write("Оценки:");
                 for (int i = 0; i < _marks.GetLength(0); i++)
                 {
@@ -88,8 +93,10 @@ namespace Lab_6
                     {
                         Console.Write($"{_marks[i, j]}\t");
                     }
+
                     Console.WriteLine();
                 }
+
                 Console.WriteLine($"Результат: {Math.Round(TotalScore, 2)}");
                 Console.WriteLine();
             }
@@ -97,7 +104,7 @@ namespace Lab_6
             public static void Sort(Participant[] array)
             {
                 if (array == null) return;
-                
+
                 int n = array.Length, i = 1, j = 2;
                 while (i < n)
                 {
