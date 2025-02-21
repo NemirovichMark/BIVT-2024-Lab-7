@@ -58,9 +58,11 @@ namespace Lab_6{
             public void Add(Sportsman[] sportsmen){
                 if (sportsmen == null || _Sportsmen == null) return;
 
-                Array.Resize(ref _Sportsmen, _Sportsmen.Length + sportsmen.Length);
+                int currentLength = _Sportsmen.Length;
 
-                for (int i = 0; i < sportsmen.Length; i++) _Sportsmen[_Sportsmen.Length+i] = sportsmen[i];
+                Array.Resize(ref _Sportsmen, currentLength + sportsmen.Length);
+
+                for (int i = 0; i < sportsmen.Length; i++) _Sportsmen[currentLength+i] = sportsmen[i];
             }
 
             public void Sort(){

@@ -32,6 +32,7 @@ public class Purple_1
 
         public double TotalScore{
             get{
+                 if (_Marks == null || _Coefs == null || _Marks.GetLength(0) == 0 || _Coefs.Length == 0) return 0;
                 int[,] copy = Marks;
                 double score = 0;
                 for (int i = 0; i < _Marks.GetLength(0); i++)

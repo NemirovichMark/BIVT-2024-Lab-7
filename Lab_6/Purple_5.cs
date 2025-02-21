@@ -84,7 +84,7 @@ namespace Lab_6{
         for (int i = 0; i < answerGroups.Length; i++){
             var group = answerGroups[i];
             double percentage = (double) group.Count / totalResponses * 100;
-            topResponses[i] = $"{group.Answer}: {group.Count}  ({percentage:F2})";
+            topResponses[i] = $"{group.Answer}: {group.Count}";
         }
 
         return topResponses;

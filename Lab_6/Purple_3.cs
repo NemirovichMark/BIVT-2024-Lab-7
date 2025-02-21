@@ -37,36 +37,43 @@ namespace Lab_6{
                 _Places = new int[7];
             }
             public void Evaluate(double result){
+                if (_Marks == null) return;
                 if (_NextMark >= 7 || _Marks == null) return;
                     _Marks[_NextMark++] = result;
 
             }
 
             public static void SetPlaces(Participant[] participants){
-                if (participants == null) return;
+                if (participants == null ) return;
+
                 for (int judge = 0; judge < participants[0]._Marks.Length; judge++){
+
                     double[] scores = new double[participants.Length];
-
-                    for (int i = 0; i < participants.Length; i++){
-                        if (participants[i]._Marks == null) continue;
-                        scores[i] = participants[i]._Marks[judge];
-                    }
-
                     int[] sortedIndexes = new int[participants.Length];
+
+                    int validParticipants = 0;
+
                     for (int i = 0; i < participants.Length; i++){
-                        if (participants[i]._Marks == null) continue;
-                        sortedIndexes[i] = i;
+                        if (participants[i]._Marks != null && participants[i]._Places != null){
+                            scores[validParticipants] = participants[i]._Marks[judge];
+                            sortedIndexes[validParticipants] = i;
+                            validParticipants++;
+                        }
                     }
+                    if (validParticipants == 0) continue;
+
+                    Array.Resize(ref scores, validParticipants);
+                    Array.Resize(ref sortedIndexes, validParticipants);
 
                     Array.Sort(scores, sortedIndexes);
-                    Array.Reverse(sortedIndexes); 
+                    Array.Reverse(sortedIndexes);
 
-                    for (int i = 0; i < participants.Length; i++){
-                        if (participants[i]._Marks == null) continue;
-                        participants[sortedIndexes[i]]._Places[judge] = i + 1;
+                    for (int i = 0; i < validParticipants; i++)
+                    {
+                        participants[sortedIndexes[i]]._Places[judge] = i + 1; 
                     }
                 }
-            }
+}
             public int Score{
                 get{
                     if (_Places == null) return 0;
@@ -89,7 +96,11 @@ namespace Lab_6{
             }
             public static void Sort(Participant[] array){
                 if (array == null) return;
-                var sortedList = array.OrderBy(p => p.Score).ThenBy(p => string.Join(",", p.Places)).ThenByDescending(p => p.Marks_score) .ToArray(); 
+
+                var sortedList = array.Where(p => p.Marks != null && p.Places != null)
+                .OrderBy(p => p.Score).ThenBy(p => string.Join(",", p.Places)).
+                ThenByDescending(p => p.Marks_score).ToArray(); 
+
                 Array.Copy(sortedList, array, array.Length);
             }
             public void Print(){

@@ -10,6 +10,7 @@ namespace Lab_6{
 
         public string Name  => _Name;
         public string Surname => _Surname;
+        public int Distance => _Distance;
         public int[] Marks 
         {
             get{
