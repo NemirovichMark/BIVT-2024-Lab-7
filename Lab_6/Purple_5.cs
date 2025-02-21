@@ -62,7 +62,7 @@ namespace Lab_6
                 get
                 {
                     if (_responses == null) return null;
-                    
+
                     var copy = new Response[_responses.Length];
                     Array.Copy(_responses, copy, _responses.Length);
                     return copy;
@@ -78,14 +78,15 @@ namespace Lab_6
             public void Add(string[] answers)
             {
                 if (answers == null || answers.Length != 3 || _responses == null) return;
-                
+
                 Array.Resize(ref _responses, _responses.Length + 1);
                 _responses[_responses.Length - 1] = new Response(answers[0], answers[1], answers[2]);
             }
 
             public string[] GetTopResponses(int question)
             {
-                if (question == null || _responses == null || question < 1 || question > 3 || _responses.Length == 0) return null;
+                if (question == null || _responses == null || question < 1 || question > 3 ||
+                    _responses.Length == 0) return null;
 
                 string[] keys = new string[0];
                 int[] values = new int[0];
@@ -94,11 +95,11 @@ namespace Lab_6
                     string answer = GetAnswerByQuestion(question, response);
                     if (answer != "-") AddAnswerToDict(ref keys, ref values, answer);
                 }
-                
+
                 SortAnswersDict(keys, values);
                 string[] topResponses = new string[keys.Length >= 5 ? 5 : keys.Length];
                 Array.Copy(keys, topResponses, topResponses.Length);
-                
+
                 return topResponses;
             }
 
@@ -106,13 +107,14 @@ namespace Lab_6
             {
                 Console.WriteLine($"Имя: {_name}");
                 Console.WriteLine();
-                
+
                 if (_responses == null) return;
                 Console.WriteLine($"Ответы:");
                 foreach (var response in _responses)
                 {
                     response.Print();
                 }
+
                 Console.WriteLine();
             }
 
