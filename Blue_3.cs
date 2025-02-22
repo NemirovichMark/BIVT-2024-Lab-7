@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,8 +8,7 @@ namespace Lab_6
 {
     public class Blue_3
     {
-
-        public struct Participant 
+        public struct Participant
         {
             private string _name;
             private string _surname;
@@ -33,13 +32,12 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_penaltyTimes == null) return 0;
+
                     int total = 0;
-                    if (_penaltyTimes != null)
+                    for (int i = 0; i < _penaltyTimes.Length; i++)
                     {
-                        for (int i = 0; i < _penaltyTimes.Length; i++)
-                        {
-                            total += _penaltyTimes[i];
-                        }
+                        total += _penaltyTimes[i];
                     }
                     return total;
                 }
@@ -49,19 +47,16 @@ namespace Lab_6
             {
                 get
                 {
-                    bool expelled = false;
-                    if (_penaltyTimes != null)
+                    if (_penaltyTimes == null) return false;
+
+                    for (int i = 0; i < _penaltyTimes.Length; i++)
                     {
-                        for (int i = 0; i < _penaltyTimes.Length; i++)
+                        if (_penaltyTimes[i] == 10)
                         {
-                            if (_penaltyTimes[i] == 10)
-                            {
-                                expelled = true;
-                                break;
-                            }
+                            return true;
                         }
                     }
-                    return expelled;
+                    return false;
                 }
             }
 
@@ -69,32 +64,31 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _penaltyTimes = new int[0];
+                _penaltyTimes = new int[0]; 
             }
 
             public void PlayMatch(int time)
             {
                 if (time != 0 && time != 2 && time != 5 && time != 10)
                 {
-                    Console.WriteLine("Штрафное время должно быть 0, 2, 5 или 10 минут");
+                    Console.WriteLine("Штрафное время должно быть 0, 2, 5 или 10 минут.");
                     return;
                 }
-
-                if (_penaltyTimes == null)
-                    return;
+                int[] newPenaltyTimes = new int[_penaltyTimes.Length + 1];
 
                 for (int i = 0; i < _penaltyTimes.Length; i++)
                 {
-                    if (_penaltyTimes[i] == 0)
-                    {
-                        _penaltyTimes[i] = time;
-                        break;
-                    }
+                    newPenaltyTimes[i] = _penaltyTimes[i];
                 }
+
+                newPenaltyTimes[newPenaltyTimes.Length - 1] = time;
+                _penaltyTimes = newPenaltyTimes;
             }
 
             public static void Sort(Participant[] array)
             {
+                if (array == null || array.Length == 0) return;
+
                 Participant[] candidates = new Participant[array.Length];
                 int count = 0;
 
@@ -106,7 +100,6 @@ namespace Lab_6
                         count++;
                     }
                 }
-
                 for (int i = 0; i < count - 1; i++)
                 {
                     for (int j = 0; j < count - 1 - i; j++)
@@ -119,10 +112,13 @@ namespace Lab_6
                         }
                     }
                 }
-
                 for (int i = 0; i < count; i++)
                 {
                     array[i] = candidates[i];
+                }
+                for (int i = count; i < array.Length; i++)
+                {
+                    array[i] = new Participant("Исключен", "Участник");
                 }
             }
 
