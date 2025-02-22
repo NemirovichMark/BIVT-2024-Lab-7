@@ -67,9 +67,10 @@ namespace Lab_6
 
             public Group(Group group)
             {
-                if (group._sportsmen != null || _sportsmen == null) return;
+                if (group._sportsmen == null) return;
                 
                 _name = group._name;
+                _sportsmen = new Sportsman[group._sportsmen.Length];
                 Array.Copy(group._sportsmen, _sportsmen, group._sportsmen.Length);
             }
 
