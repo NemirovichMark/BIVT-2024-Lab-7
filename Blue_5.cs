@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -43,13 +43,13 @@ namespace Lab_6
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public Sportsman[] sportsmen
+            public Sportsman[] Sportsmen
             {
                 get
                 {
                     if (_sportsmen == null) return null;
-                    Sportsman[] sporty = new Sportsman[sportsmen.Length];
-                    for (int i = 0; i < sportsmen.Length; i++)
+                    Sportsman[] sporty = new Sportsman[Sportsmen.Length];
+                    for (int i = 0; i < Sportsmen.Length; i++)
                         sporty[i] = _sportsmen[i];
                     return sporty;
                 }
@@ -99,7 +99,26 @@ namespace Lab_6
                 _name = name;
                 _sportsmen = new Sportsman[1];
             }
-
+            public void Add(Sportsman sportsman)
+            {
+                if (_sportsmen == null) return;
+                Sportsman[] sportsmen = new Sportsman[_sportsmen.Length + 1];
+                for (int i = 0; i < _sportsmen.Length; i++)
+                {
+                    if (i == _sportsmen.Length) sportsmen[i] = sportsman;
+                    else sportsmen[i] = _sportsmen[i];
+                }
+            }
+            public void Add(Sportsman[] sportsmen)
+            {
+                if (_sportsmen == null || sportsmen == null) return;
+                Sportsman[] newSportsmen = new Sportsman[_sportsmen.Length + sportsmen.Length];
+                for (int i = 0; i < _sportsmen.Length; i++)
+                {
+                    if (i == _sportsmen.Length) newSportsmen[i] = sportsmen[i - _sportsmen.Length];
+                    else newSportsmen[i] = sportsmen[i];
+                }
+            }
             public static void Sort(Team[] teams)
             {
 
