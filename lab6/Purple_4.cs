@@ -74,13 +74,11 @@ namespace Lab_6{
             }
 
             public void Add(Sportsman[] sportsmen){
-                if (_sportsmen == null){
-                    _sportsmen = new Sportsman[0];
-                }
-
+                if (_sportsmen == null || sportsmen == null || sportsmen.Length == 0) return;
+                int originalLen = _sportsmen.Length;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
                 for (int i = 0; i < sportsmen.Length; i++){
-                    _sportsmen[_sportsmen.Length+i] = sportsmen[i];
+                    _sportsmen[originalLen+i] = sportsmen[i];
                 }
             }
 

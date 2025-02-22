@@ -79,7 +79,9 @@ namespace Lab_6{
                     //participants - отсортирован относительно i-го судьи
 
                     for (int place = 0; place < participants.Length; place++){
-                        participants[place]._places[judje] = place + 1;
+                        if (participants[place]._places != null){
+                            participants[place]._places[judje] = place + 1;
+                        } 
                     }
                 }
                 // for (int i = 1; i < participants.Length; i++){

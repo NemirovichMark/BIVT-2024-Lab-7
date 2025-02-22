@@ -150,10 +150,11 @@ namespace Lab_6
         sportsman1.Run(28.7);
         Purple_4.Sportsman sportsman2 = new Purple_4.Sportsman("Петр", "Петров");
         sportsman2.Run(30.5);
-
+        Purple_4.Sportsman[] list = new Purple_4.Sportsman[2]{sportsman1, sportsman2};
         Purple_4.Group group1 = new Purple_4.Group("Группа 1");
-        group1.Add(sportsman1);
-        group1.Add(sportsman2);
+        // group1.Add(sportsman1);
+        // group1.Add(sportsman2);
+        group1.Add(list);
         group1.Sort();
 
         Purple_4.Sportsman sportsman3 = new Purple_4.Sportsman("Сергей", "Сергеев");
