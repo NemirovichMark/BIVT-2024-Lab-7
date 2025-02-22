@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Purple_4
+    public class Purple_4
     {
         public struct Sportsman
         {
@@ -72,6 +72,23 @@ namespace Lab_6
                if (_sportsman == null) return;
                Array.Resize(ref _sportsman, _sportsman.Length + 1);
                 _sportsman[_sportsman.Length - 1] = sportsman;
+            }
+            public void Add(Sportsman[] sportsmen)
+            {
+                if (_sportsman == null || sportsmen == null) return;
+                int len = _sportsman.Length;
+
+                Array.Resize(ref _sportsman, _sportsman.Length + sportsmen.Length);
+                for (int i = len; i < _sportsman.Length; i++)
+                {
+                    _sportsman[i] = sportsmen[i - len];
+                }
+            }
+            public void Add(Group group)
+            {
+                if (_sportsman == null) return;
+                if (group._sportsman == null) return;
+                Add(group._sportsman);
             }
             public void Sort()
             {

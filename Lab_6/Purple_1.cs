@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace Lab_6
 {
-    internal class Purple_1
+    public class Purple_1
     {
         public struct Participant
         {
@@ -40,7 +40,7 @@ namespace Lab_6
                     return _total;
                 }
             }
-            public double[] Coef
+            public double[] Coefs
             {
                 get {
                     if (_coef == null) return null;
@@ -76,7 +76,7 @@ namespace Lab_6
 
             public void SetCriterias(double[] coefs)
             {
-                if (coefs == null || coefs.Length != 4) return;
+                if (coefs == null || coefs.Length != 4 || _coef == null) return;
                 for (int i = 0; i < coefs.Length; i++)
                 {
                     _coef[i] = coefs[i];
@@ -103,7 +103,7 @@ namespace Lab_6
 
             public void Jump(int[] marks)
             {
-                if (marks == null || marks.Length != 7) return;
+                if (marks == null || marks.Length != 7 || _marks == null || _coef == null) return;
                 if (_count >= 4) return;
                 for (int i = 0; i < marks.Length; i++)
                 {

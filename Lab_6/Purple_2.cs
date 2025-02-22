@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Purple_2
+    public class Purple_2
     {
         public struct Participant
         {
@@ -24,6 +24,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_marks == null) return null;
                     int[] copy = new int[_marks.Length];
                     Array.Copy(_marks, copy, copy.Length);
                     return copy;
@@ -63,7 +64,7 @@ namespace Lab_6
 
             public void Jump(int distance, int[] marks)
             {
-                if (marks == null || marks.Length != 5) return;
+                if (marks == null || marks.Length != 5 || _marks == null) return;
                 if (distance < 0) return;
                 _distance = distance;
 

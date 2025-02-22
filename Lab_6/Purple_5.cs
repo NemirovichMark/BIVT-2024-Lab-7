@@ -8,7 +8,7 @@ using static Lab_6.Purple_5;
 
 namespace Lab_6
 {
-    internal class Purple_5
+    public class Purple_5
     {
         public struct Response
         {
