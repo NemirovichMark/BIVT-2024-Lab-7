@@ -93,7 +93,7 @@ namespace Lab_6
                 foreach (var response in _responses)
                 {
                     string answer = GetAnswerByQuestion(question, response);
-                    if (answer != "-") AddAnswerToDict(ref keys, ref values, answer);
+                    if (answer != null) AddAnswerToDict(ref keys, ref values, answer);
                 }
 
                 SortAnswersDict(keys, values);
