@@ -1,9 +1,8 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static Lab_6.Blue_5;
 
 namespace Lab_6
 {
@@ -11,19 +10,21 @@ namespace Lab_6
     {
         public struct Sportsman
         {
+            
             private string _name;
             private string _surname;
             private int _place;
 
+            //свойства
             public string Name => _name;
             public string Surname => _surname;
             public int Place => _place;
-            
+
             public Sportsman(string name, string surname)
             {
                 _name = name;
                 _surname = surname;
-                _place = 0;
+                _place = 0; 
             }
 
             public void SetPlace(int place)
@@ -31,6 +32,7 @@ namespace Lab_6
                 if (_place != 0)
                 {
                     Console.WriteLine("Место уже установлено.");
+                    return;
                 }
                 _place = place;
             }
@@ -47,16 +49,7 @@ namespace Lab_6
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public int[] Sportsmen
-            {
-                get
-                {
-                    if (_sportsmen == null) return null;
-                    int[] copy = new int[_sportsmen.Length];
-                    Array.Copy(_sportsmen, copy, copy.Length);
-                    return copy;
-                }
-            }
+            public Sportsman[] Sportsmen => _sportsmen;
 
             public int SummaryScore
             {
@@ -66,9 +59,9 @@ namespace Lab_6
                         return 0;
 
                     int totalScore = 0;
-                    for (int i = 0; i < _sportsmen.Length; i++) 
+                    for (int i = 0; i < _sportsmen.Length; i++)
                     {
-                        switch (_sportsmen[i].Place) 
+                        switch (_sportsmen[i].Place)
                         {
                             case 1: totalScore += 5; break;
                             case 2: totalScore += 4; break;
@@ -81,22 +74,26 @@ namespace Lab_6
                     return totalScore;
                 }
             }
+
             public int TopPlace
             {
                 get
                 {
-                    if (_sportsmen == null)
+                    if (_sportsmen == null || _sportsmen.Length == 0)
                         return 0;
 
                     int topPlace = int.MaxValue;
-                    for (int i = 0; i < _sportsmen.Length; i++) 
+                    for (int i = 0; i < _sportsmen.Length; i++)
                     {
-                        if (_sportsmen[i].Place < topPlace) 
+                        if (_sportsmen[i].Place < topPlace && _sportsmen[i].Place != 0)
                         {
-                            topPlace = _sportsmen[i].Place; 
+                            topPlace = _sportsmen[i].Place;
                         }
                     }
-                    return topPlace;
+                    if (topPlace == int.MaxValue)
+                        return 0;
+                    else
+                        return topPlace;
                 }
             }
 
@@ -118,11 +115,12 @@ namespace Lab_6
                 newSportsmen[newSportsmen.Length - 1] = sportsman;
                 _sportsmen = newSportsmen;
             }
+
             public void Add(Sportsman[] sportsmen)
             {
                 for (int i = 0; i < sportsmen.Length; i++)
                 {
-                    Add(sportsmen[i]); 
+                    Add(sportsmen[i]);
                 }
             }
 
@@ -137,7 +135,7 @@ namespace Lab_6
                 {
                     for (int i = 0; i < _sportsmen.Length; i++)
                     {
-                        _sportsmen[i].Print(); 
+                        _sportsmen[i].Print();
                     }
                 }
                 else
@@ -145,35 +143,34 @@ namespace Lab_6
                     Console.WriteLine("Нет данных о спортсменах.");
                 }
             }
-        }
 
-        public static void Sort(Team[] teams)
-        {
-            if (teams == null || teams.Length == 0)
-                return;
-
-            for (int i = 0; i < teams.Length - 1; i++)
+            public static void Sort(Team[] teams)
             {
-                for (int j = 0; j < teams.Length - 1 - i; j++)
+                if (teams == null || teams.Length == 0)
+                    return;
+
+                for (int i = 0; i < teams.Length - 1; i++)
                 {
-                    if (teams[j].SummaryScore < teams[j + 1].SummaryScore)
+                    for (int j = 0; j < teams.Length - 1 - i; j++)
                     {
-                        Team temp = teams[j];
-                        teams[j] = teams[j + 1];
-                        teams[j + 1] = temp;
-                    }
-                    else if (teams[j].SummaryScore == teams[j + 1].SummaryScore)
-                    {
-                        if (teams[j].TopPlace > teams[j + 1].TopPlace)
+                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore)
                         {
                             Team temp = teams[j];
                             teams[j] = teams[j + 1];
                             teams[j + 1] = temp;
+                        }
+                        else if (teams[j].SummaryScore == teams[j + 1].SummaryScore)
+                        {
+                            if (teams[j].TopPlace > teams[j + 1].TopPlace)
+                            {
+                                Team temp = teams[j];
+                                teams[j] = teams[j + 1];
+                                teams[j + 1] = temp;
+                            }
                         }
                     }
                 }
             }
         }
     }
-    
 }
