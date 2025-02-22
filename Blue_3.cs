@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp4
+namespace Lab_6
 {
-    
 
-    internal class Blue_3
+
+    public class Blue_3
     {
         public struct Participant
         {

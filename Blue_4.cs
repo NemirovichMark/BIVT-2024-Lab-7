@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp4
+namespace Lab_6
 {
-    
-    internal class Blue_4
+
+    public class Blue_4
     {
         public struct Team
         {
