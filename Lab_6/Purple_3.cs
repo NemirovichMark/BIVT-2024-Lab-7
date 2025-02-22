@@ -67,7 +67,7 @@ namespace Lab_6
                 }
             }
             
-            public double TotalMark
+            private double TotalMark
             {
                 get
                 {
@@ -81,7 +81,7 @@ namespace Lab_6
                 }
             }
 
-            public int TopPlace
+            private int TopPlace
             {
                 get
                 {
@@ -120,7 +120,7 @@ namespace Lab_6
             //Определение мест у судьей
             public static void SetPlaces(Participant[] participants)
             {
-                if (participants == null) return;
+                if (participants == null || participants.Length == 0) return;
                 //Идем по судьям
                 for (int i = 0; i < 7; i++)
                 {
@@ -129,6 +129,7 @@ namespace Lab_6
                     {
                         for (int c = 0; c < participants.Length - 1 - b; c++)
                         {
+                            if (participants[c]._marks == null || participants[c + 1]._marks == null || participants[c]._places == null || participants[c+1]._places == null) continue;
                             if (participants[c]._marks[i] < participants[c + 1]._marks[i])
                             {
                                 (participants[c], participants[c + 1]) = (participants[c + 1], participants[c]);
@@ -138,6 +139,7 @@ namespace Lab_6
                     //Теперь мы идем по участникам (отсортированным) и ставим их места у судьи i
                     for (int person = 0; person < participants.Length; person++)
                     {
+                        if (participants[person]._places == null || participants[person]._marks == null) continue;
                         participants[person]._places[i] = person + 1;
                     }
                 }
@@ -153,6 +155,7 @@ namespace Lab_6
                 {
                     for (int j = 0; j < array.Length - 1 - i; j++)
                     {
+                        if (array[j + 1]._places == null || array[j]._places == null || array[j + 1]._marks == null || array[j]._marks == null) continue;
                         //Если набрал меньше "хороших мест" идет вниз
                         if (array[j].Score > array[j + 1].Score)
                         {

@@ -50,15 +50,15 @@ namespace Lab_6
                 int count = 0;
                 foreach (Response response in responses)
                 {
-                    if (questionNumber == 1 && response._animal != null && response._animal != "" && response._animal != "-")
+                    if (questionNumber == 1 && response._animal != null)
                     {
                         count++;
                     }
-                    if (questionNumber == 2 && response._characterTrait != null && response._characterTrait != "" && response._characterTrait != "-")
+                    if (questionNumber == 2 && response._characterTrait != null)
                     {
                         count++;
                     }
-                    if (questionNumber == 3 && response._concept != null && response._concept != "" && response._concept != "-")
+                    if (questionNumber == 3 && response._concept != null)
                     {
                         count++;
                     }
@@ -117,7 +117,7 @@ namespace Lab_6
                 foreach (Response response in _responses) {
                     //Сначала создадим новый массив, и в него будем сохранять только УНИКАЛЬНЫЕ элементы
                     string answer = Answer(question, response);
-                    if (answer == "-") continue;
+                    if (answer == null) continue;
                     bool flag = false; //Нет таких элементов в нашем массиве
 
                     //Проходимся по всему массиву list

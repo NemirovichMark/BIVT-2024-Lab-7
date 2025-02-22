@@ -17,7 +17,6 @@ namespace Lab_6
             jumper1.Jump(new int[] { 5, 3, 4, 3, 3, 3, 3 });
             jumper1.Jump(new int[] { 2, 4, 1, 5, 6, 1, 2 });
             jumper1.Jump(new int[] { 6, 4, 3, 2, 2, 1, 1 });
-            jumper1.Total();
 
             Purple_1.Participant jumper2 = new Purple_1.Participant("Александр", "Козлов");
             jumper2.SetCriterias(new double[] { 2.95, 2.63, 3.16, 2.89 });
@@ -25,7 +24,6 @@ namespace Lab_6
             jumper2.Jump(new int[] { 1, 6, 5, 2, 1, 4, 1 });
             jumper2.Jump(new int[] { 6, 2, 4, 1, 2, 6, 5 });
             jumper2.Jump(new int[] { 6, 5, 2, 2, 4, 3, 4 });
-            jumper2.Total();
 
             // 3. Никита Павлов
             Purple_1.Participant jumper3 = new Purple_1.Participant("Никита", "Павлов");
@@ -34,7 +32,6 @@ namespace Lab_6
             jumper3.Jump(new int[] { 4, 1, 1, 2, 2, 2, 5 });
             jumper3.Jump(new int[] { 5, 2, 3, 3, 2, 2, 3 });
             jumper3.Jump(new int[] { 3, 1, 3, 4, 2, 4, 5 });
-            jumper3.Total();
 
             // 4. Юрий Луговой
             Purple_1.Participant jumper4 = new Purple_1.Participant("Юрий", "Луговой");
@@ -43,7 +40,6 @@ namespace Lab_6
             jumper4.Jump(new int[] { 5, 5, 4, 2, 3, 2, 2 });
             jumper4.Jump(new int[] { 6, 3, 1, 2, 2, 6, 6 });
             jumper4.Jump(new int[] { 5, 1, 6, 6, 3, 2, 5 });
-            jumper4.Total();
 
             // 5. Юрий Степанов
             Purple_1.Participant jumper5 = new Purple_1.Participant("Юрий", "Степанов");
@@ -52,7 +48,6 @@ namespace Lab_6
             jumper5.Jump(new int[] { 5, 3, 4, 2, 1, 1, 2 });
             jumper5.Jump(new int[] { 2, 2, 4, 2, 6, 3, 4 });
             jumper5.Jump(new int[] { 3, 2, 1, 3, 5, 1, 5 });
-            jumper5.Total();
 
             // 6. Мария Луговая
             Purple_1.Participant jumper6 = new Purple_1.Participant("Мария", "Луговая");
@@ -61,7 +56,6 @@ namespace Lab_6
             jumper6.Jump(new int[] { 5, 4, 3, 2, 4, 6, 1 });
             jumper6.Jump(new int[] { 1, 1, 3, 4, 4, 1, 6 });
             jumper6.Jump(new int[] { 3, 1, 5, 1, 4, 3, 1 });
-            jumper6.Total();
 
             // 7. Виктор Жарков
             Purple_1.Participant jumper7 = new Purple_1.Participant("Виктор", "Жарков");
@@ -70,7 +64,6 @@ namespace Lab_6
             jumper7.Jump(new int[] { 1, 2, 3, 1, 5, 4, 3 });
             jumper7.Jump(new int[] { 3, 6, 2, 3, 1, 6, 3 });
             jumper7.Jump(new int[] { 3, 3, 6, 6, 3, 6, 6 });
-            jumper7.Total();
 
             // 8. Марина Иванова
             Purple_1.Participant jumper8 = new Purple_1.Participant("Марина", "Иванова");
@@ -79,7 +72,6 @@ namespace Lab_6
             jumper8.Jump(new int[] { 5, 4, 4, 2, 1, 2, 4 });
             jumper8.Jump(new int[] { 4, 2, 2, 5, 1, 3, 1 });
             jumper8.Jump(new int[] { 6, 5, 6, 1, 6, 3, 3 });
-            jumper8.Total();
 
             // 9. Марина Полевая
             Purple_1.Participant jumper9 = new Purple_1.Participant("Марина", "Полевая");
@@ -88,7 +80,6 @@ namespace Lab_6
             jumper9.Jump(new int[] { 4, 6, 1, 4, 2, 1, 5 });
             jumper9.Jump(new int[] { 1, 1, 3, 1, 3, 2, 6 });
             jumper9.Jump(new int[] { 1, 4, 4, 6, 6, 2, 5 });
-            jumper9.Total();
 
             // 10. Максим Тихонов
             Purple_1.Participant jumper10 = new Purple_1.Participant("Максим", "Тихонов");
@@ -97,7 +88,6 @@ namespace Lab_6
             jumper10.Jump(new int[] { 6, 4, 5, 4, 2, 3, 1 });
             jumper10.Jump(new int[] { 3, 3, 4, 2, 2, 3, 6 });
             jumper10.Jump(new int[] { 5, 1, 5, 5, 1, 3, 4 });
-            jumper10.Total();
 
             Purple_1.Participant[] participants = new Purple_1.Participant[10] {jumper1, jumper2, jumper3, jumper4, jumper5, jumper6, jumper7, jumper8, jumper9, jumper10};
             Purple_1.Participant.Sort(participants);

@@ -83,31 +83,25 @@ namespace Lab_6
                 }
             }
 
-            public void Total()
-            {
-                if (_marks == null) return;
-                for (int i = 0; i < _marks.GetLength(0); i++)
-                {
-                    int[] array = new int[7];
-                    for (int j = 0; j < _marks.GetLength(1); j++)
-                    {
-                        array[j] = _marks[i, j];
-                    }
-                    Array.Sort(array);
-                    for (int k = 1; k < array.Length - 1; k++)
-                    {
-                        _total += array[k] * _coef[i];
-                    }
-                }
-            }
 
             public void Jump(int[] marks)
             {
-                if (marks == null || marks.Length != 7 || _marks == null || _coef == null) return;
+                if (marks == null || _marks == null || _coef == null) return;
                 if (_count >= 4) return;
-                for (int i = 0; i < marks.Length; i++)
+                for (int i = 0; i < 7; i++)
                 {
                     _marks[_count, i] = marks[i];
+                }
+
+                int[] array = new int[7];
+                for (int j = 0; j < _marks.GetLength(1); j++)
+                {
+                    array[j] = _marks[_count, j];
+                }
+                Array.Sort(array);
+                for (int k = 1; k < array.Length - 1; k++)
+                {
+                    _total += array[k] * _coef[_count];
                 }
                 _count++;
             }
