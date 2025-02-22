@@ -76,9 +76,10 @@ namespace Lab_6{
                 for (int i = 0; i < participants.Length - 1; i++){
                     for (int j = 0; j < participants.Length - 1 - i; j++)
                     {
-                        if (participants[j]._Places[participants[j]._Places.Length - 1] >  participants[j + 1]._Places[participants[j + 1]._Places.Length - 1])
-                        {
-                            (participants[j], participants[j + 1]) = (participants[j + 1], participants[j]);
+                        if (participants[j]._Places != null && participants[j + 1]._Places != null){
+                            if (participants[j]._Places[participants[j]._Places.Length - 1] >  participants[j + 1]._Places[participants[j + 1]._Places.Length - 1]){
+                                (participants[j], participants[j + 1]) = (participants[j + 1], participants[j]);
+                        }
                         }
                     }
                 }
