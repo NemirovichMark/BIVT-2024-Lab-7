@@ -44,11 +44,14 @@ namespace Lab_6 {
             }
 
             public Group(Group group) {
-                if (group.Sportsmen == null || _sportsmen == null) 
-                    return;
-
                 _name = group.Name;
-                Array.Copy(group.Sportsmen, _sportsmen, group.Sportsmen.Length);
+
+                if (group.Sportsmen == null)
+                    _sportsmen = null;
+                else {
+                    _sportsmen = new Sportsman[group.Sportsmen.Length];
+                    Array.Copy(group.Sportsmen, _sportsmen, group.Sportsmen.Length);
+                }
             }
 
             public void Add(Sportsman sportsman) {
