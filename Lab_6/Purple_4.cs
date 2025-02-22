@@ -36,7 +36,7 @@ namespace Lab_6 {
             private string _name;
             private Sportsman[] _sportsmen;
             public string Name => _name;
-            public Sportsman[] Sportsmen => (_sportsmen == null) ? _sportsmen : (Sportsman[])_sportsmen.Clone(); // shallow copy for safety
+            public Sportsman[] Sportsmen => _sportsmen; 
 
             public Group(string name) {
                 _name = name;
