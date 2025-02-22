@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +14,7 @@ namespace Lab_6
             private int[] _score;
 
             public string Name=>_name;
-            public int[] Score
+            public int[] Scores
             {
                 get
                 {
@@ -69,7 +69,7 @@ namespace Lab_6
             private Team[] _teams;
 
             public string Name => _name;
-            public Team[] Score
+            public Team[] Teams
             {
                 get
                 {
