@@ -67,6 +67,8 @@ namespace Lab_6
 
             public Group(Group group)
             {
+                if (group._sportsmen != null || _sportsmen == null) return;
+                
                 _name = group._name;
                 Array.Copy(group._sportsmen, _sportsmen, group._sportsmen.Length);
             }
@@ -83,8 +85,10 @@ namespace Lab_6
             {
                 if (sportsmen == null || _sportsmen == null) return;
 
-                Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
-                Array.Copy(sportsmen, 0, _sportsmen, _sportsmen.Length, sportsmen.Length);
+                int n = _sportsmen.Length;
+                
+                Array.Resize(ref _sportsmen, n + sportsmen.Length);
+                Array.Copy(sportsmen, 0, _sportsmen, n, sportsmen.Length);
             }
 
             public void Add(Group group)

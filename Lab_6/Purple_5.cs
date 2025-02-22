@@ -19,9 +19,9 @@ namespace Lab_6
 
             public Response(string animal, string characterTrait, string concept)
             {
-                _animal = animal != null ? animal : "-";
-                _characterTrait = characterTrait != null ? characterTrait : "-";
-                _concept = concept != null ? concept : "-";
+                _animal = animal;
+                _characterTrait = characterTrait;
+                _concept = concept;
             }
 
             public int CountVotes(Response[] responses, int questionNumber)
@@ -31,11 +31,11 @@ namespace Lab_6
                 switch (questionNumber)
                 {
                     case 1:
-                        return responses.Count(x => x._animal != null && x._animal != "-");
+                        return responses.Count(x => x._animal != null);
                     case 2:
-                        return responses.Count(x => x._characterTrait != null && x._animal != "-");
+                        return responses.Count(x => x._characterTrait != null);
                     case 3:
-                        return responses.Count(x => x._concept != null && x._concept != "-");
+                        return responses.Count(x => x._concept != null);
                     default:
                         return 0;
                 }
