@@ -89,7 +89,7 @@ namespace Lab_6
 
             public void Jump(int distance, int[] marks)
             {
-                if (marks is null || marks.Length != 5) return;
+                if (_marks is null || marks is null || marks.Length != 5) return;
 
                 if (distance < 0) return;
 

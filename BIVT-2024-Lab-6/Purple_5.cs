@@ -80,8 +80,8 @@ namespace Lab_6
 
         public struct Research
         {
-            public string _name;
-            public Response[] _responses;
+            private string _name;
+            private Response[] _responses;
 
             public string Name
             {

@@ -82,7 +82,7 @@ namespace Lab_6
             }
 
             public Group(string name)
-            {
+            { 
                 _name = name;
                 _sportsmen = new Sportsman[0];
                 
@@ -90,19 +90,29 @@ namespace Lab_6
 
             public Group(Group group)
             {
+
                 _name = group.Name;
+                if (group.Sportsmen is null)
+                {
+                    _sportsmen = null;
+                    return;
+                }
                 _sportsmen = new Sportsman[group.Sportsmen.Length];
-                Array.Copy(_sportsmen, group.Sportsmen, _sportsmen.Length);
+                Array.Copy(group.Sportsmen, _sportsmen, _sportsmen.Length);
             }
 
             public void Add(Sportsman sportsman)
             {
+                if (_sportsmen is null)
+                    return;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                 _sportsmen[_sportsmen.Length - 1] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen)
             {
+                if (_sportsmen is null || sportsmen is null)
+                    return;
                 int iter = _sportsmen.Length;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
                 for (int i = 0; i < sportsmen.Length; i++)
@@ -113,6 +123,8 @@ namespace Lab_6
 
             public void Add(Group group)
             {
+                if (_sportsmen is null || group.Sportsmen is null)
+                    return;
                 int iter = group.Sportsmen.Length;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + group.Sportsmen.Length);
                 for (int i = 0; i < group.Sportsmen.Length; i++)
@@ -124,6 +136,8 @@ namespace Lab_6
 
             public void Sort()
             {
+                if (_sportsmen is null)
+                    return;
                 int n = _sportsmen.Length;
                 for (int i = 1, j = 2; i < n;)
                 {
@@ -144,6 +158,9 @@ namespace Lab_6
 
             public static Group Merge(Group group1, Group group2)
             {
+                if (group1.Sportsmen is null || group2.Sportsmen is null)
+                    return new Group("Финалисты");
+
                 Sportsman[] sportsmen = new Sportsman[group1.Sportsmen.Length + group2.Sportsmen.Length];
                 int l = 0, r = 0;
 
