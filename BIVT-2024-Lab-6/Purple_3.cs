@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVT_2024_Lab_6
+namespace Lab_6
 {
     public class Purple_3
     {
@@ -69,7 +69,7 @@ namespace BIVT_2024_Lab_6
                 }
             }
 
-            public double TotalMark
+            private double TotalMark
             {
                 get
                 {
@@ -83,7 +83,7 @@ namespace BIVT_2024_Lab_6
                 }
             }
 
-            public int TopPlace
+            private int TopPlace
             {
                 get
                 {
@@ -100,16 +100,11 @@ namespace BIVT_2024_Lab_6
                 _marks = new double[7];
                 _places = new int[7];
                 _curMark = 0;
-                for (int i = 0; i < 7; i++)
-                {
-                    _marks[i] = -1;
-                    _places[i] = 0;
-                }
             }
 
             public void Evaluate(double result)
             {
-                if (_curMark == 7) return;
+                if (_curMark == 7 || _marks is null) return;
 
                 if (result < 0 || result > 6)
                 {

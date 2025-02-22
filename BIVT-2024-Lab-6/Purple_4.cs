@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BIVT_2024_Lab_6
+namespace Lab_6
 {
     public class Purple_4
     {
@@ -43,12 +43,12 @@ namespace BIVT_2024_Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _time = -1;
+                _time = 0;
             }
 
             public void Run(double time)
             {
-                if (_time != -1) return;
+                if (_time != 0) return;
                 _time = time;
             }
 
@@ -81,11 +81,10 @@ namespace BIVT_2024_Lab_6
                 }
             }
 
-            public Group(string name, Sportsman[] sportsmen)
+            public Group(string name)
             {
                 _name = name;
-                _sportsmen = new Sportsman[sportsmen.Length];
-                Array.Copy(sportsmen, _sportsmen, _sportsmen.Length);
+                _sportsmen = new Sportsman[0];
                 
             }
 
@@ -146,38 +145,39 @@ namespace BIVT_2024_Lab_6
             public static Group Merge(Group group1, Group group2)
             {
                 Sportsman[] sportsmen = new Sportsman[group1.Sportsmen.Length + group2.Sportsmen.Length];
-                int l = 0, r = 0, k = 0;
+                int l = 0, r = 0;
+
+                Group final = new Group("Финалисты");
+
                 while (l < group1.Sportsmen.Length && r < group2.Sportsmen.Length)
                 {
                     //group1.Sportsmen[l].Print();
                     //group2.Sportsmen[r].Print();
                     if (group1.Sportsmen[l].Time < group2.Sportsmen[r].Time)
                     {
-                        sportsmen[k++] = group1.Sportsmen[l++];
+                        final.Add(group1.Sportsmen[l++]);
                     }
                     else
                     {
-                        sportsmen[k++] = group2.Sportsmen[r++];
+                        final.Add(group2.Sportsmen[r++]);
                     }
                     
                 }
 
                 while (l < group1.Sportsmen.Length)
                 {
-                    sportsmen[k++] = group1.Sportsmen[l++];
+                    final.Add(group1.Sportsmen[l++]);
                 }
 
                 while (r < group2.Sportsmen.Length)
                 {
-                    sportsmen[k++] = group2.Sportsmen[r++];
+                    final.Add(group2.Sportsmen[r++]);
                 }
 
                 //for (int i = 0; i < sportsmen.Length; i++)
                 //{
                 //    sportsmen[i].Print();
                 //}
-
-                Group final = new Group("Финалисты", sportsmen);
 
                 return final;
             }

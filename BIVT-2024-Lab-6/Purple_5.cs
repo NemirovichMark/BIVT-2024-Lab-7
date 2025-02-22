@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BIVT_2024_Lab_6
+namespace Lab_6
 {
     public class Purple_5
     {
         public struct Response
         {
-            public string _animal;
-            public string _characterTrait;
-            public string _concept;
+            private string _animal;
+            private string _characterTrait;
+            private string _concept;
 
             public string Animal
             {
@@ -55,15 +55,15 @@ namespace BIVT_2024_Lab_6
                     switch (questionNumber)
                     {
                         case 1:
-                            if (responses[i].Animal != "")
+                            if (responses[i].Animal != null)
                                 count++;
                             break;
                         case 2:
-                            if (responses[i].CharacterTrait != "")
+                            if (responses[i].CharacterTrait != null)
                                 count++;
                             break;
                         case 3:
-                            if (responses[i].Concept != "")
+                            if (responses[i].Concept != null)
                                 count++;
                             break;
                     }
@@ -143,7 +143,7 @@ namespace BIVT_2024_Lab_6
                 }
 
                 var topResponses = responses
-                .Where(x => x != "-")
+                .Where(x => x != null)
                 .GroupBy(word => word) 
                 .OrderByDescending(group => group.Count())
                 .Take(5) 

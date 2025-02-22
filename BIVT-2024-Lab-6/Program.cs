@@ -6,7 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BIVT_2024_Lab_6
+namespace Lab_6
 {
     public class Program
     {
@@ -279,7 +279,7 @@ namespace BIVT_2024_Lab_6
             };
             double[] distancesTask_4_2 = new double[] { 112.49, 472.11, 213.92, 102.13, 263.21, 350.75, 248.68, 325.28, 300.0, 252.16, 402.2, 397.33, 384.94, 8.09, 480.52 };
 
-            Purple_4.Group group1;
+            Purple_4.Group group1 = new Purple_4.Group("First");
             Purple_4.Sportsman[] sportsmen1 = new Purple_4.Sportsman[namesTask_4_1.GetLength(0)];
 
             for (int i = 0; i < sportsmen1.Length; i++)
@@ -287,11 +287,11 @@ namespace BIVT_2024_Lab_6
                 Purple_4.Sportsman sport = new Purple_4.Sportsman(namesTask_4_1[i, 0], namesTask_4_1[i, 1]);
                 sport.Run(distancesTask_4_1[i]);
                 sportsmen1[i] = sport;
+                group1.Add(sport);
                 //sportsmen1[i].Print();
             }
-            group1 = new Purple_4.Group("First", sportsmen1);
 
-            Purple_4.Group group2;
+            Purple_4.Group group2 = new Purple_4.Group("Second");
             Purple_4.Sportsman[] sportsmen2 = new Purple_4.Sportsman[namesTask_4_2.GetLength(0)];
 
             for (int i = 0; i < sportsmen2.Length; i++)
@@ -299,9 +299,10 @@ namespace BIVT_2024_Lab_6
                 Purple_4.Sportsman sport = new Purple_4.Sportsman(namesTask_4_2[i, 0], namesTask_4_2[i, 1]);
                 sport.Run(distancesTask_4_2[i]);
                 sportsmen2[i] = sport;
+                group2.Add(sport);
                 //sportsmen2[i].Print();
             }
-            group2 = new Purple_4.Group("Second", sportsmen2);
+            
 
             group1.Sort();
             group2.Sort();
@@ -322,7 +323,7 @@ namespace BIVT_2024_Lab_6
         {
             string[,] responses = new string[,]
             {
-                { "Макака", "-",  "Манга" },
+                { "Макака", null,  "Манга" },
                 { "Тануки", "Проницательность",  "Манга" },
                 { "Тануки", "Скромность",  "Кимоно" },
                 { "Кошка", "Внимательность",  "Суши" },
@@ -331,14 +332,14 @@ namespace BIVT_2024_Lab_6
                 { "Панда", "Проницательность",  "Манга" },
                 { "Сима_энага", "Проницательность",  "Суши" },
                 { "Серау", "Внимательность",  "Сакура" },
-                { "Панда", "-",  "Кимоно" },
+                { "Панда", null,  "Кимоно" },
                 { "Сима_энага", "Дружелюбность",  "Сакура" },
                 { "Кошка", "Внимательность",  "Кимоно" },
-                { "Панда", "-",  "Сакура" },
+                { "Панда", null,  "Сакура" },
                 { "Кошка", "Уважительность",  "Фудзияма" },
                 { "Панда", "Целеустремленность",  "Аниме" },
-                { "Серау", "Дружелюбность",  "-" },
-                { "Панда", "-",  "Манга" },
+                { "Серау", "Дружелюбность",  null },
+                { "Панда", null,  "Манга" },
                 { "Сима_энага", "Скромность",  "Фудзияма" },
                 { "Панда", "Проницательность",  "Самурай" },
                 { "Кошка", "Внимательность",  "Сакура" },
