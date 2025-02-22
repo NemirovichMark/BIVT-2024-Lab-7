@@ -9,12 +9,12 @@ namespace Lab_6
     internal class Blue_5
     {public struct Sportsman
     {
-        // Приватные поля
+        //поля
         private string name;
         private string surname;
         private int place;
 
-        // Публичные свойства только для чтения
+        // свойства 
         public string Name => name;
         public string Surname => surname;
         public int Place => place;
@@ -24,13 +24,13 @@ namespace Lab_6
         {
             this.name = name;
             this.surname = surname;
-            this.place = 0; // Изначально место не установлено
+            this.place = 0;
         }
 
-        // Метод для установки места
+        // Методы
         public void SetPlace(int place)
         {
-            if (this.place == 0) // Место можно установить только один раз
+            if (this.place == 0) 
             {
                 this.place = place;
             }
@@ -40,7 +40,6 @@ namespace Lab_6
             }
         }
 
-        // Метод для вывода информации об участнике
         public void Print()
         {
             Console.WriteLine($"{Name} {Surname} {Place}");
@@ -49,15 +48,14 @@ namespace Lab_6
 
     public struct Team
     {
-        // Приватные поля
+        //поля
         private string name;
         private Sportsman[] sportsmen;
 
-        // Публичные свойства только для чтения
+        //свойства 
         public string Name => name;
         public Sportsman[] Sportsmen => sportsmen;
 
-        // Публичное свойство для подсчета общего количества баллов
         public int SummaryScore
         {
             get
@@ -79,7 +77,6 @@ namespace Lab_6
             }
         }
 
-        // Публичное свойство для определения наивысшего места
         public int TopPlace
         {
             get
@@ -100,17 +97,15 @@ namespace Lab_6
         public Team(string name)
         {
             this.name = name;
-            this.sportsmen = new Sportsman[0]; // Инициализируем пустой массив
+            this.sportsmen = new Sportsman[0]; 
         }
-
-        // Метод для добавления одного участника
+        // Метод
         public void Add(Sportsman sportsman)
         {
             Array.Resize(ref sportsmen, sportsmen.Length + 1);
             sportsmen[sportsmen.Length - 1] = sportsman;
         }
 
-        // Метод для добавления нескольких участников
         public void Add(params Sportsman[] newSportsmen)
         {
             foreach (var sportsman in newSportsmen)
@@ -119,7 +114,6 @@ namespace Lab_6
             }
         }
 
-        // Статический метод для сортировки команд
         public static void Sort(Team[] teams)
         {
             for (int i = 0; i < teams.Length - 1; i++)
@@ -129,7 +123,6 @@ namespace Lab_6
                     if (teams[i].SummaryScore < teams[j].SummaryScore ||
                         (teams[i].SummaryScore == teams[j].SummaryScore && teams[i].TopPlace > teams[j].TopPlace))
                     {
-                        // Меняем местами команды
                         Team temp = teams[i];
                         teams[i] = teams[j];
                         teams[j] = temp;
@@ -138,7 +131,6 @@ namespace Lab_6
             }
         }
 
-        // Метод для вывода информации о команде
         public void Print()
         {
             Console.WriteLine($"{Name}");
