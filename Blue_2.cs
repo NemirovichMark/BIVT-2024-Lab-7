@@ -95,7 +95,7 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.WriteLine($"{Name} {Surname} | Общий балл: {TotalScore}");
+                Console.WriteLine($"{Name} {Surname} {TotalScore}");
                 
             }
         }
