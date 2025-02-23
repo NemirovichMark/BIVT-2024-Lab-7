@@ -15,14 +15,24 @@ namespace Lab_6
             private string name;
             private string surname;
             private int place;
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
 
+                Console.Write("Surname: ");
+                Console.WriteLine(surname);
+
+                Console.Write("Place: ");
+                Console.WriteLine(place);
+            }
 
             public string Name
             {
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
@@ -74,7 +84,7 @@ namespace Lab_6
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
@@ -84,7 +94,7 @@ namespace Lab_6
                 get
                 {
                     if (sportsmen == null)
-                        return new Sportsman[0];
+                        return null;
                     return sportsmen;
                 }
             }

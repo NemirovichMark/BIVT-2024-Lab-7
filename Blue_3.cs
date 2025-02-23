@@ -16,12 +16,27 @@ namespace Lab_6
             private string surname;
             private int[] penaltyTimes;
 
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
+
+                Console.Write("Surname: ");
+                Console.WriteLine(surname);
+
+                Console.Write("PenaltyTimes: ");
+                for (int j = 0; j < penaltyTimes.Length; j++)
+                {
+                    Console.Write(penaltyTimes[j]);
+                    Console.Write(" ");
+                }
+            }
             public string Name
             {
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
@@ -31,7 +46,7 @@ namespace Lab_6
                 get
                 {
                     if (surname == null)
-                        return "";
+                        return null;
                     return surname;
                 }
             }
@@ -41,7 +56,7 @@ namespace Lab_6
                 get
                 {
                     if (penaltyTimes == null)
-                        return new int[0];
+                        return null;
                     return penaltyTimes;
                 }
             }
@@ -85,7 +100,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.penaltyTimes = new int[30];
+                this.penaltyTimes = new int[0];
             }
 
             public void PlayMatch(int time)
@@ -93,14 +108,13 @@ namespace Lab_6
                 if (penaltyTimes == null)
                     return;
 
-                for (int i = 0; i < penaltyTimes.Length; i++)
-                {
-                    if (penaltyTimes[i] == 0)
-                    {
-                        penaltyTimes[i] = time;
-                        break;
-                    }
-                }
+                int[] newArray = new int[penaltyTimes.Length + 1];
+
+                // Копируем элементы из старого массива в новый
+                Array.Copy(penaltyTimes, newArray, penaltyTimes.Length);
+
+                penaltyTimes = newArray;
+                penaltyTimes[penaltyTimes.Length - 1 ] = time;
             }
 
             public static void Sort(Participant[] array)

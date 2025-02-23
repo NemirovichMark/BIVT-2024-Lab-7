@@ -17,12 +17,32 @@ namespace Lab_6
             private string surname;
             private int[,] marks;
 
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
+
+                Console.Write("Surname: ");
+                Console.WriteLine(surname);
+
+                Console.Write("Marks: ");
+                for (int i = 0; i < marks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < marks.GetLength(1); j++)
+                    {
+                        Console.Write(marks[i, j]);
+                        Console.Write(" ");
+                    }
+                    Console.WriteLine();
+                }
+            }
+
             public string Name
             {
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
@@ -32,11 +52,21 @@ namespace Lab_6
                 get
                 {
                     if (surname == null)
-                        return "";
+                        return null;
                     return surname;
                 }
             }
-            public int[,] Marks => marks;
+            public int[,] Marks
+            {
+                get
+                {
+                    if (marks == null)
+                    {
+                        return null; // Инициализация массива, если он не был инициализирован
+                    }
+                    return marks;
+                }
+            }
 
             public int TotalScore
             {

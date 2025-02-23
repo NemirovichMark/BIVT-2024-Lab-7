@@ -14,13 +14,23 @@ namespace Lab_6
             private string name;
             private string surname;
             private int votes;
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
 
+                Console.Write("Surname: ");
+                Console.WriteLine(surname);
+
+                Console.Write("Votes: ");
+                Console.WriteLine(votes);
+            }
             public string Name
             {
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
@@ -30,7 +40,7 @@ namespace Lab_6
                 get
                 {
                     if (surname == null)
-                        return "";
+                        return null;
                     return surname;
                 }
             }

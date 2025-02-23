@@ -14,12 +14,24 @@ namespace Lab_6
             private string name;
             private int[] scores;
 
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
+
+
+                for (int j = 0; j < scores.Length; j++)
+                {
+                    Console.Write(scores[j]);
+                    Console.Write(" ");
+                }
+            }
             public string Name
             {
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }
