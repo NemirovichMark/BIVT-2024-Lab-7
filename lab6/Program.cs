@@ -7,41 +7,41 @@ namespace Lab_6
     {
         static void Main(string[] args)
         {
-            Purple_1.Participant[] participants = new Purple_1.Participant[]
+            Purple_1.Participant[] participants1 = new Purple_1.Participant[]
         {
             new Purple_1.Participant("Иван", "Иванов"),
             new Purple_1.Participant("Петр", "Петров"),
             new Purple_1.Participant("Сергей", "Сергеев")
         };
 
-        participants[0].SetCriterias(new double[] { 3.0, 3.2, 3.1, 3.3 });
-        participants[1].SetCriterias(new double[] { 2.8, 3.0, 3.2, 3.1 });
-        participants[2].SetCriterias(new double[] { 3.1, 3.0, 2.9, 3.2 });
+        participants1[0].SetCriterias(new double[] { 3.0, 3.2, 3.1, 3.3 });
+        participants1[1].SetCriterias(new double[] { 2.8, 3.0, 3.2, 3.1 });
+        participants1[2].SetCriterias(new double[] { 3.1, 3.0, 2.9, 3.2 });
 
-        participants[0].Jump(new int[] { 5, 6, 5, 4, 5, 6, 5 }); 
-        participants[0].Jump(new int[] { 6, 6, 5, 5, 6, 6, 5 });
-        participants[0].Jump(new int[] { 5, 5, 4, 5, 5, 5, 4 });
-        participants[0].Jump(new int[] { 6, 6, 6, 5, 6, 6, 5 });
+        participants1[0].Jump(new int[] { 5, 6, 5, 4, 5, 6, 5 }); 
+        participants1[0].Jump(new int[] { 6, 6, 5, 5, 6, 6, 5 });
+        participants1[0].Jump(new int[] { 5, 5, 4, 5, 5, 5, 4 });
+        participants1[0].Jump(new int[] { 6, 6, 6, 5, 6, 6, 5 });
 
-        participants[1].Jump(new int[] { 4, 5, 4, 5, 4, 5, 4 });
-        participants[1].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
-        participants[1].Jump(new int[] { 6, 6, 6, 6, 6, 6, 6 });
-        participants[1].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
+        participants1[1].Jump(new int[] { 4, 5, 4, 5, 4, 5, 4 });
+        participants1[1].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
+        participants1[1].Jump(new int[] { 6, 6, 6, 6, 6, 6, 6 });
+        participants1[1].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
 
-        participants[2].Jump(new int[] { 6, 6, 6, 6, 6, 6, 6 });
-        participants[2].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
-        participants[2].Jump(new int[] { 4, 4, 4, 4, 4, 4, 4 });
-        participants[2].Jump(new int[] { 3, 3, 3, 3, 3, 3, 3 });
+        participants1[2].Jump(new int[] { 6, 6, 6, 6, 6, 6, 6 });
+        participants1[2].Jump(new int[] { 5, 5, 5, 5, 5, 5, 5 });
+        participants1[2].Jump(new int[] { 4, 4, 4, 4, 4, 4, 4 });
+        participants1[2].Jump(new int[] { 3, 3, 3, 3, 3, 3, 3 });
 
-        Purple_1.Participant.Sort(participants);
+        Purple_1.Participant.Sort(participants1);
 
         System.Console.WriteLine("Purple1");
 
         Console.WriteLine("Итоговая таблица:");
-        for (int i = 1; i <= participants.Length; i++)
+        for (int i = 1; i <= participants1.Length; i++)
         {
-            Console.WriteLine($"{participants[i-1].Surname} {participants[i-1].Name}: " +
-                $"Итоговый результат: {i}. {participants[i-1].TotalScore:F2}");
+            Console.WriteLine($"{participants1[i-1].Surname} {participants1[i-1].Name}: " +
+                $"Итоговый результат: {i}. {participants1[i-1].TotalScore:F2}");
         }
         System.Console.WriteLine();
 
@@ -70,79 +70,72 @@ namespace Lab_6
         }
         System.Console.WriteLine();
 
-        System.Console.WriteLine("Purple3");
-        Purple_3.Participant[] participants1 = new Purple_3.Participant[]
-        {
-            new Purple_3.Participant("Иван", "Иванов"),
-            new Purple_3.Participant("Петр", "Петров"),
-            new Purple_3.Participant("Сергей", "Сергеев"),
-            new Purple_3.Participant("Алексей", "Алексеев")
-        };
+        //3
+        System.Console.WriteLine("Purple_3");
+        Purple_3.Participant[] participants = new Purple_3.Participant[]
+            {
+                new Purple_3.Participant("Виктор", "Полевой"),
+                new Purple_3.Participant("Алиса", "Козлова"),
+                new Purple_3.Participant("Ярослав", "Зайцев"),
+                new Purple_3.Participant("Савелий", "Кристиан"),
+                new Purple_3.Participant("Алиса", "Козлова"), 
+                new Purple_3.Participant("Алиса", "Луговая"),
+                new Purple_3.Participant("Александр", "Петров"),
+                new Purple_3.Participant("Мария", "Смирнова"),
+                new Purple_3.Participant("Полина", "Сидорова"),
+                new Purple_3.Participant("Татьяна", "Сидорова")
+            };
 
-        participants1[0].Evaluate(5.5);
-        participants1[0].Evaluate(6.0);
-        participants1[0].Evaluate(5.0);
-        participants1[0].Evaluate(4.5);
-        participants1[0].Evaluate(5.0);
-        participants1[0].Evaluate(6.0);
-        participants1[0].Evaluate(5.5);
+            participants[0].Evaluate(5.93); participants[0].Evaluate(5.44); participants[0].Evaluate(1.20);
+            participants[0].Evaluate(0.28); participants[0].Evaluate(1.57); participants[0].Evaluate(1.86);
+            participants[0].Evaluate(5.89);
 
-        participants1[1].Evaluate(6.0);
-        participants1[1].Evaluate(5.5);
-        participants1[1].Evaluate(5.5);
-        participants1[1].Evaluate(5.0);
-        participants1[1].Evaluate(5.5);
-        participants1[1].Evaluate(6.0);
-        participants1[1].Evaluate(5.0);
+            participants[1].Evaluate(1.68); participants[1].Evaluate(3.79); participants[1].Evaluate(3.62);
+            participants[1].Evaluate(2.76); participants[1].Evaluate(4.47); participants[1].Evaluate(4.26);
+            participants[1].Evaluate(5.79);
 
-        participants1[2].Evaluate(4.5);
-        participants1[2].Evaluate(5.0);
-        participants1[2].Evaluate(4.0);
-        participants1[2].Evaluate(5.5);
-        participants1[2].Evaluate(4.5);
-        participants1[2].Evaluate(5.0);
-        participants1[2].Evaluate(4.0);
+            participants[2].Evaluate(2.93); participants[2].Evaluate(3.10); participants[2].Evaluate(5.46);
+            participants[2].Evaluate(4.88); participants[2].Evaluate(3.99); participants[2].Evaluate(4.79);
+            participants[2].Evaluate(5.56);
 
-        participants1[3].Evaluate(5.5);
-        participants1[3].Evaluate(6.0);
-        participants1[3].Evaluate(5.0);
-        participants1[3].Evaluate(4.5);
-        participants1[3].Evaluate(5.0);
-        participants1[3].Evaluate(6.0);
-        participants1[3].Evaluate(5.5);
+            participants[3].Evaluate(4.20); participants[3].Evaluate(4.69); participants[3].Evaluate(3.90);
+            participants[3].Evaluate(1.67); participants[3].Evaluate(1.13); participants[3].Evaluate(5.66);
+            participants[3].Evaluate(5.40);
 
-        Purple_3.Participant.SetPlaces(participants1);
+            participants[4].Evaluate(3.27); participants[4].Evaluate(2.43); participants[4].Evaluate(0.90);
+            participants[4].Evaluate(5.61); participants[4].Evaluate(3.12); participants[4].Evaluate(3.76);
+            participants[4].Evaluate(3.73);
 
-        Console.WriteLine("Результаты соревнований:");
-        foreach (var participant in participants1)
-        {
-            Console.WriteLine($"{participant.Surname} {participant.Name}: " +
-                $"Оценки: {string.Join(", ", participant.Marks), 10}, " +
-                $"Места: {string.Join(", ", participant.Places), 10}, " +
-                $"Сумма мест: {participant.Score}");
-        }
+            participants[5].Evaluate(0.75); participants[5].Evaluate(1.13); participants[5].Evaluate(5.43);
+            participants[5].Evaluate(2.07); participants[5].Evaluate(2.68); participants[5].Evaluate(0.83);
+            participants[5].Evaluate(3.68);
 
+            participants[6].Evaluate(3.78); participants[6].Evaluate(3.42); participants[6].Evaluate(3.84);
+            participants[6].Evaluate(2.19); participants[6].Evaluate(1.20); participants[6].Evaluate(2.51);
+            participants[6].Evaluate(3.51);
 
-        Console.WriteLine("До сортировки:");
-        foreach (var participant in participants1)
-        {
-            Console.WriteLine($"{participant.Surname} {participant.Name}: " +
-                $"Сумма мест: {participant.Score}, " +
-                $"Наивысшее место: {participant.Places.Min()}, " +
-                $"Сумма очков: {participant.Marks.Sum()}");
-        }
+            participants[7].Evaluate(1.35); participants[7].Evaluate(3.40); participants[7].Evaluate(1.85);
+            participants[7].Evaluate(2.02); participants[7].Evaluate(2.78); participants[7].Evaluate(3.23);
+            participants[7].Evaluate(3.03);
 
-        Purple_3.Participant.Sort(participants1);
+            participants[8].Evaluate(0.55); participants[8].Evaluate(5.93); participants[8].Evaluate(0.75);
+            participants[8].Evaluate(5.15); participants[8].Evaluate(4.35); participants[8].Evaluate(1.51);
+            participants[8].Evaluate(2.77);
 
-        Console.WriteLine("\nПосле сортировки:");
-        foreach (var participant in participants1)
-        {
-            Console.WriteLine($"{participant.Surname} {participant.Name}: " +
-                $"Сумма мест: {participant.Score}, " +
-                $"Наивысшее место: {participant.Places.Min()}, " +
-                $"Сумма очков: {participant.Marks.Sum()}");
-        }
-        System.Console.WriteLine();
+            participants[9].Evaluate(3.86); participants[9].Evaluate(0.19); participants[9].Evaluate(0.46);
+            participants[9].Evaluate(5.14); participants[9].Evaluate(5.37); participants[9].Evaluate(0.94);
+            participants[9].Evaluate(0.84);
+
+            Purple_3.Participant.SetPlaces(participants);
+
+            Purple_3.Participant.Sort(participants);
+
+            Console.WriteLine("Имя\t\tСумма мест\tНаивысшее место\tСумма очков");
+            foreach (var p in participants)
+            {
+                p.Print();
+            }
+            System.Console.WriteLine();
 
         //4
         System.Console.WriteLine("Purple4");
@@ -199,20 +192,6 @@ namespace Lab_6
         research.Add(new string[] { "Сима энага", "Внимательность", "Фудзияма" });
         research.Add(new string[] { "", "Амбициозность", "Сакура" });
         research.Add(new string[] { "Коала", "Проницательность", "Самурай" });
-    //     Purple_5.Response[] responses = new Purple_5.Response[]
-    // {
-    //     new Purple_5.Response("Сакура", "Трудолюбие", "Самурай"),
-    //     new Purple_5.Response("", "Вежливость", "Самурай"),
-    //     new Purple_5.Response("Кошка", "Трудолюбие", "Чай"),
-    //     new Purple_5.Response("Сакура", "", "Самурай"), 
-    //     new Purple_5.Response("Кошка", "Вежливость", ""),
-    //     new Purple_5.Response("Сакура", "Трудолюбие", "Самурай")
-    // };
-    // Purple_5.Research research = new Purple_5.Research("Опрос о Японии");
-    // foreach (var response in responses)
-    // {
-    //     research.Add(new string[]{response.Animal, response.CharacterTrait, response.Concept});
-    // }
         research.Print();
     }
     }

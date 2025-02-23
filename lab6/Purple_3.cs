@@ -133,7 +133,7 @@ namespace Lab_6{
                             if (array[j]._marks == null || array[k]._marks == null){
                                 continue;
                             }
-                            if (partJ == partK && array[j]._marks.Sum() > array[k]._marks.Sum()){
+                            else if (partJ == partK && array[j]._marks.Sum() > array[k]._marks.Sum()){
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
@@ -145,7 +145,14 @@ namespace Lab_6{
                 }
             }   
 
-            public void Print(){}
+            public void Print() {
+                if (_marks == null) return;
+                Console.Write(_name + "\t");
+                Console.Write(Score + "\t");
+                Console.Write(_places.Min() + "\t");
+                Console.Write(_marks.Sum() + "\t");
+                Console.WriteLine();
+            }
         }
 
     }
