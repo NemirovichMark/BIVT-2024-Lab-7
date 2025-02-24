@@ -49,10 +49,7 @@ namespace Lab_6
             public Sportsman[] Sportsmen { 
                 get 
                 {
-                    if (_sportsman == null) return new Sportsman[0];
-                    Sportsman[] copy = new Sportsman[_sportsman.Length];
-                    Array.Copy(_sportsman, copy, copy.Length);
-                    return copy;
+                    return _sportsman;
                 } 
             }
 

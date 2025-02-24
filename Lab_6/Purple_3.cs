@@ -165,34 +165,33 @@ namespace Lab_6
                         else if (array[j].Score == array[j + 1].Score)
                         {
                             bool flag = false;
-                            int count_for_1 = 0;
-                            int count_for_2 = 0;
+                            int max_for_first = int.MaxValue;
+                            int max_for_second = int.MaxValue;
                             //Сравниваем всех судей. Считаем у кого более лучших мест больше
                             for (int judge = 0; judge < 7; judge++)
                             {
-                                if (array[j + 1]._places[judge] < array[j]._places[judge])
+                                if (array[j + 1]._places[judge] < max_for_second)
                                 {
-                                    count_for_2++;
-                                    //У второго место более "лучше"
+                                    max_for_second = array[j + 1]._places[judge];
                                 }
-                                else if(array[j + 1]._places[judge] > array[j]._places[judge])
+                                if(array[j]._places[judge] < max_for_first)
                                 {
-                                    count_for_1++;
+                                    max_for_first = array[j]._places[judge];
                                     //У первого место более "лучше"
                                 }
                             }
-                            //Если у первого человека все места лучше чем у второго - ничего не делаем
-                            if (count_for_1 > count_for_2 && count_for_2 == 0)
+                            //Если у первого человека максимальное место больше - ничего не делаем
+                            if (max_for_first > max_for_second)
                             {
                                 flag = true;
                             }
-                            //Если у второго человека все места лучше чем у второго - меняем местами
-                            else if (count_for_2 > count_for_1 && count_for_1 == 0)
+                            //Если у второго человека максимальное место больше - меняем местами
+                            else if (max_for_second > max_for_first)
                             {
                                 flag = true;
                                 (array[j], array[j + 1]) = (array[j + 1], array[j]);
                             }
-                            //Если не такой случай - идем дальше
+                            //Если равно
                             if (flag == false)
                             {
                                 //Считаем сумму очков у первого и второго
@@ -203,7 +202,7 @@ namespace Lab_6
                                     sum1 += array[j]._marks[mark];
                                     sum2 += array[j + 1]._marks[mark];
                                 }
-                                //Если у первого очков меньше - меняем местами (он в более проигрышной позиции)
+                                //Если у первого очков больше - меняем местами (он в более проигрышной позиции)
                                 if (sum1 < sum2)
                                 {
                                     (array[j], array[j + 1]) = (array[j + 1], array[j]);
@@ -216,11 +215,13 @@ namespace Lab_6
             }
             public void Print()
             {
+                
                 Console.Write(Name + "      ");
                 Console.Write(Surname + "        ");
                 Console.Write(Score + "       ");
                 Console.Write(TopPlace + "       ");
                 Console.WriteLine(TotalMark + "       ");
+
             }
         }
     }
