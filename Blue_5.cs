@@ -105,6 +105,17 @@ namespace Lab_6
 
             public void Add(Sportsman sportsman)
             {
+                if (_sportsmen == null)
+                {
+                    _sportsmen = new Sportsman[0];
+                }
+
+                if (_sportsmen.Length >= 6)
+                {
+                    Console.WriteLine("В команде уже 6 участников");
+                    return;
+                }
+
                 Sportsman[] newSportsmen = new Sportsman[_sportsmen.Length + 1];
 
                 for (int i = 0; i < _sportsmen.Length; i++)
