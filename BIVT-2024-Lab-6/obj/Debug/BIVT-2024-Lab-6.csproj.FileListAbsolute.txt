@@ -1,0 +1,7 @@
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\bin\Debug\BIVT-2024-Lab-6.exe.config
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\bin\Debug\BIVT-2024-Lab-6.exe
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\bin\Debug\BIVT-2024-Lab-6.pdb
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\obj\Debug\BIVT-2024-Lab-6.csproj.AssemblyReference.cache
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\obj\Debug\BIVT-2024-Lab-6.csproj.CoreCompileInputs.cache
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\obj\Debug\BIVT-2024-Lab-6.exe
+C:\Users\sanik\source\repos\BIVT-2024-Lab-6\BIVT-2024-Lab-6\obj\Debug\BIVT-2024-Lab-6.pdb
