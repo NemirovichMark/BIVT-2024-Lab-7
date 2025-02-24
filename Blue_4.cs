@@ -49,6 +49,11 @@ namespace Lab_6
 
             public void PlayMatch(int result)
             {
+                if (_scores == null)
+                {
+                    _scores = new int[0];
+                }
+
                 int[] newScores = new int[_scores.Length + 1];
 
                 for (int i = 0; i < _scores.Length; i++)
@@ -104,6 +109,11 @@ namespace Lab_6
 
             public void Add(Team team)
             {
+                if (_teams == null)
+                {
+                    _teams = new Team[0];
+                }
+
                 if (_teams.Length >= 12)
                 {
                     Console.WriteLine("В группе уже 12 команд, добавление невозможно.");
@@ -120,6 +130,11 @@ namespace Lab_6
 
             public void Add(Team[] teams)
             {
+                if (_teams == null)
+                {
+                    _teams = new Team[0];
+                }
+
                 for (int i = 0; i < teams.Length; i++)
                 {
                     Add(teams[i]);
@@ -147,13 +162,25 @@ namespace Lab_6
             public static Group Merge(Group group1, Group group2, int size)
             {
                 Group finalists = new Group("Финалисты");
-                for (int i = 0; i < group1.Teams.Length && finalists.Teams.Length < size; i++)
+
+                int index1 = 0; 
+                int index2 = 0;
+
+                while (finalists.Teams.Length < size && (index1 < group1.Teams.Length || index2 < group2.Teams.Length))
                 {
-                    finalists.Add(group1.Teams[i]);
-                }
-                for (int i = 0; i < group2.Teams.Length && finalists.Teams.Length < size; i++)
-                {
-                    finalists.Add(group2.Teams[i]);
+                    if (index1 < group1.Teams.Length)
+                    {
+                        finalists.Add(group1.Teams[index1]);
+                        index1++;
+                    }
+
+                    if (finalists.Teams.Length >= size) break;
+
+                    if (index2 < group2.Teams.Length)
+                    {
+                        finalists.Add(group2.Teams[index2]);
+                        index2++;
+                    }
                 }
 
                 return finalists;
