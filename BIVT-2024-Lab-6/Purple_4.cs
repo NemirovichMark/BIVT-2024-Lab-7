@@ -123,13 +123,17 @@ namespace Lab_6
 
             public void Add(Group group)
             {
-                if (_sportsmen is null || group.Sportsmen is null)
+                if (group.Sportsmen is null)
                     return;
-                int iter = group.Sportsmen.Length;
-                Array.Resize(ref _sportsmen, _sportsmen.Length + group.Sportsmen.Length);
-                for (int i = 0; i < group.Sportsmen.Length; i++)
+                if (_sportsmen is null) 
+                    _sportsmen = new Sportsman[0];
+                int iter = _sportsmen.Length;
+                Sportsman[] otherSportmen = group.Sportsmen;
+                Array.Resize(ref _sportsmen, _sportsmen.Length + otherSportmen.Length);
+               
+                for (int i = 0; i < otherSportmen.Length; i++)
                 {
-                    _sportsmen[iter++] = group.Sportsmen[i];
+                    _sportsmen[iter++] = otherSportmen[i];
                 }
             }
 

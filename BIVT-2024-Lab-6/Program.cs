@@ -15,7 +15,7 @@ namespace Lab_6
             //Test_Purple_1();
             //Test_Purple_2();
             //Test_Purple_3();
-            //Test_Purple_4();
+            //Test_Purple_4_2();
             //Test_Purple_5();
         }
 
@@ -236,7 +236,7 @@ namespace Lab_6
             }
         }
 
-        static void Test_Purple_4()
+        static void Test_Purple_4_1()
         {
             string[,] namesTask_4_1 = new string[,]
             {
@@ -311,6 +311,80 @@ namespace Lab_6
             Purple_4.Group final = Purple_4.Group.Merge(group1, group2);
 
             Purple_4.Sportsman[] finalists = final.Sportsmen;
+
+            for (int i = 0; i < finalists.Length; i++)
+            {
+                finalists[i].Print();
+            }
+
+        }
+        static void Test_Purple_4_2()
+        {
+            string[,] namesTask_4_1 = new string[,]
+            {
+                { "Полина", "Луговая" },
+                { "Савелий", "Козлов" },
+                { "Екатерина", "Жаркова" },
+                { "Дмитрий", "Иванов" },
+                { "Дмитрий", "Полевой" },
+                { "Савелий", "Петров" },
+                { "Евгения", "Распутина" },
+                { "Екатерина", "Луговая" },
+                { "Мария", "Иванова" },
+                { "Степан", "Павлов" },
+                { "Ольга", "Павлова" },
+                { "Ольга", "Полевая" },
+                { "Дарья", "Павлова" },
+                { "Дарья", "Свиридова" },
+                { "Евгения", "Свиридова" },
+            };
+            double[] distancesTask_4_1 = new double[] { 422.64, 142.05, 185.23, 294.32, 79.26, 230.63, 35.16, 376.12, 279.2, 292.38, 467.6, 473.82, 290.14, 368.6, 212.67 };
+
+
+            string[,] namesTask_4_2 = new string[,]
+            {
+                { "Анастасия", "Жаркова" },
+                { "Александр", "Павлов" },
+                { "Степан", "Свиридов" },
+                { "Игорь", "Сидоров" },
+                { "Евгения", "Сидорова" },
+                { "Мария", "Сидорова" },
+                { "Лев", "Петров" },
+                { "Савелий", "Козлов" },
+                { "Егор", "Свиридов" },
+                { "Оксана", "Жаркова" },
+                { "Светлана", "Петрова" },
+                { "Полина", "Петрова" },
+                { "Екатерина", "Павлова" },
+                { "Юлия", "Полевая" },
+                { "Евгения", "Павлова" },
+            };
+            double[] distancesTask_4_2 = new double[] { 112.49, 472.11, 213.92, 102.13, 263.21, 350.75, 248.68, 325.28, 300.0, 252.16, 402.2, 397.33, 384.94, 8.09, 480.52 };
+
+            Purple_4.Group group1 = new Purple_4.Group("First");
+            
+            for (int i = 0; i < distancesTask_4_1.Length; i++)
+            {
+                Purple_4.Sportsman sport = new Purple_4.Sportsman(namesTask_4_1[i, 0], namesTask_4_1[i, 1]);
+                sport.Run(distancesTask_4_1[i]);
+                group1.Add(sport);
+                //sportsmen1[i].Print();
+            }
+
+            Purple_4.Group group2 = new Purple_4.Group("Second");
+            
+            for (int i = 0; i < distancesTask_4_2.Length; i++)
+            {
+                Purple_4.Sportsman sport = new Purple_4.Sportsman(namesTask_4_2[i, 0], namesTask_4_2[i, 1]);
+                sport.Run(distancesTask_4_2[i]);
+                group2.Add(sport);
+                //sportsmen2[i].Print();
+            }
+
+
+            group1.Add(group2);
+
+            Purple_4.Sportsman[] finalists = group1.Sportsmen;
 
             for (int i = 0; i < finalists.Length; i++)
             {
