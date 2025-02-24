@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,6 +79,17 @@ namespace Lab_6
             private string name;
             private Sportsman[] sportsmen;
 
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
+
+                for (int j = 0; j < sportsmen.Length; j++)
+                {
+                    sportsmen[j].Print();
+
+                }
+            }
 
             public string Name
             {
@@ -182,7 +194,7 @@ namespace Lab_6
             public void Add(params Sportsman[] newSportsmen)
             {
                 if (sportsmen == null)
-                    throw new InvalidOperationException("Поле sportsmen не инициализировано.");
+                    return ;
 
                 foreach (var sportsman in newSportsmen)
                 {

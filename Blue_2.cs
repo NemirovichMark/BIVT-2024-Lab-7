@@ -62,7 +62,7 @@ namespace Lab_6
                 {
                     if (marks == null)
                     {
-                        return null; // Инициализация массива, если он не был инициализирован
+                        return null; 
                     }
                     return marks;
                 }
@@ -93,6 +93,10 @@ namespace Lab_6
 
             public void Jump(int[] result)
             {
+                if (marks == null)
+                {
+                    return;
+                }
 
                 for (int i = 0; i < marks.GetLength(0); i++)
                 {
@@ -113,6 +117,10 @@ namespace Lab_6
 
             public static void Sort(Participant[] array)
             {
+                if (array == null)
+                {
+                    return;
+                }
                 Array.Sort(array, (x, y) => y.TotalScore.CompareTo(x.TotalScore));
             }
         }

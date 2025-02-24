@@ -89,6 +89,19 @@ namespace Lab_6
             private string name;
             private Team[] teams;
 
+            public void Print()
+            {
+                Console.Write("Name: ");
+                Console.WriteLine(name);
+
+
+                for (int j = 0; j < teams.Length; j++)
+                {
+                    teams[j].Print();
+                    
+                }
+            }
+
             public string Name
             {
                 get
