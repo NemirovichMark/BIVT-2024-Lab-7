@@ -74,6 +74,12 @@ namespace Lab_6
                     Console.WriteLine("Штрафное время должно быть 0, 2, 5 или 10 минут.");
                     return;
                 }
+
+                if (_penaltyTimes == null)
+                {
+                    _penaltyTimes = new int[0];
+                }
+
                 int[] newPenaltyTimes = new int[_penaltyTimes.Length + 1];
 
                 for (int i = 0; i < _penaltyTimes.Length; i++)
