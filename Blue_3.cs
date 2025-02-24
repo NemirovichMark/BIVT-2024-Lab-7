@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace ConsoleApp1;
+namespace Lab_6;
 
 public class Blue_3
 {
@@ -36,7 +36,7 @@ public class Blue_3
         public Participant(string name, string surname) {
             _name = name;
             _surname = surname;
-            _penaltyTimes = new int[0];
+            _penaltyTimes = new int[1];
             _matchesThisPlayer = 0;
             _isExpelled = true;
         }

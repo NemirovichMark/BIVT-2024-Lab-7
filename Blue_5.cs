@@ -2,7 +2,7 @@ using System;
 using System.Dynamic;
 using System.Linq;
 
-namespace ConsoleApp1;
+namespace Lab_6;
 
 public class Blue_5
 {
@@ -11,7 +11,7 @@ public class Blue_5
         private string _name;
         private string _surname;
         private int _place;
-        private bool _flag = true;
+        private bool _flag;
 
 
         // свойства
@@ -68,7 +68,7 @@ public class Blue_5
         }
         public int TopPlace {
             get {
-                if (_sportsmen == null || _count == 0) return int.MaxValue;
+                if (_sportsmen == null || _count == 0) return 0;
                 return _sportsmen.Take(_count).Min(s => s.Place);
             }
         }
@@ -84,6 +84,9 @@ public class Blue_5
         // методы
         public void Add(Sportsman sportsman)
         {
+            if (_sportsmen == null) {
+                _sportsmen = new Sportsman[6];
+            }
             if (_count < 6)
             {
                 _sportsmen[_count] = sportsman;

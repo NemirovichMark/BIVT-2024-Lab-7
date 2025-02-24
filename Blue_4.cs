@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace ConsoleApp1;
+namespace Lab_6;
 
 public class Blue_4
 {
@@ -63,7 +63,11 @@ public class Blue_4
 
         // методы
         public void Add(Team team) {
-            if (_countOfTeams < 12) {
+            if (_countOfTeams < _teams.Length) {
+                _teams[_countOfTeams] = team;
+                _countOfTeams++;
+            } else {
+                Array.Resize(ref _teams, _teams.Length + 1);
                 _teams[_countOfTeams] = team;
                 _countOfTeams++;
             }
@@ -71,9 +75,12 @@ public class Blue_4
 
         public void Add(Team[] newTeams) {
             foreach (var team in newTeams) {
-                if (_countOfTeams < 12) {
+                if (_countOfTeams < _teams.Length) {
                     _teams[_countOfTeams++] = team;
-                } else break;
+                } else {
+                    Array.Resize(ref _teams, _teams.Length + 1);
+                    _teams[_countOfTeams++] = team;
+                }
             }
         }
         public void Sort() {
@@ -87,21 +94,17 @@ public class Blue_4
                 }
             }
         }
-        public static Group Merge(Group group1, Group group2, int size)
-        {
+        public static Group Merge(Group group1, Group group2, int size) {
             Group mergedGroup = new Group("Финалисты");
+            int half1 = group1._countOfTeams / 2;
+            int half2 = group2._countOfTeams / 2;
+            Team[] part1 = group1._teams.Take(half1).ToArray();
+            Team[] part2 = group2._teams.Take(half2).ToArray();
 
-            int i = 0, j = 0;
-            while (i < group1._countOfTeams && j < group2._countOfTeams && mergedGroup._countOfTeams < size) {
-                if (group1._teams[i].TotalScore > group2._teams[j].TotalScore) {
-                    mergedGroup.Add(group1._teams[i]);
-                    i++;
-                } else {
-                    mergedGroup.Add(group2._teams[j]);
-                    j++;
-                }
+            Team[] mergedTeams = part1.Concat(part2).OrderByDescending(team => team.TotalScore).ToArray();
+            foreach (var team in mergedTeams.Take(size)) {
+                mergedGroup.Add(team);
             }
-
             return mergedGroup;
         }
         public void Print() {

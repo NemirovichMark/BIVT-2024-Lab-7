@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 
-namespace ConsoleApp1;
+namespace Lab_6;
 
 public class Blue_1
 {
