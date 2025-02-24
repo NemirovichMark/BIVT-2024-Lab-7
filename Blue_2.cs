@@ -85,9 +85,10 @@ namespace Lab_6
             {
                 if (array == null || array.Length == 0) return;
 
-                for (int i = 0; i < array.Length - 1; i++)
+                int count = Math.Min(array.Length, 5);
+                for (int i = 0; i < count - 1; i++)
                 {
-                    for (int j = 0; j < array.Length - 1 - i; j++)
+                    for (int j = 0; j < count - 1 - i; j++)
                     {
                         if (array[j].TotalScore < array[j + 1].TotalScore)
                         {
