@@ -58,11 +58,16 @@ namespace Lab_6
                     _marks[i] = marks[i];
                 }
             }
-        }
-        public static void Sort(Participant[] array)
-        {
-            if (array == null) return;
-            Array.Sort(array, (x, y) => y.Result.CompareTo(x.Result));
+            public static void Sort(Participant[] array)
+            {
+                if (array == null) return;
+                Array.Sort(array, (x, y) => y.Result.CompareTo(x.Result));
+            }
+            public void Print()
+            {
+                if (_surname == "" || _name == "") return;
+                Console.WriteLine("{0} {1} {2}", _name, _surname, this.Result);
+            }
         }
     }
 }

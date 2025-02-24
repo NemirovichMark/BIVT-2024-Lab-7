@@ -72,7 +72,7 @@ namespace BIVT_2024_Lab_6
             participant4.Jump(100, new int[] { 1, 1, 1, 1, 1 });
 
             Purple_2.Participant[] participants = new Purple_2.Participant[] { participant1, participant2, participant3, participant4 };
-            Purple_2.Sort(participants);
+            Purple_2.Participant.Sort(participants);
 
             // Выводим результаты
             foreach (var participant in participants)
