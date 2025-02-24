@@ -181,12 +181,12 @@ namespace Lab_6
                                 }
                             }
                             //Если у первого человека максимальное место больше - ничего не делаем
-                            if (max_for_first > max_for_second)
+                            if (max_for_first < max_for_second)
                             {
                                 flag = true;
                             }
                             //Если у второго человека максимальное место больше - меняем местами
-                            else if (max_for_second > max_for_first)
+                            else if (max_for_second < max_for_first)
                             {
                                 flag = true;
                                 (array[j], array[j + 1]) = (array[j + 1], array[j]);
