@@ -57,11 +57,12 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _penaltytimes = new int[10];
+                _penaltytimes = new int[0];
             }
 
             public void PlayMatch(int time)
             {
+                if (_penaltytimes == null) return;
                 Array.Resize(ref _penaltytimes, _penaltytimes.Length + 1);
                 _penaltytimes[_penaltytimes.Length - 1] = time;
             }

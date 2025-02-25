@@ -27,7 +27,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = 100;
+                _place = 0;
                 _placechanged = false;
             }
 
@@ -51,16 +51,7 @@ namespace Lab_6
 
             public string Name => _name;
 
-            public Sportsman[] Sportsmen
-            {
-                get
-                {
-                    if (_sportsmen == null) return null;
-                    Sportsman[] copy = new Sportsman[_sportsmen.Length];
-                    Array.Copy(_sportsmen, copy, _sportsmen.Length);
-                    return copy;
-                }
-            }
+            public Sportsman[] Sportsmen => _sportsmen;
 
             public int SummaryScore
             {
@@ -84,7 +75,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_sportsmen == null) return 0;
+                    if ((_sportsmen == null) || (_sportsmen.Length == 0)) return 0;
                     int mn = int.MaxValue;
                     for (int i = 0; i < _sportsmen.Length; i++) if (_sportsmen[i].Place < mn) mn = _sportsmen[i].Place;
                     return mn;
@@ -99,17 +90,17 @@ namespace Lab_6
 
             public void Add(Sportsman sportsman)
             {
-                if (sportsman.Place == 100) return;
+                if ((_sportsmen == null) || (sportsman.Place == 0)) return;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                 _sportsmen[_sportsmen.Length - 1] = sportsman;
             }
 
             public void Add(Sportsman[] sportsmen)
             {
-                if (sportsmen == null) return;
+                if ((_sportsmen == null) || (sportsmen == null)) return;
                 for (int i = 0; i < sportsmen.Length; i++)
                 {
-                    if (sportsmen[i].Place == 100) return;
+                    if (sportsmen[i].Place == 0) return;
                     Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                     _sportsmen[_sportsmen.Length - 1] = sportsmen[i];
                 }

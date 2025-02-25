@@ -12,19 +12,19 @@ namespace Lab_6
         {
             private string _name;
             private string _surname;
-            private int[,] _votes;
+            private int[,] _marks;
 
             public string Name => _name;
 
             public string Surname => _surname;
 
-            public int[,] Votes
+            public int[,] Marks
             {
                 get
                 {
-                    if (_votes == null) return null;
-                    int[,] copy = new int[_votes.GetLength(0), _votes.GetLength(1)];
-                    Array.Copy(_votes, copy, _votes.Length);
+                    if (_marks == null) return null;
+                    int[,] copy = new int[_marks.GetLength(0), _marks.GetLength(1)];
+                    Array.Copy(_marks, copy, _marks.Length);
                     return copy;
                 }
             }
@@ -33,9 +33,9 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_votes == null) return 0;
+                    if (_marks == null) return 0;
                     int score = 0;
-                    for (int i = 0; i < _votes.GetLength(0); i++) for (int j = 0; j < _votes.GetLength(1); j++) score += _votes[i, j];
+                    for (int i = 0; i < _marks.GetLength(0); i++) for (int j = 0; j < _marks.GetLength(1); j++) score += _marks[i, j];
                     return score;
                 }
             }
@@ -44,27 +44,27 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _votes = new int[2, 5];
+                _marks = new int[2, 5];
             }
 
             public void Jump(int[] result)
             {
-                if ((_votes == null) || (result == null) || (result.Length != _votes.GetLength(1))) return;
-                for (int i = 0; i < _votes.GetLength(0); i++)
+                if ((_marks == null) || (result == null)) return;
+                for (int i = 0; i < _marks.GetLength(0); i++)
                 {
                     bool skip = false;
-                    for (int j = 0; j < _votes.GetLength(1); j++)
+                    for (int j = 0; j < _marks.GetLength(1); j++)
                     {
-                        if (_votes[i, j] != 0)
+                        if (_marks[i, j] != 0)
                         {
                             skip = true;
                             break;
                         }
                     }
                     if (skip) continue;
-                    for (int j = 0; j < _votes.GetLength(1); j++)
+                    for (int j = 0; j < 5; j++)
                     {
-                        _votes[i, j] = result[j];
+                        _marks[i, j] = result[j];
                     }
                     break;
                 }

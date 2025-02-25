@@ -47,6 +47,7 @@ namespace Lab_6
 
             public void PlayMatch(int result)
             {
+                if (_scores == null) return;
                 Array.Resize(ref _scores, _scores.Length + 1);
                 _scores[_scores.Length - 1] = result;
             }
@@ -64,16 +65,8 @@ namespace Lab_6
 
             public string Name => _name;
 
-            public Team[] Teams
-            {
-                get
-                {
-                    if (_teams == null) return null;
-                    Team[] copy = new Team[_teams.Length];
-                    Array.Copy(_teams, copy, _teams.Length);
-                    return copy;
-                }
-            }
+            public Team[] Teams => _teams;
+
             public Group(string name)
             {
                 _name = name;
@@ -82,17 +75,17 @@ namespace Lab_6
 
             public void Add(Team team)
             {
-                if ((team.Scores == null) || (_teams.Length >= 12)) return;
+                if ((_teams == null) || (_teams.Length >= 12)) return;
                 Array.Resize(ref _teams, _teams.Length + 1);
                 _teams[_teams.Length - 1] = team;
             }
 
             public void Add(Team[] teams)
             {
-                if (teams == null) return;
+                if ((_teams == null) || (teams == null)) return;
                 for (int i = 0; i < teams.Length; i++)
                 {
-                    if ((teams[i].Scores == null) || (_teams.Length >= 12)) return;
+                    if (_teams.Length >= 12) return;
                     Array.Resize(ref _teams, _teams.Length + 1);
                     _teams[_teams.Length - 1] = teams[i];
                 }
