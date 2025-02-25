@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Lab_6.Blue_5;
 
 namespace Lab_6
 {
@@ -31,7 +32,7 @@ namespace Lab_6
                 get
                 {
                     if (surname == null)
-                        return "";
+                        return string.Empty;
                     return surname;
                 }
             }
@@ -51,7 +52,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.place = 0;
+                this.place = 18;
             }
 
 
@@ -193,6 +194,15 @@ namespace Lab_6
                         }
                     }
                 }
+            }
+            public void Print()
+            {
+                Console.WriteLine($"Команда: {Name}");
+                foreach (var sportsman in sportsmen)
+                {
+                    sportsman.Print();
+                }
+                Console.WriteLine($"Суммарный балл: {SummaryScore}, Наивысшее место: {TopPlace}");
             }
         }
     }
