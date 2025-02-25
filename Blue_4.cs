@@ -117,7 +117,6 @@ namespace Lab_6
 
             public static Group Merge(Group group1, Group group2, int size)
             {
-                if (size <= 0) return default(Group);
                 Group result = new Group("Финалисты");
                 int i = 0; int j = 0;
                 while (i < size / 2 && j < size / 2)
