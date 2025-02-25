@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,15 +52,15 @@ namespace Lab_6
             {
                 get
                 {
-                    int total = 0;
-                    for (int i = 0; i < marks.GetLength(0); i++)
+                    int sum = 0;
+                    for (int i = 0; i < 5; i++)
                     {
-                        for (int j = 0; j < marks.GetLength(1); j++)
+                        for (int j = 0; j < 2; j++)
                         {
-                            total += marks[i, j];
+                            sum += marks[i, j];
                         }
                     }
-                    return total;
+                    return sum;
                 }
             }
             public Participant(string name, string surname)
@@ -71,34 +71,43 @@ namespace Lab_6
             }
             public void Jump(int[] result)
             {
-                int length = marks.GetLength(0);
-                for (int i = 0; i < length; i++)
+                int jump = 0;
+                for (int i = 0; i < 5; i++)
                 {
-                    if (marks[i, 0] == 0)
+                    if (marks[i, jump] != 0)
                     {
-                        for (int j = 0; j < result.Length; j++)
-                        {
-                            marks[i, j] = result[j];
-                        }
+                        jump = 1;
                         break;
                     }
                 }
+                if (jump == 1)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (marks[i, jump] != 0)
+                        {
+                            jump = -1;
+                            break;
+                        }
+                    }
+                }
+                if (jump != -1 && result.Length == 5)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        marks[i, jump] = result[i];
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
             }
 
             public static void Sort(Participant[] array)
             {
-                for (int i = 0; i < array.Length - 1; i++)
-                {
-                    for (int j = i + 1; j < array.Length; j++)
-                    {
-                        if (array[i].TotalScore < array[j].TotalScore)
-                        {
-                            Participant temp = array[i];
-                            array[i] = array[j];
-                            array[j] = temp;
-                        }
-                    }
-                }
+                Array.Sort(array, (x, y) => y.TotalScore.CompareTo(x.TotalScore));
             }
 
             public void Print()
