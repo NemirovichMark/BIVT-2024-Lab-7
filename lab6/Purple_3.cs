@@ -116,7 +116,7 @@ namespace Lab_6{
                             array[j] = tmp;
                         }
                         else if (array[j]._places.Sum() == array[k]._places.Sum()){
-                            if (MaxVal(array[j]._places) > MaxVal(array[k]._places)){
+                            if (array[j]._places.Min() > array[k]._places.Min()){
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
@@ -124,7 +124,7 @@ namespace Lab_6{
                             if (array[j]._marks == null || array[k]._marks == null){
                                 continue;
                             }
-                            else if (MaxVal(array[j]._places) == MaxVal(array[k]._places) && array[j]._marks.Sum() > array[k]._marks.Sum()){
+                            else if (array[j]._places.Min() == array[k]._places.Min() && array[j]._marks.Sum() < array[k]._marks.Sum()){
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
