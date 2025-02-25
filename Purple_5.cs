@@ -51,6 +51,7 @@ namespace Lab_6
                 if (responses == null || questionNumber < 1 || questionNumber > 3) return 0;
                 foreach (Response response in responses)
                 {
+                    if (response._answers == null) return 0;
                     if (response._answers[questionNumber - 1] != null) count++;
                 }
                 return count;
@@ -108,6 +109,7 @@ namespace Lab_6
                 string[] question_responses = new string[_responses.Length];
                 for (int i = 0,j=0; i < _responses.Length; i++)
                 {
+                    if (_responses[i].Answers == null) return null;
                     if (_responses[i].Answers[question - 1] == null)
                     {
                         continue;
@@ -175,7 +177,8 @@ namespace Lab_6
                 if (_responses == null) return 0;
                 int count = 0;
                 for (int i = 0; i < _responses.Length; i++)
-                { 
+                {
+                    if (_responses[i].Answers == null) return 0;
                     if (_responses[i].Answers[question-1] == response) count++;
                     
                 }
