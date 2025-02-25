@@ -178,214 +178,214 @@ namespace Lab_6
             //}
 
             //<<<<3>>>>>
-            Purple_3.Participant Polevoy = new Purple_3.Participant("Виктор", "Полевой");
-            double[] Polevoy_marks = new double[7] { 5.93, 5.44, 1.20, 0.28, 1.57, 1.86, 5.89 };
-            foreach (double i in Polevoy_marks)
-            {
-                Polevoy.Evaluate(i);
-            }
+            //Purple_3.Participant Polevoy = new Purple_3.Participant("Виктор", "Полевой");
+            //double[] Polevoy_marks = new double[7] { 5.93, 5.44, 1.20, 0.28, 1.57, 1.86, 5.89 };
+            //foreach (double i in Polevoy_marks)
+            //{
+            //    Polevoy.Evaluate(i);
+            //}
 
-            Purple_3.Participant Kozlova1 = new Purple_3.Participant("Алиса", "Козлова");
-            double[] Kozlova1_marks = new double[7] { 1.68, 3.79, 3.62, 2.76, 4.47, 4.26, 5.79 };
-            foreach (double i in Kozlova1_marks)
-            {
-                Kozlova1.Evaluate(i);
-            }
+            //Purple_3.Participant Kozlova1 = new Purple_3.Participant("Алиса", "Козлова");
+            //double[] Kozlova1_marks = new double[7] { 1.68, 3.79, 3.62, 2.76, 4.47, 4.26, 5.79 };
+            //foreach (double i in Kozlova1_marks)
+            //{
+            //    Kozlova1.Evaluate(i);
+            //}
 
-            Purple_3.Participant Zaytsev = new Purple_3.Participant("Ярослав", "Зайцев");
-            double[] Zaytsev_marks = new double[7] { 2.93, 3.10, 5.46, 4.88, 3.99, 4.79, 5.56 };
-            foreach (double i in Zaytsev_marks)
-            {
-                Zaytsev.Evaluate(i);
-            }
+            //Purple_3.Participant Zaytsev = new Purple_3.Participant("Ярослав", "Зайцев");
+            //double[] Zaytsev_marks = new double[7] { 2.93, 3.10, 5.46, 4.88, 3.99, 4.79, 5.56 };
+            //foreach (double i in Zaytsev_marks)
+            //{
+            //    Zaytsev.Evaluate(i);
+            //}
 
-            Purple_3.Participant Krestian = new Purple_3.Participant("Савелий", "Кристиан");
-            double[] Krestian_marks = new double[7] { 4.20, 4.69, 3.90, 1.67, 1.13, 5.66, 5.40 };
-            foreach (double i in Krestian_marks)
-            {
-                Krestian.Evaluate(i);
-            }
+            //Purple_3.Participant Krestian = new Purple_3.Participant("Савелий", "Кристиан");
+            //double[] Krestian_marks = new double[7] { 4.20, 4.69, 3.90, 1.67, 1.13, 5.66, 5.40 };
+            //foreach (double i in Krestian_marks)
+            //{
+            //    Krestian.Evaluate(i);
+            //}
 
-            Purple_3.Participant Kozlova2 = new Purple_3.Participant("Алиса", "Козлова");
-            double[] Kozlova2_marks = new double[7] { 3.27, 2.43, 0.90, 5.61, 3.12, 3.76, 3.73 };
-            foreach (double i in Kozlova2_marks)
-            {
-                Kozlova2.Evaluate(i);
-            }
+            //Purple_3.Participant Kozlova2 = new Purple_3.Participant("Алиса", "Козлова");
+            //double[] Kozlova2_marks = new double[7] { 3.27, 2.43, 0.90, 5.61, 3.12, 3.76, 3.73 };
+            //foreach (double i in Kozlova2_marks)
+            //{
+            //    Kozlova2.Evaluate(i);
+            //}
 
-            Purple_3.Participant Lugovaya = new Purple_3.Participant("Алиса", "Луговая");
-            double[] Lugovaya_marks = new double[7] { 0.75, 1.13, 5.43, 2.07, 2.68, 0.83, 3.68 };
-            foreach (double i in Lugovaya_marks)
-            {
-                Lugovaya.Evaluate(i);
-            }
+            //Purple_3.Participant Lugovaya = new Purple_3.Participant("Алиса", "Луговая");
+            //double[] Lugovaya_marks = new double[7] { 0.75, 1.13, 5.43, 2.07, 2.68, 0.83, 3.68 };
+            //foreach (double i in Lugovaya_marks)
+            //{
+            //    Lugovaya.Evaluate(i);
+            //}
 
-            Purple_3.Participant Petrov = new Purple_3.Participant("Александр", "Петров");
-            double[] Petrov_marks = new double[7] { 3.78, 3.42, 3.84, 2.19, 1.20, 2.51, 3.51 };
-            foreach (double i in Petrov_marks)
-            {
-                Petrov.Evaluate(i);
-            }
+            //Purple_3.Participant Petrov = new Purple_3.Participant("Александр", "Петров");
+            //double[] Petrov_marks = new double[7] { 3.78, 3.42, 3.84, 2.19, 1.20, 2.51, 3.51 };
+            //foreach (double i in Petrov_marks)
+            //{
+            //    Petrov.Evaluate(i);
+            //}
 
-            Purple_3.Participant Smirnova = new Purple_3.Participant("Мария", "Смирнова");
-            double[] Smirnova_marks = new double[7] { 1.35, 3.40, 1.85, 2.02, 2.78, 3.23, 3.03 };
-            foreach (double i in Smirnova_marks)
-            {
-                Smirnova.Evaluate(i);
-            }
+            //Purple_3.Participant Smirnova = new Purple_3.Participant("Мария", "Смирнова");
+            //double[] Smirnova_marks = new double[7] { 1.35, 3.40, 1.85, 2.02, 2.78, 3.23, 3.03 };
+            //foreach (double i in Smirnova_marks)
+            //{
+            //    Smirnova.Evaluate(i);
+            //}
 
-            Purple_3.Participant Sidorova1 = new Purple_3.Participant("Полина", "Сидорова");
-            double[] Sidorova1_marks = new double[7] { 0.55, 5.93, 0.75, 5.15, 4.35, 1.51, 2.77 };
-            foreach (double i in Sidorova1_marks)
-            {
-                Sidorova1.Evaluate(i);
-            }
+            //Purple_3.Participant Sidorova1 = new Purple_3.Participant("Полина", "Сидорова");
+            //double[] Sidorova1_marks = new double[7] { 0.55, 5.93, 0.75, 5.15, 4.35, 1.51, 2.77 };
+            //foreach (double i in Sidorova1_marks)
+            //{
+            //    Sidorova1.Evaluate(i);
+            //}
 
-            Purple_3.Participant Sidorova2 = new Purple_3.Participant("Татьяна", "Сидорова");
-            double[] Sidorova2_marks = new double[7] { 3.86, 0.19, 0.46, 5.14, 5.37, 0.94, 0.84 };
-            foreach (double i in Sidorova2_marks)
-            {
-                Sidorova2.Evaluate(i);
-            }
+            //Purple_3.Participant Sidorova2 = new Purple_3.Participant("Татьяна", "Сидорова");
+            //double[] Sidorova2_marks = new double[7] { 3.86, 0.19, 0.46, 5.14, 5.37, 0.94, 0.84 };
+            //foreach (double i in Sidorova2_marks)
+            //{
+            //    Sidorova2.Evaluate(i);
+            //}
 
-            Purple_3.Participant[] group = new Purple_3.Participant[] { Polevoy, Kozlova1, Zaytsev, Krestian, Kozlova2, Lugovaya, Petrov, Smirnova, Sidorova1, Sidorova2 };
-            Purple_3.Participant.SetPlaces(group);
-            Purple_3.Participant.Sort(group);
-            foreach (Purple_3.Participant i in group)
-            {
-                i.Print();
-            }
+            //Purple_3.Participant[] group = new Purple_3.Participant[] { Polevoy, Kozlova1, Zaytsev, Krestian, Kozlova2, Lugovaya, Petrov, Smirnova, Sidorova1, Sidorova2 };
+            //Purple_3.Participant.SetPlaces(group);
+            //Purple_3.Participant.Sort(group);
+            //foreach (Purple_3.Participant i in group)
+            //{
+            //    i.Print();
+            //}
 
             //<<<< 4 >>>
 
-            Purple_4.Sportsman Polina_Lygovaya = new Purple_4.Sportsman("Полина", "Луговая");
-            Polina_Lygovaya.Run(422.64);
+            //Purple_4.Sportsman Polina_Lygovaya = new Purple_4.Sportsman("Полина", "Луговая");
+            //Polina_Lygovaya.Run(422.64);
 
-            Purple_4.Sportsman Savely_Kozlov = new Purple_4.Sportsman("Савелий", "Козлов");
-            Savely_Kozlov.Run(142.05);
+            //Purple_4.Sportsman Savely_Kozlov = new Purple_4.Sportsman("Савелий", "Козлов");
+            //Savely_Kozlov.Run(142.05);
 
-            Purple_4.Sportsman Ekaterina_Zharkova = new Purple_4.Sportsman("Екатерина", "Жаркова");
-            Ekaterina_Zharkova.Run(185.23);
+            //Purple_4.Sportsman Ekaterina_Zharkova = new Purple_4.Sportsman("Екатерина", "Жаркова");
+            //Ekaterina_Zharkova.Run(185.23);
 
-            Purple_4.Sportsman Dmitriy_Ivanov = new Purple_4.Sportsman("Дмитрий", "Иванов");
-            Dmitriy_Ivanov.Run(294.32);
+            //Purple_4.Sportsman Dmitriy_Ivanov = new Purple_4.Sportsman("Дмитрий", "Иванов");
+            //Dmitriy_Ivanov.Run(294.32);
 
-            Purple_4.Sportsman Dmitriy_Polevoy = new Purple_4.Sportsman("Дмитрий", "Полевой");
-            Dmitriy_Polevoy.Run(79.26);
+            //Purple_4.Sportsman Dmitriy_Polevoy = new Purple_4.Sportsman("Дмитрий", "Полевой");
+            //Dmitriy_Polevoy.Run(79.26);
 
-            Purple_4.Sportsman Savely_Petrov = new Purple_4.Sportsman("Савелий", "Петров");
-            Savely_Petrov.Run(230.63);
+            //Purple_4.Sportsman Savely_Petrov = new Purple_4.Sportsman("Савелий", "Петров");
+            //Savely_Petrov.Run(230.63);
 
-            Purple_4.Sportsman Evgeniya_Raspuntina = new Purple_4.Sportsman("Евгения", "Распутина");
-            Evgeniya_Raspuntina.Run(35.16);
+            //Purple_4.Sportsman Evgeniya_Raspuntina = new Purple_4.Sportsman("Евгения", "Распутина");
+            //Evgeniya_Raspuntina.Run(35.16);
 
-            Purple_4.Sportsman Ekaterina_Lygovaya = new Purple_4.Sportsman("Екатерина", "Луговая");
-            Ekaterina_Lygovaya.Run(376.12);
+            //Purple_4.Sportsman Ekaterina_Lygovaya = new Purple_4.Sportsman("Екатерина", "Луговая");
+            //Ekaterina_Lygovaya.Run(376.12);
 
-            Purple_4.Sportsman Maria_Ivanova = new Purple_4.Sportsman("Мария", "Иванова");
-            Maria_Ivanova.Run(279.20);
+            //Purple_4.Sportsman Maria_Ivanova = new Purple_4.Sportsman("Мария", "Иванова");
+            //Maria_Ivanova.Run(279.20);
 
-            Purple_4.Sportsman Stepan_Pavlov = new Purple_4.Sportsman("Степан", "Павлов");
-            Stepan_Pavlov.Run(292.38);
+            //Purple_4.Sportsman Stepan_Pavlov = new Purple_4.Sportsman("Степан", "Павлов");
+            //Stepan_Pavlov.Run(292.38);
 
-            Purple_4.Sportsman Olga_Pavlova = new Purple_4.Sportsman("Ольга", "Павлова");
-            Olga_Pavlova.Run(467.60);
+            //Purple_4.Sportsman Olga_Pavlova = new Purple_4.Sportsman("Ольга", "Павлова");
+            //Olga_Pavlova.Run(467.60);
 
-            Purple_4.Sportsman Olga_Polevaya = new Purple_4.Sportsman("Ольга", "Полевая");
-            Olga_Polevaya.Run(473.82);
+            //Purple_4.Sportsman Olga_Polevaya = new Purple_4.Sportsman("Ольга", "Полевая");
+            //Olga_Polevaya.Run(473.82);
 
-            Purple_4.Sportsman Darya_Pavlova = new Purple_4.Sportsman("Дарья", "Павлова");
-            Darya_Pavlova.Run(290.14);
+            //Purple_4.Sportsman Darya_Pavlova = new Purple_4.Sportsman("Дарья", "Павлова");
+            //Darya_Pavlova.Run(290.14);
 
-            Purple_4.Sportsman Darya_Sviridova = new Purple_4.Sportsman("Дарья", "Свиридова");
-            Darya_Sviridova.Run(368.60);
+            //Purple_4.Sportsman Darya_Sviridova = new Purple_4.Sportsman("Дарья", "Свиридова");
+            //Darya_Sviridova.Run(368.60);
 
-            Purple_4.Sportsman Evgeniya_Sviridova = new Purple_4.Sportsman("Евгения", "Свиридова");
-            Evgeniya_Sviridova.Run(212.67);
+            //Purple_4.Sportsman Evgeniya_Sviridova = new Purple_4.Sportsman("Евгения", "Свиридова");
+            //Evgeniya_Sviridova.Run(212.67);
 
-            Purple_4.Group group1 = new Purple_4.Group("Группа 1");
-            group1.Add(new Purple_4.Sportsman[] { Polina_Lygovaya, Savely_Kozlov, Ekaterina_Zharkova, Dmitriy_Ivanov, Dmitriy_Polevoy, Savely_Petrov, Evgeniya_Raspuntina, Ekaterina_Lygovaya, Maria_Ivanova, Stepan_Pavlov, Olga_Pavlova, Olga_Polevaya, Darya_Pavlova, Darya_Sviridova, Evgeniya_Sviridova });
+            //Purple_4.Group group1 = new Purple_4.Group("Группа 1");
+            //group1.Add(new Purple_4.Sportsman[] { Polina_Lygovaya, Savely_Kozlov, Ekaterina_Zharkova, Dmitriy_Ivanov, Dmitriy_Polevoy, Savely_Petrov, Evgeniya_Raspuntina, Ekaterina_Lygovaya, Maria_Ivanova, Stepan_Pavlov, Olga_Pavlova, Olga_Polevaya, Darya_Pavlova, Darya_Sviridova, Evgeniya_Sviridova });
 
 
 
-            Purple_4.Sportsman Anastasia_Zharkova = new Purple_4.Sportsman("Анастасия", "Жаркова");
-            Anastasia_Zharkova.Run(112.49);
+            //Purple_4.Sportsman Anastasia_Zharkova = new Purple_4.Sportsman("Анастасия", "Жаркова");
+            //Anastasia_Zharkova.Run(112.49);
 
-            Purple_4.Sportsman Alexander_Pavlov = new Purple_4.Sportsman("Александр", "Павлов");
-            Alexander_Pavlov.Run(472.11);
+            //Purple_4.Sportsman Alexander_Pavlov = new Purple_4.Sportsman("Александр", "Павлов");
+            //Alexander_Pavlov.Run(472.11);
 
-            Purple_4.Sportsman Stepan_Sviridov = new Purple_4.Sportsman("Степан", "Свиридов");
-            Stepan_Sviridov.Run(213.92);
+            //Purple_4.Sportsman Stepan_Sviridov = new Purple_4.Sportsman("Степан", "Свиридов");
+            //Stepan_Sviridov.Run(213.92);
 
-            Purple_4.Sportsman Igor_Sidorov = new Purple_4.Sportsman("Игорь", "Сидоров");
-            Igor_Sidorov.Run(102.13);
+            //Purple_4.Sportsman Igor_Sidorov = new Purple_4.Sportsman("Игорь", "Сидоров");
+            //Igor_Sidorov.Run(102.13);
 
-            Purple_4.Sportsman Evgeniya_Sidorova = new Purple_4.Sportsman("Евгения", "Сидорова");
-            Evgeniya_Sidorova.Run(263.21);
+            //Purple_4.Sportsman Evgeniya_Sidorova = new Purple_4.Sportsman("Евгения", "Сидорова");
+            //Evgeniya_Sidorova.Run(263.21);
 
-            Purple_4.Sportsman Maria_Sidorova = new Purple_4.Sportsman("Мария", "Сидорова");
-            Maria_Sidorova.Run(350.75);
+            //Purple_4.Sportsman Maria_Sidorova = new Purple_4.Sportsman("Мария", "Сидорова");
+            //Maria_Sidorova.Run(350.75);
 
-            Purple_4.Sportsman Lev_Petrov = new Purple_4.Sportsman("Лев", "Петров");
-            Lev_Petrov.Run(248.68);
+            //Purple_4.Sportsman Lev_Petrov = new Purple_4.Sportsman("Лев", "Петров");
+            //Lev_Petrov.Run(248.68);
 
-            Purple_4.Sportsman Savely_Kozlov1 = new Purple_4.Sportsman("Савелий", "Козлов");
-            Savely_Kozlov1.Run(325.28);
+            //Purple_4.Sportsman Savely_Kozlov1 = new Purple_4.Sportsman("Савелий", "Козлов");
+            //Savely_Kozlov1.Run(325.28);
 
-            Purple_4.Sportsman Egor_Sviridov = new Purple_4.Sportsman("Егор", "Свиридов");
-            Egor_Sviridov.Run(300.00);
+            //Purple_4.Sportsman Egor_Sviridov = new Purple_4.Sportsman("Егор", "Свиридов");
+            //Egor_Sviridov.Run(300.00);
 
-            Purple_4.Sportsman Oksana_Zharkova = new Purple_4.Sportsman("Оксана", "Жаркова");
-            Oksana_Zharkova.Run(252.16);
+            //Purple_4.Sportsman Oksana_Zharkova = new Purple_4.Sportsman("Оксана", "Жаркова");
+            //Oksana_Zharkova.Run(252.16);
 
-            Purple_4.Sportsman Svetlana_Petrova = new Purple_4.Sportsman("Светлана", "Петрова");
-            Svetlana_Petrova.Run(402.20);
+            //Purple_4.Sportsman Svetlana_Petrova = new Purple_4.Sportsman("Светлана", "Петрова");
+            //Svetlana_Petrova.Run(402.20);
 
-            Purple_4.Sportsman Polina_Petrova = new Purple_4.Sportsman("Полина", "Петрова");
-            Polina_Petrova.Run(397.33);
+            //Purple_4.Sportsman Polina_Petrova = new Purple_4.Sportsman("Полина", "Петрова");
+            //Polina_Petrova.Run(397.33);
 
-            Purple_4.Sportsman Ekaterina_Pavlova = new Purple_4.Sportsman("Екатерина", "Павлова");
-            Ekaterina_Pavlova.Run(384.94);
+            //Purple_4.Sportsman Ekaterina_Pavlova = new Purple_4.Sportsman("Екатерина", "Павлова");
+            //Ekaterina_Pavlova.Run(384.94);
 
-            Purple_4.Sportsman Yuliya_Polevaya = new Purple_4.Sportsman("Юлия", "Полевая");
-            Yuliya_Polevaya.Run(8.09);
+            //Purple_4.Sportsman Yuliya_Polevaya = new Purple_4.Sportsman("Юлия", "Полевая");
+            //Yuliya_Polevaya.Run(8.09);
 
-            Purple_4.Sportsman Evgeniya_Pavlova = new Purple_4.Sportsman("Евгения", "Павлова");
-            Evgeniya_Pavlova.Run(480.52);
+            //Purple_4.Sportsman Evgeniya_Pavlova = new Purple_4.Sportsman("Евгения", "Павлова");
+            //Evgeniya_Pavlova.Run(480.52);
 
-            Purple_4.Group group2 = new Purple_4.Group("Группа 2");
-            group2.Add(new Purple_4.Sportsman[] { Anastasia_Zharkova, Alexander_Pavlov, Stepan_Sviridov, Igor_Sidorov, Evgeniya_Sidorova, Maria_Sidorova, Lev_Petrov, Savely_Kozlov1, Egor_Sviridov, Oksana_Zharkova, Svetlana_Petrova, Polina_Petrova, Ekaterina_Pavlova, Yuliya_Polevaya, Evgeniya_Pavlova });
+            //Purple_4.Group group2 = new Purple_4.Group("Группа 2");
+            //group2.Add(new Purple_4.Sportsman[] { Anastasia_Zharkova, Alexander_Pavlov, Stepan_Sviridov, Igor_Sidorov, Evgeniya_Sidorova, Maria_Sidorova, Lev_Petrov, Savely_Kozlov1, Egor_Sviridov, Oksana_Zharkova, Svetlana_Petrova, Polina_Petrova, Ekaterina_Pavlova, Yuliya_Polevaya, Evgeniya_Pavlova });
 
-            Purple_4.Group Finalists = Purple_4.Group.Merge(group1, group2);
-            Finalists.Print();
+            //Purple_4.Group Finalists = Purple_4.Group.Merge(group1, group2);
+            //Finalists.Print();
 
             //<<<<<5>>>>
-            //Purple_5.Research research = new Purple_5.Research("Япония");
+            Purple_5.Research research = new Purple_5.Research("Япония");
 
-            //research.Add(new string[] { "Макака", null, "Манга" });
-            //research.Add(new string[] { "Тануки", "Проницательность", "Манга" });
-            //research.Add(new string[] { "Тануки", "Скромность", "Кимоно" });
-            //research.Add(new string[] { "Кошка", "Внимательность", "Суши" });
-            //research.Add(new string[] { "Сима_энага", "Дружелюбность", "Кимоно" });
-            //research.Add(new string[] { "Макака", "Внимательность", "Самурай" });
-            //research.Add(new string[] { "Панда", "Проницательность", "Манга" });
-            //research.Add(new string[] { "Сима_энага", "Проницательность", "Суши" });
-            //research.Add(new string[] { "Серау", "Внимательность", "Сакура" });
-            //research.Add(new string[] { "Панда", null, "Кимоно" });
-            //research.Add(new string[] { "Сима_энага", "Дружелюбность", "Сакура" });
-            //research.Add(new string[] { "Кошка", "Внимательность", "Кимоно" });
-            //research.Add(new string[] { "Панда", null, "Сакура" });
-            //research.Add(new string[] { "Кошка", "Уважительность", "Фудзияма" });
-            //research.Add(new string[] { "Панда", "Целеустремленность", "Аниме" });
-            //research.Add(new string[] { "Серау", "Дружелюбность", null });
-            //research.Add(new string[] { "Панда", null, "Манга" });
-            //research.Add(new string[] { "Сима_энага", "Скромность", "Фудзияма" });
-            //research.Add(new string[] { "Панда", "Проницательность", "Самурай" });
-            //research.Add(new string[] { "Кошка", "Внимательность", "Сакура" });
-            //for (int i = 1; i < 4; i++)
-            //{
-            //    research.Print(i);
-            //}
+            research.Add(new string[] { "Макака", null, "Манга" });
+            research.Add(new string[] { "Тануки", "Проницательность", "Манга" });
+            research.Add(new string[] { "Тануки", "Скромность", "Кимоно" });
+            research.Add(new string[] { "Кошка", "Внимательность", "Суши" });
+            research.Add(new string[] { "Сима_энага", "Дружелюбность", "Кимоно" });
+            research.Add(new string[] { "Макака", "Внимательность", "Самурай" });
+            research.Add(new string[] { "Панда", "Проницательность", "Манга" });
+            research.Add(new string[] { "Сима_энага", "Проницательность", "Суши" });
+            research.Add(new string[] { "Серау", "Внимательность", "Сакура" });
+            research.Add(new string[] { "Панда", null, "Кимоно" });
+            research.Add(new string[] { "Сима_энага", "Дружелюбность", "Сакура" });
+            research.Add(new string[] { "Кошка", "Внимательность", "Кимоно" });
+            research.Add(new string[] { "Панда", null, "Сакура" });
+            research.Add(new string[] { "Кошка", "Уважительность", "Фудзияма" });
+            research.Add(new string[] { "Панда", "Целеустремленность", "Аниме" });
+            research.Add(new string[] { "Серау", "Дружелюбность", null });
+            research.Add(new string[] { "Панда", null, "Манга" });
+            research.Add(new string[] { "Сима_энага", "Скромность", "Фудзияма" });
+            research.Add(new string[] { "Панда", "Проницательность", "Самурай" });
+            research.Add(new string[] { "Кошка", "Внимательность", "Сакура" });
+            for (int i = 1; i < 4; i++)
+            {
+                research.Print(i);
+            }
         }
 
     }

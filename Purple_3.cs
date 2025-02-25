@@ -132,9 +132,9 @@ namespace Lab_6
                         if (array[j]._places == null || array[j]._marks == null) return;
                         if (array[j].Score > array[j + 1].Score ||
                             ((array[j].Score == array[j + 1].Score) &
-                            (array[j]._places.Min() < array[j + 1]._places.Min())) ||
+                            (array[j]._places.Min() > array[j + 1]._places.Min())) ||
                             ((array[j].Score == array[j + 1].Score) &
-                            (array[j]._places.Min() < array[j + 1]._places.Min()) &
+                            (array[j]._places.Min() == array[j + 1]._places.Min()) &
                             (array[j]._marks.Sum() < array[j + 1]._marks.Sum())))
                         {
                             Participant copy =array[j+1];
