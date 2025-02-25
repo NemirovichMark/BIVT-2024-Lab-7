@@ -116,16 +116,7 @@ namespace Lab_6{
                             array[j] = tmp;
                         }
                         else if (array[j]._places.Sum() == array[k]._places.Sum()){
-                            int partJ = 0, partK = 0;
-                            for (int placeIndex = 0; placeIndex < array[j]._places.Length; placeIndex++){
-                                if (array[j]._places[placeIndex] > array[k]._places[placeIndex]){
-                                    partK++;
-                                }
-                                else{
-                                    partJ++;
-                                }
-                            }
-                            if (partJ > partK){
+                            if (MaxVal(array[j]._places) > MaxVal(array[k]._places)){
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
@@ -133,7 +124,7 @@ namespace Lab_6{
                             if (array[j]._marks == null || array[k]._marks == null){
                                 continue;
                             }
-                            else if (partJ == partK && array[j]._marks.Sum() > array[k]._marks.Sum()){
+                            else if (MaxVal(array[j]._places) == MaxVal(array[k]._places) && array[j]._marks.Sum() > array[k]._marks.Sum()){
                                 Participant tmp = array[k];
                                 array[k] = array[j];
                                 array[j] = tmp;
@@ -153,7 +144,18 @@ namespace Lab_6{
                 Console.Write(_marks.Sum() + "\t");
                 Console.WriteLine();
             }
+            private static int MaxVal(int[] arr){
+                int maxVal = int.MinValue;
+                for (int i = 0; i < arr.Length; i++){
+                    if (arr[i] > maxVal){
+                        maxVal = arr[i];
+                    }
+                }
+                return maxVal;
         }
+        }
+
+        
 
     }
 }
