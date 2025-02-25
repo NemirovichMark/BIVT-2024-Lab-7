@@ -16,7 +16,16 @@ namespace Lab_6
             private int[] _scores;
 
             public string Name => _name;
-            public int[] Scores => _scores;
+            public int[] Scores
+            {
+                get
+                {
+                    if (_scores == null) return null;
+                    int[] copy = new int[_scores.Length];
+                    Array.Copy(_scores, copy, copy.Length);
+                    return copy;
+                }
+            } 
            
             public int TotalScore
             {
