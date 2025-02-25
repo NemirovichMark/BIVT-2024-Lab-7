@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Lab_6
             private string _name;
             private string _surname;
             private int _place;
+            private bool _ind;
 
             //свойства
             public string Name => _name;
@@ -24,7 +26,8 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = 0; 
+                _place = 18;
+                _ind = false;
             }
 
             public void SetPlace(int place)
@@ -35,6 +38,7 @@ namespace Lab_6
                     return;
                 }
                 _place = place;
+                _ind = true;
             }
 
             public void Print()
@@ -47,6 +51,7 @@ namespace Lab_6
         {
             private string _name;
             private Sportsman[] _sportsmen;
+            private int _count;
 
             public string Name => _name;
             public Sportsman[] Sportsmen => _sportsmen;
@@ -83,7 +88,7 @@ namespace Lab_6
                         return 0;
 
                     int topPlace = int.MaxValue;
-                    for (int i = 0; i < _sportsmen.Length; i++)
+                    for (int i = 0; i < _count; i++)
                     {
                         if (_sportsmen[i].Place < topPlace && _sportsmen[i].Place != 0)
                         {
@@ -100,38 +105,29 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _sportsmen = new Sportsman[0]; 
+                _sportsmen = new Sportsman[6]; 
+                _count = 0;
             }
 
             public void Add(Sportsman sportsman)
             {
                 if (_sportsmen == null)
                 {
-                    _sportsmen = new Sportsman[0];
+                    _sportsmen = new Sportsman[6];
                 }
 
-                if (_sportsmen.Length >= 6)
+                if (_count < 6)
                 {
-                    Console.WriteLine("В команде уже 6 участников");
-                    return;
+                    _sportsmen[_count] = sportsman;
+                    _count++;
                 }
-
-                Sportsman[] newSportsmen = new Sportsman[_sportsmen.Length + 1];
-
-                for (int i = 0; i < _sportsmen.Length; i++)
-                {
-                    newSportsmen[i] = _sportsmen[i];
-                }
-
-                newSportsmen[newSportsmen.Length - 1] = sportsman;
-                _sportsmen = newSportsmen;
             }
 
             public void Add(Sportsman[] sportsmen)
             {
-                for (int i = 0; i < sportsmen.Length; i++)
+                foreach (var sportsman in sportsmen)
                 {
-                    Add(sportsmen[i]);
+                    Add(sportsman);
                 }
             }
 
