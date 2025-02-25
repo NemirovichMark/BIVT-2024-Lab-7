@@ -1,8 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab_6
 {
@@ -28,7 +29,7 @@ namespace Lab_6
                 get
                 {
                     if (scores == null)
-                        return new int[0];
+                        return null;
                     return scores;
                 }
             }
@@ -50,7 +51,7 @@ namespace Lab_6
             public Team(string name)
             {
                 this.name = name;
-                this.scores = new int[30];
+                this.scores = new int[12];
             }
             public void PlayMatch(int result)
             {
@@ -90,7 +91,7 @@ namespace Lab_6
                 get
                 {
                     if (name == null)
-                        return "";
+                        return string.Empty;
                     return name;
                 }
             }
@@ -187,6 +188,14 @@ namespace Lab_6
                 }
 
                 return finalists;
+            }
+            public void Print()
+            {
+                Console.WriteLine($"Группа: {name}");
+                foreach (var team in teams)
+                {
+                    team.Print();
+                }
             }
         }
 
