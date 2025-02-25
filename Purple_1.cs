@@ -107,21 +107,21 @@ namespace Lab_6
                 Console.WriteLine(this.Surname);
                 Console.WriteLine(this.TotalScore);
             }
-        }
 
-        public static void Sort(Participant[] array)
-        {
-            for (int i = 0; i < array.Length-1; i++)
+            public static void Sort(Participant[] array)
             {
-                for (int j = 0; j < array.Length - i-1; j++)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    if (array[j].TotalScore < array[j + 1].TotalScore)
+                    for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        Participant copy = array[j];
-                        array[j]=array[j + 1];
-                        array[j+1]=copy;
+                        if (array[j].TotalScore < array[j + 1].TotalScore)
+                        {
+                            Participant copy = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = copy;
+                        }
                     }
-                }    
+                }
             }
         }
             

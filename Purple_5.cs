@@ -45,7 +45,7 @@ namespace Lab_6
             }
 
             //методы
-            public static int CountVotes(Response[] responses, int questionNumber)
+            public int CountVotes(Response[] responses, int questionNumber)
             {
                 int count = 0;
                 if (responses == null || questionNumber < 1 || questionNumber > 3) return 0;
@@ -91,7 +91,7 @@ namespace Lab_6
 
                 _responses = new Response[0];
 
-                //_responses_amount = new int[0, 0];
+                
             }
 
             //методы
@@ -176,10 +176,7 @@ namespace Lab_6
                 if (_responses == null) return 0;
                 int count = 0;
                 for (int i = 0; i < _responses.Length; i++)
-                {
-                    //Console.Write($"{response} ");
-                    //Console.WriteLine(_responses[i].Answers[question-1]);
-                    //Console.WriteLine();
+                { 
                     if (_responses[i].Answers[question-1] == response) count++;
                     
                 }
@@ -190,7 +187,7 @@ namespace Lab_6
                 string[] need=GetTopResponses(question);
                 foreach (string s in need)
                 { 
-                    Console.WriteLine($"{s} {CountResonseInQuestion(s, question)} {(double) CountResonseInQuestion(s, question) / Response.CountVotes(_responses, question)*100}%");
+                    Console.WriteLine($"{s} {CountResonseInQuestion(s, question)}");
                     
                 }
                 Console.WriteLine("===");

@@ -82,13 +82,21 @@ namespace Lab_6
                 _name = name;
 
                 _sportsmen= new Sportsman[0];
+
+            }
+
+           public Group(Group group) 
+            {
+
+                _name = group.Name;
+                _sportsmen = group.Sportsmen;
+
             }
 
             static Group()
             {
-                _twoGroups= new Sportsman[0];
+                _twoGroups = new Sportsman[0];
             }
-
             //методы
             public void Add(Sportsman sportsman)
             {

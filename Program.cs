@@ -131,7 +131,7 @@ namespace Lab_6
             //Tikhonov.Jump(new int[] { 5, 1, 5, 5, 1, 3, 4 });
 
             //Purple_1.Participant[] group = new Purple_1.Participant[] { Tihonova, Kozlov, Pavlov, Lugovoy, Stepanov, Lugovaya, Zharkov, Ivanova, Polevaya, Tikhonov };
-            //Purple_1.Sort(group);
+            //Purple_1.Participant.Sort(group);
             //foreach (Purple_1.Participant i in group)
             //{
             //    i.Print();
@@ -361,7 +361,7 @@ namespace Lab_6
 
             //<<<<<5>>>>
             Purple_5.Research research = new Purple_5.Research("Япония");
-           
+
             research.Add(new string[] { "Макака", null, "Манга" });
             research.Add(new string[] { "Тануки", "Проницательность", "Манга" });
             research.Add(new string[] { "Тануки", "Скромность", "Кимоно" });
