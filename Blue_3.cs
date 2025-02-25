@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab_6
 {
@@ -27,7 +28,6 @@ namespace Lab_6
                     return copy;
                 }
             }
-
             public int TotalTime
             {
                 get
@@ -42,7 +42,6 @@ namespace Lab_6
                     return total;
                 }
             }
-
             public bool IsExpelled
             {
                 get
@@ -59,78 +58,39 @@ namespace Lab_6
                     return false;
                 }
             }
-
             public Participant(string name, string surname)
             {
                 _name = name;
                 _surname = surname;
-                _penaltyTimes = new int[0]; 
+                _penaltyTimes = new int[0];
             }
 
             public void PlayMatch(int time)
             {
-                if (time != 0 && time != 2 && time != 5 && time != 10)
-                {
-                    Console.WriteLine("Штрафное время должно быть 0, 2, 5 или 10 минут.");
-                    return;
-                }
+                if (_penaltyTimes == null) return;
 
-                if (_penaltyTimes == null)
-                {
-                    _penaltyTimes = new int[0];
-                }
-
-                int[] newPenaltyTimes = new int[_penaltyTimes.Length + 1];
-
-                for (int i = 0; i < _penaltyTimes.Length; i++)
-                {
-                    newPenaltyTimes[i] = _penaltyTimes[i];
-                }
-
-                newPenaltyTimes[newPenaltyTimes.Length - 1] = time;
-                _penaltyTimes = newPenaltyTimes;
+                int[] newArray = new int[_penaltyTimes.Length + 1];
+                Array.Copy(_penaltyTimes, newArray, _penaltyTimes.Length);
+                _penaltyTimes = newArray;
+                _penaltyTimes[_penaltyTimes.Length - 1] = time;
             }
 
             public static void Sort(Participant[] array)
             {
                 if (array == null || array.Length == 0) return;
 
-                Participant[] candidates = new Participant[array.Length];
-                int count = 0;
-
                 for (int i = 0; i < array.Length; i++)
                 {
-                    if (!array[i].IsExpelled)
+                    for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        candidates[count] = array[i];
-                        count++;
+                        if (array[j].TotalTime > array[j + 1].TotalTime)
+                            (array[j], array[j + 1]) = (array[j + 1], array[j]);
                     }
-                }
-                for (int i = 0; i < count - 1; i++)
-                {
-                    for (int j = 0; j < count - 1 - i; j++)
-                    {
-                        if (candidates[j].TotalTime > candidates[j + 1].TotalTime)
-                        {
-                            Participant temp = candidates[j];
-                            candidates[j] = candidates[j + 1];
-                            candidates[j + 1] = temp;
-                        }
-                    }
-                }
-                for (int i = 0; i < count; i++)
-                {
-                    array[i] = candidates[i];
-                }
-                for (int i = count; i < array.Length; i++)
-                {
-                    array[i] = new Participant("Исключен", "Участник");
                 }
             }
-
             public void Print()
             {
-                Console.WriteLine($"Участник: {_name} {_surname}");
+                Console.WriteLine($"Участник: {Name} {Surname}");
                 Console.WriteLine("Штрафные минуты:");
 
                 if (_penaltyTimes != null)
@@ -154,5 +114,7 @@ namespace Lab_6
                 }
             }
         }
+       
     }
+    
 }
