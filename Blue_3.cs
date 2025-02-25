@@ -36,13 +36,14 @@ public class Blue_3
         public Participant(string name, string surname) {
             _name = name;
             _surname = surname;
-            _penaltyTimes = new int[1];
+            _penaltyTimes = new int[0];
             _matchesThisPlayer = 0;
             _isExpelled = true;
         }
 
         // методы
         public void PlayMatch(int time) {
+            if (_penaltyTimes == null) return;
             if (time == 10) _isExpelled = false;
             if (_matchesThisPlayer < _penaltyTimes.Length) {
                 _penaltyTimes[_matchesThisPlayer] = time;

@@ -48,7 +48,6 @@ public class Blue_2
         // метод для добавления результатов прыжков
         public void Jump(int[] result)
         {
-            if (result == null || result.Length != 5) return;
             if (result == null) return;
             if (recordedJums < 2) {
                 int[] newResult = result.Take(5).ToArray();

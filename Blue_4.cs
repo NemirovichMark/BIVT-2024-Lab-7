@@ -63,6 +63,7 @@ public class Blue_4
 
         // методы
         public void Add(Team team) {
+            if (_teams == null) return;
             if (_countOfTeams < _teams.Length) {
                 _teams[_countOfTeams] = team;
                 _countOfTeams++;
@@ -74,6 +75,7 @@ public class Blue_4
         }
 
         public void Add(Team[] newTeams) {
+            if (_teams == null) return;
             foreach (var team in newTeams) {
                 if (_countOfTeams < _teams.Length) {
                     _teams[_countOfTeams++] = team;
@@ -100,9 +102,8 @@ public class Blue_4
             int half2 = group2._countOfTeams / 2;
             Team[] part1 = group1._teams.Take(half1).ToArray();
             Team[] part2 = group2._teams.Take(half2).ToArray();
-
-            Team[] mergedTeams = part1.Concat(part2).OrderByDescending(team => team.TotalScore).ToArray();
-            foreach (var team in mergedTeams.Take(size)) {
+            Team[] mergedTeams = part1.Concat(part2).Take(size).ToArray();
+            foreach (var team in mergedTeams) {
                 mergedGroup.Add(team);
             }
             return mergedGroup;
