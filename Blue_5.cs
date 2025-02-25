@@ -63,7 +63,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.place = 0;
+                this.place = 18;
             }
 
 
@@ -179,7 +179,7 @@ namespace Lab_6
             public void Add(Sportsman sportsman)
             {
                 if (sportsmen == null)
-                    throw new InvalidOperationException("Поле sportsmen не инициализировано.");
+                    return;
 
                 for (int i = 0; i < sportsmen.Length; i++)
                 {

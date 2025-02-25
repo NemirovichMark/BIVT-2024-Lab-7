@@ -26,6 +26,10 @@ namespace Lab_6
                 Console.WriteLine(surname);
 
                 Console.Write("Marks: ");
+                if (marks == null)
+                {
+                    return;
+                }
                 for (int i = 0; i < marks.GetLength(0); i++)
                 {
                     for (int j = 0; j < marks.GetLength(1); j++)
@@ -73,6 +77,10 @@ namespace Lab_6
                 get
                 {
                     int total = 0;
+                    if (marks == null)
+                    {
+                        return 0;
+                    }
                     for (int i = 0; i < marks.GetLength(0); i++)
                     {
                         for (int j = 0; j < marks.GetLength(1); j++)

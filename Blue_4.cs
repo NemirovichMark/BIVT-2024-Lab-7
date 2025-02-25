@@ -41,7 +41,7 @@ namespace Lab_6
                 get
                 {
                     if (scores == null)
-                        return new int[0];
+                        return null;
                     return scores;
                 }
             }
@@ -65,7 +65,7 @@ namespace Lab_6
             public Team(string name)
             {
                 this.name = name;
-                this.scores = new int[30];
+                this.scores = new int[0];
             }
 
             public void PlayMatch(int result)
@@ -73,14 +73,17 @@ namespace Lab_6
                 if (scores == null)
                     return;
 
-                for (int i = 0; i < scores.Length; i++)
-                {
-                    if (scores[i] == 0)
-                    {
-                        scores[i] = result;
-                        break;
-                    }
-                }
+               
+                        int[] newArray = new int[scores.Length + 1];
+
+
+                        Array.Copy(scores, newArray, scores.Length);
+
+                        scores = newArray;
+                        scores[scores.Length - 1] = result;
+
+                    
+                
             }
         }
 
@@ -107,7 +110,7 @@ namespace Lab_6
                 get
                 {
                     if (name == null)
-                        return "";
+                        return null;
                     return name;
                 }
             }

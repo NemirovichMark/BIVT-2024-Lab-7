@@ -110,7 +110,7 @@ namespace Lab_6
 
                 int[] newArray = new int[penaltyTimes.Length + 1];
 
-                // Копируем элементы из старого массива в новый
+               
                 Array.Copy(penaltyTimes, newArray, penaltyTimes.Length);
 
                 penaltyTimes = newArray;
