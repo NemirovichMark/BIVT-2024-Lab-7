@@ -69,7 +69,6 @@ namespace Lab_6
             private string _name;
             private Response[] _responses;
 
-            //private int[,] _responses_amount;
 
             //свойства
             public string Name => _name;
@@ -171,7 +170,7 @@ namespace Lab_6
                 return answer;
             }
 
-            public int CountResonseInQuestion(string response, int question)
+            private int CountResonseInQuestion(string response, int question)
             {
                 if (_responses == null) return 0;
                 int count = 0;

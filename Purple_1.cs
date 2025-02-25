@@ -60,7 +60,7 @@ namespace Lab_6
             {
                 _name= name;
                 _surname= surname;
-                _coefs = new double[6];
+                _coefs = new double[4];
                 for (int i = 0; i < _coefs.Length; i++)
                 {
                     _coefs[i] = 2.5;

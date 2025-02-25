@@ -156,8 +156,21 @@ namespace Lab_6
                 if (group1.Sportsmen == null || group2.Sportsmen == null) return new Group();
                 Group Finalists=new Group("Финалисты");
                 Finalists._sportsmen = new Sportsman[group1._sportsmen.Length+ group2._sportsmen.Length];
-                Array.Copy(Purple_4.Group._twoGroups, Finalists._sportsmen, Purple_4.Group._twoGroups.Length);
-                Finalists.Sort();
+
+                int i = 0, j = 0, k = 0;
+                while (i < group1._sportsmen.Length && j < group2._sportsmen.Length)
+                {
+                    if (group1._sportsmen[i].Time <= group2._sportsmen[j].Time)
+                        Finalists._sportsmen[k++] = group1._sportsmen[i++];
+                    else
+                        Finalists._sportsmen[k++] = group2._sportsmen[j++];
+                }
+                while (i < group1._sportsmen.Length)
+                    Finalists._sportsmen[k++] = group1._sportsmen[i++];
+                while (j < group2._sportsmen.Length)
+                    Finalists._sportsmen[k++] = group2._sportsmen[j++];
+
+
                 return Finalists;
             }
 

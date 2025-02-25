@@ -32,12 +32,12 @@ namespace Lab_6
                     return copy;
                 }
             }
-            public double[] Places
+            public int[] Places
             {
                 get
                 {
                     if (_places == null) return null;
-                    double[] copy = new double[_places.Length];
+                    int[] copy = new int[_places.Length];
                     Array.Copy(_places, copy, _places.Length);
                     return copy;
                 }
@@ -77,6 +77,7 @@ namespace Lab_6
                     int count = 0;
                     for (int j = 0; j < participants.Length; j++)
                     {
+                        if (participants[j].Marks == null) return;
                         marks_per_judge[count] = participants[j].Marks[i];
                         count++;
                     }
@@ -89,6 +90,7 @@ namespace Lab_6
                     {
                         for (int k = 0; k < participants.Length; k++)
                         {
+                            if (participants[k].Marks == null) return;
                             if (marks_per_judge[j] == participants[k].Marks[i])
                             {
                                 participants[k]._places[i] = participants.Length - j;
@@ -101,6 +103,7 @@ namespace Lab_6
                 //*проставить сумму мест для каждого партиспанта 
                 for (int i = 0; i < participants.Length; i++)
                 {
+                    if (participants[i]._places == null) return;
                     participants[i]._placesSum = participants[i]._places.Sum();
                 }
 
@@ -109,6 +112,7 @@ namespace Lab_6
                 {
                     for (int j = 0; j < participants.Length - 1 - i; j++)
                     {
+                        if (participants[j]._places == null) return;
                         if (participants[j]._places[6] > participants[j + 1]._places[6])
                         {
                             Participant copy= participants[j+1];
@@ -125,6 +129,7 @@ namespace Lab_6
                 {
                     for (int j = 0; j < array.Length - 1 - i; j++)
                     {
+                        if (array[j]._places == null || array[j]._marks == null) return;
                         if (array[j].Score > array[j + 1].Score ||
                             ((array[j].Score == array[j + 1].Score) &
                             (array[j]._places.Min() < array[j + 1]._places.Min())) ||
