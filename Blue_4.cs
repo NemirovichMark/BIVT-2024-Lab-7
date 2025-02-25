@@ -17,7 +17,7 @@ namespace Lab_6
             public int[] Scores {
                 get
                 {
-                    if (_scores == null) { return new int[0]; }
+                    if (_scores == null) { return null; }
                     int[] newArr = new int[_scores.Length];
                     Array.Copy(_scores, newArr, _scores.Length);
                     return newArr;
@@ -40,8 +40,8 @@ namespace Lab_6
                 _scores = new int[0];
             }
 
-            public void PlayMatch(int result) { 
-                //if (_scores == null) { return; }
+            public void PlayMatch(int result) {
+                if (_scores == null) { return; }
                 Array.Resize(ref _scores, _scores.Length + 1);
                 _scores[_scores.Length - 1] = result;
             }
@@ -88,6 +88,7 @@ namespace Lab_6
                     Console.WriteLine("В группе уже есть 12 команд");
                 }
                 else {
+                    if (_teams == null) return;
                     Array.Resize(ref _teams, _teams.Length + 1);
                     _teams[_teams.Length - 1] = team_to_add;
                 }
@@ -104,6 +105,7 @@ namespace Lab_6
                     Console.WriteLine("Добавьте в группу меньше команд.");
                 }
                 else {
+                    if (_teams == null) return;
                     int old_len = _teams.Length;
                     Array.Resize(ref _teams, _teams.Length + teams_to_add.Length);
                     for (int i = 0; i < _teams.Length; i++) {
@@ -113,6 +115,7 @@ namespace Lab_6
             }
 
             public void Sort() {
+                if (_teams == null) return;
                 for (int i = 0; i < _teams.Length; i++) {
                     for (int j = i; j < _teams.Length; j++) {
                         if (_teams[i].TotalScore < _teams[j].TotalScore) { 
@@ -133,7 +136,7 @@ namespace Lab_6
             //    return true;
             //}
 
-            private static Group Merge(Group group1, Group group2, int size) {
+            public static Group Merge(Group group1, Group group2, int size) {
                 Group group = new Group("Финалисты");
                 int i = 0, j = 0, k = 0;
                 while (i < group1.Teams.Length && j < group2.Teams.Length)

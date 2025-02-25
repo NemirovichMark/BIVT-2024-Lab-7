@@ -21,7 +21,7 @@ namespace Lab_6
             public Participant(string name, string surname) { 
                 _name = name;
                 _surname = surname;
-                _marks = new int[5, 2] { { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 }, { 0, 0 } };
+                _marks = new int[2, 5] { {0, 0, 0, 0, 0}, {0, 0, 0, 0, 0} };
                 _estimated_jumps = 0;
             }
 
@@ -56,9 +56,9 @@ namespace Lab_6
                     if (_estimated_jumps < 2)
                     {
                         int r = 0;
-                        for (int i = 0; i < _marks.GetLength(0); i++)
+                        for (int j = 0; j < _marks.GetLength(1); j++)
                         {
-                            _marks[i, _estimated_jumps] = result[r++];
+                            _marks[_estimated_jumps, j] = result[r++];
                         }
                         _estimated_jumps++;
                     }

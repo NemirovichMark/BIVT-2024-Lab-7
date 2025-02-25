@@ -15,9 +15,11 @@ namespace Lab_6
 
             public string Name => _name;
             public string Surname => _surname;
-            public int[] PenaltyMinutes {
+            public int[] PenaltyTimes
+            {
                 get
                 {
+                    if (_penalty_minutes == null) return null;
                     int[] newArr = new int[_penalty_minutes.Length];
                     Array.Copy(_penalty_minutes, newArr, _penalty_minutes.Length); 
                     return newArr;
@@ -49,9 +51,10 @@ namespace Lab_6
                 _penalty_minutes = new int[0];
             }
 
-            public void PLayMatch(int time) {
+            public void PlayMatch(int time) {
                 if (time < 0) { Console.WriteLine("Введите корректное время"); }
                 else {
+                    if (_penalty_minutes == null) return;
                     Array.Resize(ref _penalty_minutes, _penalty_minutes.Length + 1);
                     _penalty_minutes[_penalty_minutes.Length - 1] = time;
                 }
