@@ -100,6 +100,14 @@ namespace Lab_6
                 }
             }
 
+            public void Add(Team[] team)
+            {
+                for(int i = 0; i < team.Length; i++)
+                {
+                    Add(team[i]);
+                }
+            }
+
             public void Sort()
             {
                 for (int i = 0; i < _teams.Length - 1; i++)
