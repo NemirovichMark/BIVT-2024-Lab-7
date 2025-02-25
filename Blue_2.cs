@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace Lab_6
             private string _name;
             private string _surname;
             private int[,] _marks;
+            private int _ind;
 
             public string Name => _name;
             public string Surname => _surname;
@@ -22,7 +24,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return null;
+                    if (_marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0) return null;
                     int[,] copy = new int[_marks.GetLength(0), _marks.GetLength(1)];
                     for (int i = 0; i < _marks.GetLength(0); i++)
                     {
@@ -39,7 +41,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return 0; 
+                    if (_marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0) return 0;
 
                     int sum = 0;
                     for (int i = 0; i < _marks.GetLength(0); i++)
@@ -56,45 +58,43 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _marks = new int[2, 5]; 
+                _marks = new int[2, 5];
+                _ind = 0;
             }
 
             public void Jump(int[] result)
             {
-                if (result == null || result.Length != 5)
-                {
-                    Console.WriteLine("Массив оценок должен содержать 5 элементов.");
-                    return;
-                }
+                if (_marks == null || _marks.GetLength(0) == 0 || _marks.GetLength(1) == 0 || result == null || result.Length == 0 || _ind > 1) return;
 
-                for (int i = 0; i < 2; i++)
+                if (_ind == 0)
                 {
-                    if (_marks[i, 0] == 0) 
+                    for (int i = 0; i < 5; i++)
                     {
-                        for (int j = 0; j < 5; j++)
-                        {
-                            _marks[i, j] = result[j]; 
-                        }
-                        return;
+                        _marks[0, i] = result[i];
                     }
+                    _ind++;
                 }
-                Console.WriteLine("Все прыжки уже заполнены.");
+                else if (_ind == 1)
+                {
+                    for (int i = 0; i < 5; i++)
+                    {
+                        _marks[1, i] = result[i];
+                    }
+                    _ind++;
+                }
             }
 
             public static void Sort(Participant[] array)
             {
                 if (array == null || array.Length == 0) return;
 
-                int count = Math.Min(array.Length, 5);
-                for (int i = 0; i < count - 1; i++)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    for (int j = 0; j < count - 1 - i; j++)
+                    for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        if (array[j].TotalScore < array[j + 1].TotalScore)
+                        if (array[j + 1].TotalScore > array[j].TotalScore) // обращаемся к элементу массива и получаем значение этого элемента в свойвстве TotalScore
                         {
-                            Participant temp = array[j];
-                            array[j] = array[j + 1];
-                            array[j + 1] = temp;
+                            (array[j + 1], array[j]) = (array[j], array[j + 1]);
                         }
                     }
                 }
