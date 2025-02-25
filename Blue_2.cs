@@ -68,7 +68,9 @@ namespace Lab_6
                     {
                         return null; 
                     }
-                    return marks;
+                    int[,] copy = new int[marks.GetLength(0), marks.GetLength(1)];
+                    Array.Copy(marks, copy, marks.Length);
+                    return copy;
                 }
             }
 
@@ -129,7 +131,15 @@ namespace Lab_6
                 {
                     return;
                 }
-                Array.Sort(array, (x, y) => y.TotalScore.CompareTo(x.TotalScore));
+                var indexedArray = array.Select((x, index) => new { Value = x, Index = index }).ToArray();
+
+                Array.Sort(indexedArray, (x, y) => {
+                    int result = y.Value.TotalScore.CompareTo(x.Value.TotalScore);
+                    return result != 0 ? result : x.Index.CompareTo(y.Index);
+                });
+
+                var sortedArray = indexedArray.Select(x => x.Value).ToArray();
+                array = sortedArray;
             }
         }
     }

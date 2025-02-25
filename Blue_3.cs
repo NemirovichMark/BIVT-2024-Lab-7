@@ -57,7 +57,9 @@ namespace Lab_6
                 {
                     if (penaltyTimes == null)
                         return null;
-                    return penaltyTimes;
+                    int[] copy = new int[penaltyTimes.Length];
+                    Array.Copy(penaltyTimes, copy, penaltyTimes.Length);
+                    return copy;
                 }
             }
 

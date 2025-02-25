@@ -42,7 +42,11 @@ namespace Lab_6
                 {
                     if (scores == null)
                         return null;
-                    return scores;
+
+                    int[] copy = new int[scores.Length];
+                    Array.Copy(scores, copy, scores.Length);
+                    return copy;
+                    
                 }
             }
 
@@ -120,8 +124,11 @@ namespace Lab_6
                 get
                 {
                     if (teams == null)
-                        return new Team[0];
-                    return teams;
+                        return null;
+
+                    Team[] copy = new Team[teams.Length];
+                    Array.Copy(teams, copy, teams.Length);
+                    return copy;
                 }
             }
 

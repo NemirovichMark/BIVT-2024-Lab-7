@@ -43,7 +43,7 @@ namespace Lab_6
                 get
                 {
                     if (surname == null)
-                        return "";
+                        return null;
                     return surname;
                 }
             }
@@ -158,7 +158,7 @@ namespace Lab_6
                     if (sportsmen == null)
                         return 0;
 
-                    int topPlace = int.MaxValue;
+                    int topPlace = 18;
                     foreach (var sportsman in sportsmen)
                     {
                         if (sportsman.Place < topPlace)
