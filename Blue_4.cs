@@ -97,16 +97,29 @@ public class Blue_4
             }
         }
         public static Group Merge(Group group1, Group group2, int size) {
-            Group mergedGroup = new Group("Финалисты");
-            int half1 = group1._countOfTeams / 2;
-            int half2 = group2._countOfTeams / 2;
-            Team[] part1 = group1._teams.Take(half1).ToArray();
-            Team[] part2 = group2._teams.Take(half2).ToArray();
-            Team[] mergedTeams = part1.Concat(part2).Take(size).ToArray();
-            foreach (var team in mergedTeams) {
-                mergedGroup.Add(team);
+            if (size <= 0) return default(Group);
+            Group result = new Group("Финалисты");
+            int firstIndex = 0;
+            int secondIndex = 0;
+            while (firstIndex < size / 2 && secondIndex < size / 2) {
+                if (group1.Teams[firstIndex].TotalScore >= group2.Teams[secondIndex].TotalScore) {
+                    result.Add(group1.Teams[firstIndex]);
+                    firstIndex++;
+                } else {
+                    result.Add(group2.Teams[secondIndex]);
+                    secondIndex++;
+                }
             }
-            return mergedGroup;
+
+            while (firstIndex < size / 2) {
+                result.Add(group1.Teams[firstIndex++]);
+            }
+
+            while (secondIndex < size / 2) {
+                result.Add(group2.Teams[secondIndex++]);
+            }
+
+            return result;
         }
         public void Print() {
             Console.WriteLine($"Группа: {_name}");

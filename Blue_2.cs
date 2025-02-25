@@ -49,6 +49,7 @@ public class Blue_2
         public void Jump(int[] result)
         {
             if (result == null) return;
+            if (_marks == null) return;
             if (recordedJums < 2) {
                 int[] newResult = result.Take(5).ToArray();
                 for (int j=0; j<newResult.Length; j++) {
