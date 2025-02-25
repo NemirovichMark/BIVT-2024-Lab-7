@@ -26,7 +26,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = 18;
+                _place = 0;
                 _ind = false;
             }
 
@@ -87,7 +87,7 @@ namespace Lab_6
                     if (_sportsmen == null || _sportsmen.Length == 0)
                         return 0;
 
-                    int topPlace = int.MaxValue;
+                    int topPlace = 18;
                     for (int i = 0; i < _count; i++)
                     {
                         if (_sportsmen[i].Place < topPlace && _sportsmen[i].Place != 0)
@@ -95,10 +95,7 @@ namespace Lab_6
                             topPlace = _sportsmen[i].Place;
                         }
                     }
-                    if (topPlace == int.MaxValue)
-                        return 0;
-                    else
-                        return topPlace;
+                    return topPlace;
                 }
             }
 
