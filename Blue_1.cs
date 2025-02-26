@@ -44,6 +44,11 @@ namespace Lab_6
                 this._votes = count;
                 return count;
             }
+
+            public void Print()
+            {
+                Console.WriteLine($"Кандидат: {Name} {Surname}, Голосов: {Votes}");
+            }
         }
     }
 }

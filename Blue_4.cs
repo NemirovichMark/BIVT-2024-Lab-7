@@ -16,20 +16,16 @@ namespace Lab_6
 
             //свойства
             public string Name => _name;
-            public int[] Scores
-            {
-                get
-                {
-                    if (_scores == null) { return null; }
-                    int[] copy = new int[_scores.Length];
-                    Array.Copy(Scores, copy, _scores.Length);
-                    return copy;
-                }
-            }
+            public int[] Scores => _scores;
+           
             public int TotalScore
             {
                 get
-                {   
+                {
+                    if (_scores == null || _scores.Length == 0)
+                    {
+                        return 0;
+                    }
                     int total = 0;
                     for (int i = 0; i < _scores.Length; i++)
                     {
@@ -49,6 +45,10 @@ namespace Lab_6
             //метод
             public void PlayMatch(int result)
             {
+                if (_scores == null) 
+                {
+                    _scores = new int[0];
+                }
                 Array.Resize(ref _scores, _scores.Length + 1);
                 _scores[_scores.Length - 1] = result;
             }
@@ -66,16 +66,7 @@ namespace Lab_6
             private Team[] _teams;       //массив команд (где каждый элемент является объектом типа Team!)
 
             public string Name => _name;
-            public Team[] Teams 
-            {
-                get
-                {
-                    if (_teams == null) { return null; }
-                    Team[] copy = new Team[_teams.Length ];
-                    Array.Copy(Teams, copy, _teams.Length);
-                    return copy;
-                }
-            }
+            public Team[] Teams => _teams;            
             
             public Group(string name)
             {
@@ -83,7 +74,7 @@ namespace Lab_6
                 _teams = new Team[0];
             }
 
-            public void Add(Team team)
+            public void Add(ref Team team)
             {
                 if (_teams.Length < 12) 
                 {
@@ -97,11 +88,11 @@ namespace Lab_6
             }
             public void Add(params Team[] teams)
             {
-                foreach (var team in teams)
+                for (int i = 0; i < teams.Length; i++)
                 {
                     if (_teams.Length < 12)
                     {
-                        Add(team);
+                        Add(ref teams[i]); // Передача элемента массива по ссылке
                     }
                     else
                     {
@@ -138,12 +129,12 @@ namespace Lab_6
                 {
                     if (group1._teams[index1].TotalScore >= group2._teams[index2].TotalScore)
                     {
-                        finalists.Add(group1._teams[index1]);
+                        finalists.Add(ref group1._teams[index1]);
                         index1++;
                     }
                     else
                     {
-                        finalists.Add(group2._teams[index2]);
+                        finalists.Add(ref group2._teams[index2]);
                         index2++;
                     }
                 }
@@ -151,14 +142,14 @@ namespace Lab_6
                 // Если остались команды в первой группе
                 while (index1 < group1._teams.Length && finalists._teams.Length < size)
                 {
-                    finalists.Add(group1._teams[index1]);
+                    finalists.Add(ref group1._teams[index1]);
                     index1++;
                 }
 
                 // Если остались команды во второй группе
                 while (index2 < group2._teams.Length && finalists._teams.Length < size)
                 {
-                    finalists.Add(group2._teams[index2]);
+                    finalists.Add(ref group2._teams[index2]);
                     index2++;
                 }
 

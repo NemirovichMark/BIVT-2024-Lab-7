@@ -43,6 +43,7 @@ namespace Lab_6
         {
             private string _name;
             private Sportsman[] _sportsmen;
+            private int _count;
 
             public string Name => _name;
             public Sportsman[] Sportsmen => _sportsmen;
@@ -51,6 +52,7 @@ namespace Lab_6
             {
                 _name = name;
                 _sportsmen = new Sportsman[6];
+                _count = 0;
             }
 
             public int SummaryScore
@@ -58,9 +60,10 @@ namespace Lab_6
                 get
                 {
                     int score = 0;
-                    foreach (var sportsman in _sportsmen)
+                    if (_sportsmen == null) return 0;
+                    for (int i = 0; i < _count; i++)
                     {
-                        switch (sportsman.Place)
+                        switch (_sportsmen[i].Place)
                         {
                             case 1:
                                 score += 5;
@@ -90,20 +93,28 @@ namespace Lab_6
                 get
                 {
                     int topPlace = int.MaxValue;
-                    foreach (var sportsman in _sportsmen)
+                    for (int i = 0; i < _count; i++)
                     {
-                        if (sportsman.Place < topPlace)
+                        int currentPlace = _sportsmen[i].Place;                        
+                        if (currentPlace == 0)
                         {
-                            topPlace = sportsman.Place;
+                            currentPlace = 18;
+                        }
+                        if (currentPlace < topPlace)
+                        {
+                            topPlace = currentPlace;
                         }
                     }
-                    return topPlace;
+                    return topPlace == int.MaxValue ? 0 : topPlace;
                 }
             }
             public void Add(Sportsman sportsman)
             {
-                Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
-                _sportsmen[_sportsmen.Length - 1] = sportsman;
+                if (_count < _sportsmen.Length) // Проверяем, есть ли место в массиве
+                {
+                    _sportsmen[_count] = sportsman;
+                    _count++;
+                }
             }
 
             public void Add(Sportsman[] sportsmen)
@@ -141,9 +152,9 @@ namespace Lab_6
             public void Print()
             {
                 Console.WriteLine($"Команда: {Name}");
-                foreach (var sportsman in _sportsmen)
+                for (int i = 0; i < _count; i++)
                 {
-                    sportsman.Print();
+                    _sportsmen[i].Print();
                 }
                 Console.WriteLine($"Суммарный балл: {SummaryScore}, Наивысшее место: {TopPlace}");
             }

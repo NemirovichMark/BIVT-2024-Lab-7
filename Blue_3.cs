@@ -8,7 +8,7 @@ namespace Lab_6
 {
     public class Blue_3
     {
-        public struct Participant2
+        public struct Participant
         {
             // поля
             private string _name;
@@ -18,22 +18,15 @@ namespace Lab_6
             // свойства
             public string Name => _name;
             public string Surname => _surname;
-            public int[] PenaltyTimes
-            {
-                get
-                {
-                    if (_penaltytimes == null) { return null; }
-                    int[] copy = new int[_penaltytimes.Length];
-                    Array.Copy(PenaltyTimes, copy, _penaltytimes.Length);
-                    return copy;
-                }                
-            }
+            public int[] PenaltyTimes => _penaltytimes;
+
 
             public int TotalTime
             {
                 get
                 {
-                    int total = 0;
+                    if (_penaltytimes == null) return 0;
+                    int total = 0;                   
                     for (int i = 0; i < _penaltytimes.Length; i++)
                     {
                         total += _penaltytimes[i];
@@ -46,6 +39,10 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_penaltytimes == null || _penaltytimes.Length == 0) 
+                    {
+                        return false;
+                    }
                     for (int i = 0; i < _penaltytimes.Length; i++)
                     {
                         if (_penaltytimes[i] == 10) 
@@ -58,7 +55,7 @@ namespace Lab_6
             }
 
             // конструктор
-            public Participant2(string name, string surname)
+            public Participant(string name, string surname)
             {                
                 _name = name;
                 _surname = surname;
@@ -67,12 +64,12 @@ namespace Lab_6
 
             // методы
             public void PlayMatch(int time)
-            {
+            {                
                 Array.Resize(ref _penaltytimes, _penaltytimes.Length + 1); //(ссылка, новый размер)
                 _penaltytimes[_penaltytimes.Length - 1] = time; 
             }
 
-            public static void Sort(Participant2[] array)
+            public static void Sort(Participant[] array)
             {
                 if (array == null) { return; }
                 
@@ -82,7 +79,7 @@ namespace Lab_6
                     {
                         if (array[j].TotalTime > array[j + 1].TotalTime)
                         {
-                            Participant2 temp = array[j];
+                            Participant temp = array[j];
                             array[j] = array[j + 1];
                             array[j + 1] = temp;
                         }
