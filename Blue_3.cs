@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    public class Blue_3
+    internal class Blue_3
     {
         public struct Participant
         {
@@ -32,6 +32,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_minuts == null) return 0;
                     int sum = 0;
                     for(int i = 0; i < _minuts.Length; i++)
                     {
@@ -45,6 +46,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_minuts == null) return false;
                     bool isExpelled = false;
                     for(int i = 0; i < _minuts.Length; i++)
                     {
@@ -62,12 +64,13 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _minuts = new int[] {};
+                _minuts = new int[0];
             }
 
 
             public void PlayMatch(int time)
             {
+                if (_minuts == null) return;
                 int[] arr = new int[_minuts.Length + 1];
                 for(int i = 0; i < _minuts.Length; i++)
                 {
@@ -79,7 +82,30 @@ namespace Lab_6
 
             public static void Sort(Participant[] array)
             {
-                Array.Sort(array, (x, y) => x.TotalTime.CompareTo(y.TotalTime));
+                if (array == null || array.Length <= 1)
+                    return;
+
+                int n = array.Length;
+                bool swapped;
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    swapped = false;
+
+                    for (int j = 0; j < n - 1 - i; j++)
+                    {
+                        if (array[j].TotalTime > array[j + 1].TotalTime)
+                        {
+                            Participant temp = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = temp;
+
+                            swapped = true;
+                        }
+                    }
+                    if (!swapped)
+                        break;
+                }
             }
 
             public void Print()
