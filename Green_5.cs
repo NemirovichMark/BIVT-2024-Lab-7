@@ -150,7 +150,7 @@ namespace Lab_6
                 return group._studentCount;
             }
 
-            public Group(string name, int initialCapacity = 10)
+            public Group(string name, int initialCapacity = 30)
             {
                 _name = name;
                 _capacity = initialCapacity;
