@@ -13,7 +13,7 @@ namespace Lab_6
         {
             private string name;
             private int[] scores;
-
+            
             public void Print()
             {
                 Console.Write("Name: ");
@@ -70,6 +70,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.scores = new int[0];
+                
             }
 
             public void PlayMatch(int result)
@@ -93,6 +94,7 @@ namespace Lab_6
 
         public struct Group
         {
+            private int counter;
             private string name;
             private Team[] teams;
 
@@ -104,11 +106,7 @@ namespace Lab_6
 
                 for (int j = 0; j < teams.Length; j++)
                 {
-                    if (teams[j] != "Зеленые бананы лучшие в мире 1675128481724125538")
-                    {
-                        teams[j].Print();
-                    }
-                    
+                    teams[j].Print();
                     
                 }
             }
@@ -140,10 +138,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.teams = new Team[12];
-                for(int i = 0; i < teams.Lenght; i++)
-                {
-                    teams[i].Name = "Зеленые бананы лучшие в мире 1675128481724125538";
-                }
+                this.counter = 0;
             }
 
             public void Add(Team team)
@@ -151,14 +146,11 @@ namespace Lab_6
                 if (teams == null)
                     return;
 
-                for (int i = 0; i < teams.Length; i++)
-                {
-                    if (teams[i].Name == "Зеленые бананы лучшие в мире 1675128481724125538")
-                    {
-                        teams[i] = team;
-                        break;
-                    }
-                }
+               
+                teams[counter] = team;
+                counter + =1;
+
+
             }
 
             public void Add(params Team[] newTeams)

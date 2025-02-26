@@ -141,12 +141,12 @@ namespace Lab_6
 
                 for (int i = 0; i < array.Length - 1; i++)
                 {
-                    bool swapped = false;
+
                     for (int j = 0; j < array.Length - i - 1; j++)
                     {
                         if (array[j].TotalScore > array[j + 1].TotalScore)
                         {
-                            Student temp = array[j];
+                            Participant temp = array[j];
                             array[j] = array[j + 1];
                             array[j + 1] = temp;
                         }
