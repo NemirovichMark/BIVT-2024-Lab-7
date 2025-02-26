@@ -24,7 +24,7 @@ namespace Lab_6
         {
             this.name = name;
             this.surname = surname;
-            this.place = 0;
+            this.place = 18;
         }
 
         // Методы
@@ -54,9 +54,18 @@ namespace Lab_6
 
         //свойства 
         public string Name => name;
-        public Sportsman[] Sportsmen => sportsmen;
+        public Sportsman[] Sportsmen
+            {
+            get
+            {
+                if (sportsmen == null) return null;
+                Sportsman[] copyArray = new Sportsman[sportsmen.Length];
+                Array.Copy(sportsmen, copyArray, sportsmen.Length);
+                return copyArray;
+            }
+        }
 
-        public int SummaryScore
+            public int SummaryScore
         {
             get
             {
@@ -89,7 +98,7 @@ namespace Lab_6
                         top = sportsman.Place;
                     }
                 }
-                return top == int.MaxValue ? 0 : top;
+                return top == int.MaxValue ? 18 : top;
             }
         }
 

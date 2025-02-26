@@ -19,8 +19,16 @@ namespace Lab_6
             //свойства
             public string Name => name;
             public string Surname => surname;
-            public int[] PenaltyTimes => penaltyTimes;
-
+            public int[] PenaltyTimes
+            {
+                get
+                {
+                    if (penaltyTimes == null) return null;
+                    int[] copyArray = new int[penaltyTimes.Length];
+                    Array.Copy(penaltyTimes, copyArray, penaltyTimes.Length);
+                    return copyArray;
+                }
+            }
             public int TotalTime
             {
                 

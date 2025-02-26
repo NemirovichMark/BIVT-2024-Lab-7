@@ -18,8 +18,16 @@ namespace Lab_6
             //свойства 
             public string Name => name;
             public string Surname => surname;
-            public int[,] Marks => marks;
-
+            public int[,] Marks
+            {
+                get
+                {
+                    if(marks == null) return null;
+                    int[,] copyArray = new int[marks.GetLength(0), marks.GetLength(1)];
+                    Array.Copy(marks, copyArray, marks.Length);
+                    return copyArray;
+                }
+            }
             public int TotalScore
             {
                 get
