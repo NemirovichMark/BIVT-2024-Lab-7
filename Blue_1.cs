@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,18 +14,18 @@ namespace Lab_6
 
             private string _name;
             private string _surname;
-            private int _counter;
+            private int _votes;
 
 
             public string Name { get { return _name; } }
             public string Surname => _surname;
-            public int Counter => _counter;
+            public int Votes => _votes;
 
             public Response(string name, string surname)
             {
                 _name = name;
                 _surname = surname;
-                _counter = 0;
+                _votes = 0;
             }
 
 
@@ -40,13 +40,13 @@ namespace Lab_6
                     }
                 }
 
-                _counter = count;
+                _votes = count;
                 return count;
             }
 
             public void Print()
             {
-                Console.WriteLine($"{Name} {Surname} - {Counter}");
+                Console.WriteLine($"{Name} {Surname} - {Votes}");
             }
         }
     }
