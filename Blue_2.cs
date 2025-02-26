@@ -99,7 +99,14 @@ namespace Lab_6
                 this.name = name;
                 this.surname = surname;
                 this.marks = new int[2, 5];
-            }
+                for (int i = 0; i < marks.GetLength(0); i++)
+                {
+                    for (int j = 0; j < marks.GetLength(1); j++)
+                    {
+                        marks[i, j] = -1;
+                    }
+                }
+               }
 
             public void Jump(int[] result)
             {
@@ -110,7 +117,7 @@ namespace Lab_6
 
                 for (int i = 0; i < marks.GetLength(0); i++)
                 {
-                    if (marks[i, 0] != 0)
+                    if (marks[i, 0] != -1)
                     {
                         continue;
                     }
@@ -131,15 +138,22 @@ namespace Lab_6
                 {
                     return;
                 }
-                var indexedArray = array.Select((x, index) => new { Value = x, Index = index }).ToArray();
 
-                Array.Sort(indexedArray, (x, y) => {
-                    int result = y.Value.TotalScore.CompareTo(x.Value.TotalScore);
-                    return result != 0 ? result : x.Index.CompareTo(y.Index);
-                });
+                for (int i = 0; i < array.Length - 1; i++)
+                {
+                    bool swapped = false;
+                    for (int j = 0; j < array.Length - i - 1; j++)
+                    {
+                        if (array[j].TotalScore > array[j + 1].TotalScore)
+                        {
+                            Student temp = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = temp;
+                        }
+                    }
+                }
 
-                var sortedArray = indexedArray.Select(x => x.Value).ToArray();
-                array = sortedArray;
+               
             }
         }
     }

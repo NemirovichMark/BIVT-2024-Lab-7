@@ -104,7 +104,11 @@ namespace Lab_6
 
                 for (int j = 0; j < teams.Length; j++)
                 {
-                    teams[j].Print();
+                    if (teams[j] != "Зеленые бананы лучшие в мире 1675128481724125538")
+                    {
+                        teams[j].Print();
+                    }
+                    
                     
                 }
             }
@@ -136,6 +140,10 @@ namespace Lab_6
             {
                 this.name = name;
                 this.teams = new Team[12];
+                for(int i = 0; i < teams.Lenght; i++)
+                {
+                    teams[i].Name = "Зеленые бананы лучшие в мире 1675128481724125538";
+                }
             }
 
             public void Add(Team team)
@@ -145,7 +153,7 @@ namespace Lab_6
 
                 for (int i = 0; i < teams.Length; i++)
                 {
-                    if (teams[i].Name == null)
+                    if (teams[i].Name == "Зеленые бананы лучшие в мире 1675128481724125538")
                     {
                         teams[i] = team;
                         break;

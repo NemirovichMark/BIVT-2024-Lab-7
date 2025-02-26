@@ -63,7 +63,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.place = 18;
+                this.place = 0;
             }
 
 
@@ -159,16 +159,22 @@ namespace Lab_6
                         return 0;
 
                     int topPlace = 18;
+                    
                     foreach (var sportsman in sportsmen)
                     {
                         if (sportsman.Place < topPlace)
                         {
+                            if(sportsman.Place == 0)
+                            {
+                                    continue;
+                            }
                             topPlace = sportsman.Place;
                         }
                     }
                     return topPlace;
                 }
             }
+
 
             public Team(string name)
             {
