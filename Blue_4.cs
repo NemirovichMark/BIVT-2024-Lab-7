@@ -13,7 +13,12 @@ public class Blue_4
 
         // свойства
         public string Name => _name;
-        public int[] Scores => _scores;
+        public int[] Scores {
+            get {
+                if (_scores == null) return new int[0];
+                return _scores.ToArray();
+            }
+        }
         public int TotalScore {
             get {
                 int result = 0;
@@ -63,24 +68,15 @@ public class Blue_4
 
         // методы
         public void Add(Team team) {
-            if (_teams == null) return;
-            if (_countOfTeams < _teams.Length) {
-                _teams[_countOfTeams] = team;
-                _countOfTeams++;
-            } else {
-                Array.Resize(ref _teams, _teams.Length + 1);
+            if (_countOfTeams < 12) {
                 _teams[_countOfTeams] = team;
                 _countOfTeams++;
             }
         }
 
         public void Add(Team[] newTeams) {
-            if (_teams == null) return;
             foreach (var team in newTeams) {
-                if (_countOfTeams < _teams.Length) {
-                    _teams[_countOfTeams++] = team;
-                } else {
-                    Array.Resize(ref _teams, _teams.Length + 1);
+                if (_countOfTeams < 12) {
                     _teams[_countOfTeams++] = team;
                 }
             }
