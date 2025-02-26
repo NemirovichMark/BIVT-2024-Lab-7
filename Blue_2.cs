@@ -44,7 +44,9 @@ namespace Lab_6
                     {
                         return null; 
                     }
-                    return marks;
+                    int[,] marksCopy = new int[marks.GetLength(0), marks.GetLength(1)];
+                    Array.Copy(marks, marksCopy, marks.Length);
+                    return marksCopy;
                 }
             }
 
@@ -53,6 +55,10 @@ namespace Lab_6
                 get
                 {
                     int sum = 0;
+                    if (marks == null)
+                    {
+                        return 0;
+                    }      
                     for (int i = 0; i < 5; i++)
                     {
                         for (int j = 0; j < 2; j++)
@@ -71,6 +77,10 @@ namespace Lab_6
             }
             public void Jump(int[] result)
             {
+                if (marks == null)
+                {
+                    return;
+                }
                 int jump = 0;
                 for (int i = 0; i < 5; i++)
                 {
