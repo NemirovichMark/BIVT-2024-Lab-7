@@ -1,4 +1,4 @@
-﻿using Microsoft.SqlServer.Server;
+using Microsoft.SqlServer.Server;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -41,10 +41,11 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_marks == null) return 0;
                     int sum = 0;
-                    for (int i = 0; i < 5; i++)
+                    for (int i = 0; i < 2; i++)
                     {
-                        for(int j = 0; j < 2; j++)
+                        for(int j = 0; j < 5; j++)
                         {
                             sum += _marks[i, j];
                         }
@@ -57,15 +58,16 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _marks = new int[5, 2];
+                _marks = new int[2, 5];
             }
 
             public void Jump(int[] result)
             {
+                if (_marks == null || result == null) return;
                 int jump = 0;
                 for(int i = 0; i < 5; i++)
                 {
-                    if (_marks[i,jump] != 0)
+                    if (_marks[jump,i] != 0)
                     {
                         jump = 1;
                         break;
@@ -75,7 +77,7 @@ namespace Lab_6
                 {
                     for (int i = 0; i < 5; i++)
                     {
-                        if (_marks[i, jump] != 0)
+                        if (_marks[jump, i] != 0)
                         {
                             jump = -1;
                             break;
@@ -86,7 +88,7 @@ namespace Lab_6
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        _marks[i, jump] = result[i];                    }
+                        _marks[jump, i] = result[i];                    }
                 }
                 else
                 {
@@ -97,7 +99,31 @@ namespace Lab_6
 
             public static void Sort(Participant[] array)
             {
-                Array.Sort(array, (x, y) => y.TotalScore.CompareTo(x.TotalScore));
+                if (array == null || array.Length <= 1)
+                    return;
+
+                int n = array.Length;
+                bool swapped;
+
+                for (int i = 0; i < n - 1; i++)
+                {
+                    swapped = false;
+
+                    for (int j = 0; j < n - 1 - i; j++)
+                    {
+                        if (array[j].TotalScore < array[j + 1].TotalScore)
+                        {
+                            Participant temp = array[j];
+                            array[j] = array[j + 1];
+                            array[j + 1] = temp;
+
+                            swapped = true;
+                        }
+                    }
+
+                    if (!swapped)
+                        break;
+                }
             }
 
             public void Print()
