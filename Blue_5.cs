@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Blue_5
+    public class Blue_5
     {
         public struct Sportsman
         {
