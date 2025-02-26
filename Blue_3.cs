@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -40,14 +40,15 @@ namespace Lab_6
                     return surname;
                 }
             }
-
             public int[] PenaltyTimes
             {
                 get
                 {
                     if (penaltyTimes == null)
                         return null;
-                    return penaltyTimes;
+                    int[] penaltyTimesCopy = new int[penaltyTimes.Length];
+                    Array.Copy(penaltyTimes, penaltyTimesCopy, penaltyTimes.Length);
+                    return penaltyTimesCopy;
                 }
             }
 
