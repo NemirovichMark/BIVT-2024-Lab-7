@@ -6,158 +6,172 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Blue_4
-    { public struct Team
+    public class Blue_4
     {
-        // поля
-        private string name;
-        private int[] scores; 
-
-        //свойства
-        public string Name => name;
-        public int[] Scores => scores;
-
-        public int TotalScore
+        public struct Team
         {
-            get
+            // поля
+            private string name;
+            private int[] scores; 
+
+            //свойства
+            public string Name => name;
+            public int[] Scores 
+            { 
+                get
+                {
+                    if (scores == null) return null;
+                    int[] copyArray = new int[scores.Length];
+                    Array.Copy(scores, copyArray, scores.Length);
+                    return copyArray;
+                }
+            }
+
+            public int TotalScore
             {
-                int total = 0;
+                get
+                {
+                    if (scores == null) return 0; // Проверка на инициализацию
+                    int total = 0;
+                    foreach (int score in scores)
+                    {
+                        total += score;
+                    }
+                    return total;
+                }
+            }
+
+            // Конструктор
+            public Team(string name)
+            {
+                this.name = name;
+                this.scores = new int[0]; 
+            }
+
+            // Методы
+            public void PlayMatch(int result)
+            {
+                if(scores == null) return; // Проверка на инициализацию
+                Array.Resize(ref scores, scores.Length + 1);
+                scores[scores.Length - 1] = result;
+            }
+            public void Print()
+            {
+                Console.Write($"{Name} ");
                 foreach (int score in scores)
                 {
-                    total += score;
+                    Console.Write($"{score} ");
                 }
-                return total;
+                Console.WriteLine();
             }
         }
 
-        // Конструктор
-        public Team(string name)
+        public struct Group
         {
-            this.name = name;
-            this.scores = new int[0]; 
-        }
+            // поля
+            private string name;
+            private Team[] teams;
+            private int index;
 
-        // Методы
-        public void PlayMatch(int result)
-        {
-            Array.Resize(ref scores, scores.Length + 1);
-            scores[scores.Length - 1] = result;
-        }
-        public void Print()
-        {
-            Console.Write($"{Name} ");
-            foreach (int score in scores)
+            // свойства
+            public string Name => name;
+            public Team[] Teams => teams;
+
+            // Конструктор
+            public Group(string name)
             {
-                Console.Write($"{score} ");
+                this.name = name;
+                this.teams = new Team[12]; 
+                this.index = 0;
             }
-            Console.WriteLine();
-        }
-    }
 
-    public struct Group
-    {
-        // поля
-        private string name;
-        private Team[] teams;
-
-        // свойства
-        public string Name => name;
-        public Team[] Teams => teams;
-
-        // Конструктор
-        public Group(string name)
-        {
-            this.name = name;
-            this.teams = new Team[0]; 
-        }
-
-        // Методы
-        public void Add(Team team)
-        {
-            if (teams.Length < 12) 
+            // Методы
+            public void Add(Team team)
             {
-                Array.Resize(ref teams, teams.Length + 1);
-                teams[teams.Length - 1] = team;
-            }
-            else
-            {
-                Console.WriteLine("Группа уже содержит 12 команд. Добавление невозможно.");
-            }
-        }
-
-        public void Add(params Team[] newTeams)
-        {
-            foreach (var team in newTeams)
-            {
-                if (teams.Length < 12)
+                if (teams == null) return; // Проверка на инициализацию
+                if (index < teams.Length) 
                 {
-                    Array.Resize(ref teams, teams.Length + 1);
-                    teams[teams.Length - 1] = team;
-                }
-                else
-                {
-                    Console.WriteLine("Группа уже содержит 12 команд. Добавление невозможно.");
-                    break;
+                    teams[index] = team;
+                    index++;
                 }
             }
-        }
 
-        public void Sort()
-        {
-            for (int i = 0; i < teams.Length - 1; i++)
+            public void Add(params Team[] newTeams)
             {
-                for (int j = i + 1; j < teams.Length; j++)
+                if (teams == null) return; // Проверка на инициализацию
+                foreach (var team in newTeams)
                 {
-                    if (teams[i].TotalScore < teams[j].TotalScore)
+                    Add(team);
+                }
+            }
+
+            public void Sort()
+            {
+                if (teams == null) return ; // Проверка на инициализацию
+                for (int i = 0; i < teams.Length - 1; i++)
+                {
+                    for (int j = 0; j < teams.Length-1-i; j++)
                     {
-                        Team temp = teams[i];
-                        teams[i] = teams[j];
-                        teams[j] = temp;
+                        if (teams[j].TotalScore < teams[j+1].TotalScore)
+                        {
+                            Team temp = teams[j];
+                            teams[j] = teams[j+1];
+                            teams[j+1] = temp;
+                        }
                     }
                 }
             }
-        }
 
-        public static Group Merge(Group group1, Group group2, int size)
-        {
-            Group finalists = new Group("Финалисты");
-
-            foreach (var team in group1.Teams)
+            public static Group Merge(Group group1, Group group2, int size)
             {
-                if (finalists.Teams.Length < size)
+                Group finalists = new Group("Финалисты");
+
+                Team[] allTeams = new Team[group1.Teams.Length + group2.Teams.Length];
+                int index = 0;
+
+                for (int i = 0; i < group1.Teams.Length; i++)
                 {
-                    finalists.Add(team);
+                    allTeams[index] = group1.Teams[i];
+                    index++;
                 }
-                else
+
+                for (int i = 0; i < group2.Teams.Length; i++)
                 {
-                    break;
+                    allTeams[index] = group2.Teams[i];
+                    index++;
                 }
+
+                for (int i = 0; i < allTeams.Length - 1; i++)
+                {
+                    for (int j = 0; j < allTeams.Length - 1 - i; j++)
+                    {
+                        if (allTeams[j].TotalScore < allTeams[j + 1].TotalScore)
+                        {
+                            Team temp = allTeams[j];
+                            allTeams[j] = allTeams[j + 1];
+                            allTeams[j + 1] = temp;
+                        }
+                    }
+                }
+
+                for (int i = 0; i < size && i < allTeams.Length; i++)
+                {
+                    finalists.Add(allTeams[i]);
+                }
+
+                return finalists;
             }
 
-            foreach (var team in group2.Teams)
+            // Метод
+            public void Print()
             {
-                if (finalists.Teams.Length < size)
+                Console.Write($"{Name}");
+                foreach (var team in teams)
                 {
-                    finalists.Add(team);
+                    team.Print();
                 }
-                else
-                {
-                    break;
-                }
+                Console.WriteLine();
             }
-
-            return finalists;
-        }
-
-        public void Print()
-        {
-            Console.Write($"{Name}");
-            foreach (var team in teams)
-            {
-                team.Print();
-            }
-            Console.WriteLine();
         }
     }
-}
 }

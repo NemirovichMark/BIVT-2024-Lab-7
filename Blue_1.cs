@@ -27,7 +27,7 @@ namespace Lab_6
             }
 
             // Методы для подсчета голосов
-            public void CountVotes(Response[] responses)
+            public int CountVotes(Response[] responses)
             {
                 int count = 0;
                 foreach (var response in responses)
@@ -37,7 +37,8 @@ namespace Lab_6
                         count++;
                     }
                 }
-                this.votes = count; 
+                this.votes = count;
+                return votes;
             }
 
             public void Print()

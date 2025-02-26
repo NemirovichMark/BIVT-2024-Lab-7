@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Blue_2
+    public class Blue_2
     {
         public struct Participant
         {
@@ -24,10 +24,12 @@ namespace Lab_6
             {
                 get
                 {
+                    if (marks == null) return 0; // Проверка на инициализацию
+
                     int total = 0;
-                    for (int i = 0; i < marks.GetLength(0); i++) 
+                    for (int i = 0; i < marks.GetLength(0); i++)
                     {
-                        for (int j = 0; j < marks.GetLength(1); j++) 
+                        for (int j = 0; j < marks.GetLength(1); j++)
                         {
                             total += marks[i, j];
                         }
@@ -41,15 +43,26 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.marks = new int[2, 5]; 
+                this.marks = new int[2, 5];
             }
 
             // Методы
             public void Jump(int[] result)
             {
-                if (result.Length != 5)
+                if (result == null || result.Length == 0)
                 {
-                    throw new ArgumentException("Массив оценок должен содержать 5 элементов.");
+                    return;
+                }
+
+                //количество оценок для записи (максимум 5)
+                int scoresToTake = 0;
+                if (result.Length < 5)
+                {
+                    scoresToTake = result.Length; 
+                }
+                else
+                {
+                    scoresToTake = 5; 
                 }
 
                 for (int i = 0; i < marks.GetLength(0); i++)
@@ -66,18 +79,21 @@ namespace Lab_6
 
                     if (isEmpty)
                     {
-                        for (int j = 0; j < marks.GetLength(1); j++)
+                        for (int j = 0; j < scoresToTake; j++)
                         {
                             marks[i, j] = result[j];
                         }
-                        return; 
+                        return;
                     }
                 }
 
+                return;
             }
+
 
             public static void Sort(Participant[] array)
             {
+                if (array == null) return;
                 for (int i = 0; i < array.Length - 1; i++)
                 {
                     for (int j = i + 1; j < array.Length; j++)
@@ -96,7 +112,6 @@ namespace Lab_6
             public void Print()
             {
                 Console.WriteLine($"{Name} {Surname} {TotalScore}");
-                
             }
         }
     }

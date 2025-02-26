@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Blue_3
+    public class Blue_3
     {
         public struct Participant
         {
@@ -23,8 +23,10 @@ namespace Lab_6
 
             public int TotalTime
             {
+                
                 get
                 {
+                    if (penaltyTimes == null) return 0; // Проверка на инициализацию
                     int total = 0;
                     foreach (int time in penaltyTimes)
                     {
@@ -38,6 +40,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (penaltyTimes == null) return false; // Проверка на инициализацию
                     foreach (int time in penaltyTimes)
                     {
                         if (time == 10) // Если игрок получил 10 минут штрафа
@@ -60,12 +63,14 @@ namespace Lab_6
             // Методы
             public void PlayMatch(int time)
             {
+                if (penaltyTimes == null) return; // Проверка на инициализацию
                 Array.Resize(ref penaltyTimes, penaltyTimes.Length + 1);
                 penaltyTimes[penaltyTimes.Length - 1] = time;
             }
 
             public static void Sort(Participant[] array)
             {
+                if (array == null) return; // Проверка на инициализацию
                 for (int i = 0; i < array.Length - 1; i++)
                 {
                     for (int j = i + 1; j < array.Length; j++)
