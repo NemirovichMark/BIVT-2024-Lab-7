@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    public class Blue_5
+    internal class Blue_5
     {
         public struct Sportsman
         {
@@ -22,7 +22,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_name == null) return "";
                     return _name;
                 }
             }
@@ -30,7 +29,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_surname == null) return "";
                     return _surname;
                 }
             }
@@ -51,7 +49,13 @@ namespace Lab_6
 
             public void SetPlace(int place)
             {
+                if (_place != 0) return;
                 _place = place;
+            }
+
+            public void Print()
+            {
+                Console.WriteLine($"{Name} {Surname} - {Place}");
             }
         }
 
@@ -60,14 +64,7 @@ namespace Lab_6
             private string _name;
             private Sportsman[] _sportsmen;
 
-            public string Name
-            {
-                get
-                {
-                    if (_name == null) return "";
-                    return (_name);
-                }
-            }
+            public string Name => _name;
             public Sportsman[] Sportsmen
             {
                 get
@@ -81,6 +78,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_sportsmen == null || _sportsmen.Length == 0) return 0;
                     int scores = 0;
                     foreach(var sportsman in _sportsmen)
                     {
@@ -114,6 +112,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_sportsmen == null || _sportsmen.Length == 0) return 0;
                     int top = _sportsmen[0].Place;
                     foreach(var sportsman in _sportsmen)
                     {
@@ -135,6 +134,10 @@ namespace Lab_6
 
             public void Add(Sportsman sportsman)
             {
+                if(_sportsmen == null)
+                {
+                    return;
+                }
                 Sportsman[] Arr = new Sportsman[_sportsmen.Length + 1];
                 for(int i = 0; i < _sportsmen.Length; i++)
                 {
@@ -155,6 +158,7 @@ namespace Lab_6
 
             public static void Sort(Team[] teams)
             {
+                if (teams == null) return;
                 int n = teams.Length;
                 for (int i = 0; i < n - 1; i++)
                 {
@@ -181,7 +185,18 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.WriteLine($"{Name} - {SummaryScore}, {TopPlace}");
+                Console.WriteLine($"Команда: {_name}");
+                Console.WriteLine($"Суммарный балл: {SummaryScore}");
+                Console.WriteLine($"Наивысшее место: {TopPlace}");
+                Console.WriteLine("Спортсмены:");
+
+                if (_sportsmen != null && _sportsmen.Length > 0)
+                {
+                    for (int i = 0; i < _sportsmen.Length; i++)
+                    {
+                        _sportsmen[i].Print();
+                    }
+                }
             }
 
         }
