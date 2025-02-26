@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -30,6 +30,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_scores == null) return 0;
                     int sum = 0;
                     for(int i = 0; i < _scores.Length; i++)
                     {
@@ -42,11 +43,12 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _scores = new int[] { };
+                _scores = new int[0];
             }
 
             public void PlayMatch(int result)
             {
+                if (_scores == null) return;
                 int[] arr = new int[_scores.Length + 1];
                 for (int i = 0; i < _scores.Length; i++)
                 {
@@ -69,25 +71,16 @@ namespace Lab_6
             private Team[] _teams;
 
             public string Name => _name;
-            public Team[] Teams
-            {
-                get
-                {
-                    if (_teams == null) return null;
-                    Team[] copy = new Team[_teams.Length];
-                    Array.Copy(_teams, copy, copy.Length);
-                    return copy;
-                }
-            }
-
+            public Team[] Teams => _teams;
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[0];
+                _teams = new Team[12];
             }
 
             public void Add(Team team)
             {
+                if (_teams == null || _teams.Length == 0) return;
                 if(_teams.Length < 12)
                 {
                     Team[] arr = new Team[_teams.Length + 1];
@@ -102,7 +95,8 @@ namespace Lab_6
 
             public void Add(Team[] team)
             {
-                for(int i = 0; i < team.Length; i++)
+                if (_teams == null || team == null) return;
+                 for(int i = 0; i < team.Length; i++)
                 {
                     Add(team[i]);
                 }
@@ -110,6 +104,7 @@ namespace Lab_6
 
             public void Sort()
             {
+                if (_teams == null || _teams.Length == 0) return;
                 for (int i = 0; i < _teams.Length - 1; i++)
                 {
                     for (int j = 0; j < _teams.Length - 1 - i; j++)
@@ -131,38 +126,42 @@ namespace Lab_6
 
                 Group finals = new Group("Финалисты");
 
-                int i = 0;
-                int j = 0;
-                int k = 0;
-                while(i < group1.Teams.Length && j < group2.Teams.Length && k < size)
-        {
-                    if (group1.Teams[i].TotalScore > group2.Teams[j].TotalScore)
-                    {
-                        finals.Add(group1.Teams[i++]);
-                        k++;
-                    }
-                    else
-                    {
-                        finals.Add(group2.Teams[j++]);
-                        k++;
-                    }
+                int halfSize = size / 2;
+
+                for (int i = 0; i < halfSize && i < group1.Teams.Length; i++)
+                {
+                    finals.Add(group1.Teams[i]);
                 }
 
-                while (i < group1.Teams.Length && k < size)
+                for (int i = 0; i < halfSize && i < group2.Teams.Length; i++)
                 {
-                    finals.Add(group1.Teams[i++]);
-                    k++;
+                    finals.Add(group2.Teams[i]);
                 }
 
-                while (j < group2.Teams.Length && k < size)
+                if (size % 2 != 0)
                 {
-                    finals.Add(group2.Teams[j++]);
-                    k++;
+                    if (group1.Teams.Length > halfSize && group2.Teams.Length > halfSize)
+                    {
+                        if (group1.Teams[halfSize].TotalScore > group2.Teams[halfSize].TotalScore)
+                        {
+                            finals.Add(group1.Teams[halfSize]);
+                        }
+                        else
+                        {
+                            finals.Add(group2.Teams[halfSize]);
+                        }
+                    }
+                    else if (group1.Teams.Length > halfSize)
+                    {
+                        finals.Add(group1.Teams[halfSize]);
+                    }
+                    else if (group2.Teams.Length > halfSize)
+                    {
+                        finals.Add(group2.Teams[halfSize]);
+                    }
                 }
 
                 return finals;
-
-
             }
 
             public void Print()
