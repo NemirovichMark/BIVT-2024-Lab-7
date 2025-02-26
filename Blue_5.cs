@@ -24,7 +24,7 @@ namespace Lab_6
             public Sportsman(string name, string surname) { 
                 _name = name;
                 _surname = surname;
-                _place = 0;
+                _place = 18;
                 _setted_place = false;
             }
 
@@ -48,15 +48,10 @@ namespace Lab_6
             private string _name;
             private Sportsman[] _sportsmen;
 
+            private int _added_sportsmen;
+
             public string Name => _name;
-            public Sportsman[] Sportsmen {
-                get {
-                    if (_sportsmen == null) return null;
-                    Sportsman[] newArr = new Sportsman[ _sportsmen.Length ];
-                    Array.Copy(_sportsmen, newArr, _sportsmen.Length );
-                    return newArr;
-                }
-            }
+            public Sportsman[] Sportsmen => _sportsmen;
 
             public int SummaryScore {
                 get {
@@ -86,21 +81,26 @@ namespace Lab_6
 
             public Team(string name) {
                 _name = name;
-                _sportsmen = new Sportsman[0];
+                _sportsmen = new Sportsman[6];
+                _added_sportsmen = 0;
             }
 
             public void Add(Sportsman sportsman) {
                 if (_sportsmen == null) return;
-                Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
-                _sportsmen[_sportsmen.Length - 1] = sportsman;
+                //Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
+                //_sportsmen[_sportsmen.Length - 1] = sportsman;
+                _sportsmen[_added_sportsmen++] = sportsman;
             }
 
             public void Add(Sportsman[] new_sportsmen) { 
                 if (_sportsmen == null) return;
-                int old_len = _sportsmen.Length;
-                Array.Resize(ref _sportsmen, _sportsmen.Length + new_sportsmen.Length);
+                //int old_len = _sportsmen.Length;
+                //Array.Resize(ref _sportsmen, _sportsmen.Length + new_sportsmen.Length);
+                //for (int i = 0; i < new_sportsmen.Length; i++) {
+                //    _sportsmen[old_len + i] = new_sportsmen[i];
+                //}
                 for (int i = 0; i < new_sportsmen.Length; i++) {
-                    _sportsmen[old_len + i] = new_sportsmen[i];
+                    _sportsmen[_added_sportsmen++] = new_sportsmen[i];
                 }
             }
 

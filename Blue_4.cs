@@ -65,21 +65,15 @@ namespace Lab_6
             private string _name;
             private Team[] _teams;
 
+            private int _teams_added;
+
             public string Name => _name;
-            public Team[] Teams {
-                get {
-                    if (_teams == null) { return new Team[0]; }
-                    else {
-                        Team[] newArr = new Team[_teams.Length];
-                        Array.Copy(_teams, newArr, _teams.Length);
-                        return newArr;
-                    }
-                }
-            }
+            public Team[] Teams => _teams;
 
             public Group(string name) {
                 _name = name;
-                Team[] _teams = new Team[0];
+                Team[] _teams = new Team[12];
+                _teams_added = 0;
             }
 
             public void Add(Team team_to_add) {
@@ -89,8 +83,9 @@ namespace Lab_6
                 }
                 else {
                     if (_teams == null) return;
-                    Array.Resize(ref _teams, _teams.Length + 1);
-                    _teams[_teams.Length - 1] = team_to_add;
+                    _teams[_teams_added++] = team_to_add;
+                    //Array.Resize(ref _teams, _teams.Length + 1);
+                    //_teams[_teams.Length - 1] = team_to_add;
                 }
             }
 
@@ -106,10 +101,13 @@ namespace Lab_6
                 }
                 else {
                     if (_teams == null) return;
-                    int old_len = _teams.Length;
-                    Array.Resize(ref _teams, _teams.Length + teams_to_add.Length);
-                    for (int i = 0; i < _teams.Length; i++) {
-                        _teams[old_len + i] = teams_to_add[i];
+                    //int old_len = _teams.Length;
+                    //Array.Resize(ref _teams, _teams.Length + teams_to_add.Length);
+                    //for (int i = 0; i < _teams.Length; i++) {
+                    //    _teams[old_len + i] = teams_to_add[i];
+                    //}
+                    for (int i = 0; i < teams_to_add.Length; i++) {
+                        _teams[_teams_added++] = teams_to_add[i];
                     }
                 }
             }

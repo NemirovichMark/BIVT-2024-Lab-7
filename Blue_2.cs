@@ -27,7 +27,20 @@ namespace Lab_6
 
             public string Name => _name;
             public string Surname => _surname;
-            public int[,] Marks => _marks;
+            public int[,] Marks {
+                get
+                {
+                    int[,] m = new int[_marks.GetLength(0), _marks.GetLength(1)];
+                    for (int i = 0; i < _marks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < _marks.GetLength(1); j++)
+                        {
+                            m[i, j] =  _marks[i, j];
+                        }
+                    }
+                    return m;
+                }
+            }
 
             public int TotalScore
             {
@@ -48,26 +61,21 @@ namespace Lab_6
 
 
             public void Jump(int[] result) {
-                if (result == null || result.Length != 5)
+                if (result == null) return;
+                if (_estimated_jumps < 2)
                 {
-                    Console.WriteLine("За прыжок участника должно быть выставлено ровно 5 оценок");
-                }
-                else {
-                    if (_estimated_jumps < 2)
+                    int r = 0;
+                    for (int j = 0; j < _marks.GetLength(1); j++)
                     {
-                        int r = 0;
-                        for (int j = 0; j < _marks.GetLength(1); j++)
-                        {
-                            _marks[_estimated_jumps, j] = result[r++];
-                        }
-                        _estimated_jumps++;
+                        _marks[_estimated_jumps, j] = result[r++];
                     }
+                    _estimated_jumps++;
                 }
             }
 
             public static void Sort(Participant[] array) {
                 if (array == null) { return; }
-                for (int i = 0; i <= array.Length; i++) {
+                for (int i = 0; i < array.Length; i++) {
                     for (int j = i; j < array.Length; j++) {
                         if (array[i].TotalScore < array[j].TotalScore) { 
                             Participant tmp = array[i];

@@ -60,17 +60,17 @@ namespace Lab_6
                 }
             }
 
-            public static void Sort(Participant[] array) {
-                if (array == null) { return; }
-                for (int i = 0; i <= array.Length; i++)
+            public static void Sort(Participant[] participants) {
+                if (participants == null) { return; }
+                for (int i = 0; i < participants.Length; i++)
                 {
-                    for (int j = i; j < array.Length; j++)
+                    for (int j = i; j < participants.Length; j++)
                     {
-                        if (array[i].TotalTime < array[j].TotalTime)
+                        if (participants[i].TotalTime > participants[j].TotalTime)
                         {
-                            Participant tmp = array[i];
-                            array[i] = array[j];
-                            array[j] = tmp;
+                            Participant tmp = participants[i];
+                            participants[i] = participants[j];
+                            participants[j] = tmp;
                         }
                     }
                 }
