@@ -40,16 +40,16 @@ namespace Lab_6
                 }
             }
 
-            public bool isExpelled
+            public bool IsExpelled
             {
                 get
                 {
-                    if (_penaltytimes == null) return true;
+                    if (_penaltytimes == null) return false;
                     for (int i = 0; i < _penaltytimes.Length; i++)
                     {
-                        if (_penaltytimes[i] == 10) return false;
+                        if (_penaltytimes[i] == 10) return true;
                     }
-                    return true;
+                    return false;
                 }
             }
 
@@ -86,7 +86,7 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.WriteLine("{0} {1}     \t{2} {3}", _name, _surname, TotalTime, isExpelled);
+                Console.WriteLine("{0} {1}     \t{2} {3}", _name, _surname, TotalTime, IsExpelled);
             }
         }
     }

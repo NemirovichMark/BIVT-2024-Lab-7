@@ -62,6 +62,7 @@ namespace Lab_6
         {
             private string _name;
             private Team[] _teams;
+            private int _teamID;
 
             public string Name => _name;
 
@@ -70,14 +71,15 @@ namespace Lab_6
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[0];
+                _teams = new Team[12];
+                _teamID = 0;
             }
 
             public void Add(Team team)
             {
-                if ((_teams == null) || (_teams.Length >= 12)) return;
-                Array.Resize(ref _teams, _teams.Length + 1);
-                _teams[_teams.Length - 1] = team;
+                if ((_teams == null) || (_teamID >= 12)) return;
+                _teams[_teamID] = team;
+                _teamID++;
             }
 
             public void Add(Team[] teams)
@@ -85,9 +87,9 @@ namespace Lab_6
                 if ((_teams == null) || (teams == null)) return;
                 for (int i = 0; i < teams.Length; i++)
                 {
-                    if (_teams.Length >= 12) return;
-                    Array.Resize(ref _teams, _teams.Length + 1);
-                    _teams[_teams.Length - 1] = teams[i];
+                    if (_teamID >= 12) return;
+                    _teams[_teamID] = teams[i];
+                    _teamID++;
                 }
             }
 

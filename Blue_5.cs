@@ -27,7 +27,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = 0;
+                _place = 18;
                 _placechanged = false;
             }
 
@@ -48,6 +48,7 @@ namespace Lab_6
         {
             private string _name;
             private Sportsman[] _sportsmen;
+            private int _sportsmenID;
 
             public string Name => _name;
 
@@ -76,7 +77,7 @@ namespace Lab_6
                 get
                 {
                     if ((_sportsmen == null) || (_sportsmen.Length == 0)) return 0;
-                    int mn = int.MaxValue;
+                    int mn = 18;
                     for (int i = 0; i < _sportsmen.Length; i++) if (_sportsmen[i].Place < mn) mn = _sportsmen[i].Place;
                     return mn;
                 }
@@ -85,14 +86,15 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _sportsmen = new Sportsman[0];
+                _sportsmen = new Sportsman[6];
+                _sportsmenID = 0;
             }
 
             public void Add(Sportsman sportsman)
             {
-                if ((_sportsmen == null) || (sportsman.Place == 0)) return;
-                Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
-                _sportsmen[_sportsmen.Length - 1] = sportsman;
+                if ((_sportsmen == null) || (sportsman.Place == 0) || (_sportsmenID >= 6)) return;
+                _sportsmen[_sportsmenID] = sportsman;
+                _sportsmenID++;
             }
 
             public void Add(Sportsman[] sportsmen)
@@ -100,9 +102,9 @@ namespace Lab_6
                 if ((_sportsmen == null) || (sportsmen == null)) return;
                 for (int i = 0; i < sportsmen.Length; i++)
                 {
-                    if (sportsmen[i].Place == 0) return;
-                    Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
-                    _sportsmen[_sportsmen.Length - 1] = sportsmen[i];
+                    if ((sportsmen[i].Place == 0) || (_sportsmenID >= 6)) return;
+                    _sportsmen[_sportsmenID] = sportsmen[i];
+                    _sportsmenID++;
                 }
             }
 
