@@ -7,197 +7,82 @@ using System.Xml.Linq;
 
 namespace Lab_6
 {
-    public class Blue_4
+    public struct Team
     {
-        public struct Team
+        private string name;
+        private int[] scores;
+
+        public string Name => name;
+
+        public int[] Scores => scores.Length == 0 ? null : scores;
+
+        public int TotalScore
         {
-            private string name;
-            private int[] scores;
-
-            public string Name
+            get
             {
-                get
-                {
-                    if (name == null)
-                        return null;
-                    return name;
-                }
+                if (scores == null || scores.Length == 0)
+                    return 0;
+                return scores.Sum();
             }
+        }
 
-            public int[] Scores
+        public Team(string name)
+        {
+            this.name = name;
+            this.scores = new int[0]; 
+        }
+
+        public void PlayMatch(int result)
+        {
+            Array.Resize(ref scores, scores.Length + 1);
+            scores[scores.Length - 1] = result;
+        }
+
+        public void Print()
+        {
+            Console.Write("Name: ");
+            Console.WriteLine(name);
+            Console.WriteLine(string.Join(" ", scores));
+        }
+    }
+
+    public struct Group
+    {
+        private string name;
+        private Team[] teams;
+
+        public string Name => name;
+
+        public Team[] Teams => teams.Length == 0 ? null : teams;
+
+        public Group(string name, int size)
+        {
+            this.name = name;
+            this.teams = new Team[size]; 
+        }
+
+        public void Add(Team team)
+        {
+            for (int i = 0; i < teams.Length; i++)
             {
-                get
+                if (teams[i].Name == null)
                 {
-                    if (scores == null)
-                        return null;
-                    return scores;
-                }
-            }
-
-            public int TotalScore
-            {
-                get
-                {
-                    if (scores == null)
-                        return 0;
-                    int sum = 0;
-                    foreach (int v in scores)
-                    {
-                        sum += v;
-                    }
-                    return sum;
-                }
-            }
-            public Team(string name)
-            {
-                this.name = name;
-                this.scores = new int[12];
-            }
-            public void PlayMatch(int result)
-            {
-                if (scores == null)
-                    return;
-
-                for (int i = 0; i < scores.Length; i++)
-                {
-                    if (scores[i] == 0)
-                    {
-                        scores[i] = result;
-                        break;
-                    }
-                }
-            }
-
-            public void Print()
-            {
-                Console.Write("Name: ");
-                Console.WriteLine(name);
-
-                for (int i = 0; i < scores.Length; i++)
-                {
-                    Console.Write(scores[i]);
-                    Console.Write(" ");
+                    teams[i] = team;
+                    break;
                 }
             }
         }
 
-        public struct Group
+        public void Print()
         {
-            private string name;
-            private Team[] teams;
-
-            public string Name
+            Console.WriteLine($"Группа: {name}");
+            foreach (var team in teams)
             {
-                get
-                {
-                    if (name == null)
-                        return string.Empty;
-                    return name;
-                }
-            }
-
-            public Team[] Teams
-            {
-                get
-                {
-                    if (teams == null)
-                        return new Team[0];
-                    return teams;
-                }
-            }
-
-            public Group(string name)
-            {
-                this.name = name;
-                this.teams = new Team[0];
-            }
-
-            public void Add(Team team)
-            {
-                if (teams == null)
-                    return;
-
-                for (int i = 0; i < teams.Length; i++)
-                {
-                    if (teams[i].Name == null)
-                    {
-                        teams[i] = team;
-                        break;
-                    }
-                }
-            }
-
-            public void Add(params Team[] newTeams)
-            {
-                if (teams == null)
-                    return;
-
-                for (int i = 0; i < newTeams.Length; i++)
-                {
-                    Add(newTeams[i]);
-                }
-            }
-
-            public void Sort()
-            {
-                if (teams == null)
-                    return;
-
-                int n = teams.Length;
-                for (int i = 0; i < n - 1; i++)
-                {
-                    for (int j = 0; j < n - i - 1; j++)
-                    {
-                        if (teams[j].TotalScore < teams[j + 1].TotalScore)
-                        {
-                           
-                            Team temp = teams[j];
-                            teams[j] = teams[j + 1];
-                            teams[j + 1] = temp;
-                        }
-                    }
-                }
-            }
-
-            public static Group Merge(Group group1, Group group2, int size)
-            {
-                Group finalists = new Group("Финалисты");
-
-                foreach (var team in group1.Teams)
-                {
-                    if (finalists.Teams.Length < size)
-                    {
-                        finalists.Add(team);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                foreach (var team in group2.Teams)
-                {
-                    if (finalists.Teams.Length < size)
-                    {
-                        finalists.Add(team);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-
-                return finalists;
-            }
-            public void Print()
-            {
-                Console.WriteLine($"Группа: {name}");
-                foreach (var team in teams)
+                if (team.Name != null) 
                 {
                     team.Print();
                 }
             }
         }
-
     }
 }
