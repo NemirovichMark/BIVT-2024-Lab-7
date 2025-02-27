@@ -97,27 +97,29 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _sportsmen = new Sportsman[1];
+                _sportsmen = new Sportsman[0];
             }
             public void Add(Sportsman sportsman)
             {
                 if (_sportsmen == null) return;
                 Sportsman[] sportsmen = new Sportsman[_sportsmen.Length + 1];
-                for (int i = 0; i < _sportsmen.Length; i++)
+                for (int i = 0; i < sportsmen.Length; i++)
                 {
                     if (i == _sportsmen.Length) sportsmen[i] = sportsman;
                     else sportsmen[i] = _sportsmen[i];
                 }
+                _sportsmen = sportsmen;
             }
             public void Add(Sportsman[] sportsmen)
             {
                 if (_sportsmen == null || sportsmen == null) return;
                 Sportsman[] newSportsmen = new Sportsman[_sportsmen.Length + sportsmen.Length];
-                for (int i = 0; i < _sportsmen.Length; i++)
+                for (int i = 0; i < newSportsmen.Length; i++)
                 {
                     if (i == _sportsmen.Length) newSportsmen[i] = sportsmen[i - _sportsmen.Length];
                     else newSportsmen[i] = sportsmen[i];
                 }
+                _sportsmen = newSportsmen;
             }
             public static void Sort(Team[] teams)
             {
