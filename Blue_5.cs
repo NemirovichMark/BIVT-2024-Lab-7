@@ -52,7 +52,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.place = 18;
+                this.place = 0;
             }
 
 
@@ -130,7 +130,7 @@ namespace Lab_6
                 get
                 {
                     if (sportsmen == null)
-                        return 0;
+                        return 18;
 
                     int top = int.MaxValue;
                     foreach (var sportsman in sportsmen)
@@ -153,8 +153,7 @@ namespace Lab_6
             public void Add(Sportsman sportsman)
             {
                 if (sportsmen == null)
-                    throw new InvalidOperationException("Данное поле не инициализировано.");
-
+                    return;
                 for (int i = 0; i < sportsmen.Length; i++)
                 {
                     if (sportsmen[i].Name == null)
@@ -168,8 +167,7 @@ namespace Lab_6
             public void Add(params Sportsman[] newSportsmen)
             {
                 if (sportsmen == null)
-                    throw new InvalidOperationException("Поле не инициализировано.");
-
+                    return;
                 foreach (var sportsman in newSportsmen)
                 {
                     Add(sportsman);
