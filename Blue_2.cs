@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 
 namespace Lab_6
@@ -10,7 +10,7 @@ namespace Lab_6
             private string _name;
             private string _surname;
             private int[,] _marks;
-
+            private int _globalI;
             public string Name => _name;
             public string Surname => _surname;
             public int[,] Marks
@@ -50,29 +50,29 @@ namespace Lab_6
                 _name = name;
                 _surname = surname;
                 _marks = new int[2, 5];
-
+                _globalI = 0;
             }
 
             public void Jump(int[] result)
             {
-                if (result == null || result.Length != 5) return;
+                if (result == null || result.Length != 5 || _globalI>1 || _marks==null) return;
 
-                for (int i = 0; i < _marks.GetLength(0); i++)
-                {
-                    int sum = 0;
-                    for (int k = 0; k < _marks.GetLength(1); k++)
-                    {
-                        sum += _marks[i, k];
-                    }
-                    if (sum != 0) continue;
-
-                    for (int j = 0; j < _marks.GetLength(1); j++)
-                    {
-
-                        _marks[i, j] = result[j];
-                    }
-                    break;
-                }
+                switch (_globalI) {
+                    case 0:
+                        for(int j = 0; j< _marks.GetLength(1); j++)
+                        {
+                            _marks[0, j] = result[j];
+                        }
+                        _globalI++;
+                        break;
+                    case 1:
+                        for (int j = 0; j < _marks.GetLength(1); j++)
+                        {
+                            _marks[1, j] = result[j];
+                        }
+                        _globalI++;
+                        break;
+                 }
 
             }
 
