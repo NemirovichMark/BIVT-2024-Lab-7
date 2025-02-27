@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,7 +12,7 @@ namespace Lab_6
         {
             private string _name;
             private string _surname;
-            public int[] _penalty;
+            private int[] _penalty;
 
             public string Name => _name;
             public string Surname => _surname;
@@ -67,7 +67,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _penalty = new int[10];
+                _penalty = new int[0];
             }
 
             public void PlayMatch(int time)
