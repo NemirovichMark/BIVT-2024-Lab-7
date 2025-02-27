@@ -39,14 +39,14 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _score = new int[1];
+                _score = new int[0];
             }
 
             public void PlayMatch(int result)
             {
                 if(_score == null) return;
                 int[] newmas = new int[_score.Length+1];
-                for(int i = 0;i < _score.Length; i++)
+                for(int i = 0;i < newmas.Length; i++)
                 {
                     if(i==_score.Length)
                         newmas[i] = result;
@@ -54,6 +54,7 @@ namespace Lab_6
                         newmas[i] = _score[i];
 
                 }
+                _score = newmas;
             }
             public void Print()
             {
@@ -82,27 +83,29 @@ namespace Lab_6
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[1];
+                _teams = new Team[0];
             }
 
             public void Add(Team team)
             {
                 if (_teams == null) return;
                 Team[] newTeam = new Team[_teams.Length+1];
-                for(int i = 0; i < _teams.Length;i++)
+                for(int i = 0; i < newTeam.Length;i++)
                 {
                     if(i==_teams.Length) newTeam[i] = team;
                     else newTeam[i] = _teams[i];
                 }
+                _teams = newTeam;
             }
             public void Add(Team[] teams)
             {
                 if (_teams == null || teams==null) return;
                 Team[] newTeams = new Team[_teams.Length+teams.Length];
-                for (int i = 0; i < _teams.Length; i++) { 
+                for (int i = 0; i < newTeams.Length; i++) { 
                     if(i==_teams.Length) newTeams[i] = teams[i-_teams.Length];
                     else newTeams[i] = _teams[i];
                 }
+                _teams = newTeams;
             }
             public void Sort() {
 
