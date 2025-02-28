@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Lab_6
 {
@@ -73,16 +70,11 @@ namespace Lab_6
             public void PlayMatch(int time)
             {
                 if (_penalty == null) return;
-                
-                for(int i = 0; i<_penalty.Length; i++)
-                {
-                    if (_penalty[i] == 0)
-                    {
-                        _penalty[i] = time;
-                        break;
-                    }
-                    
-                }
+                int[] newar = new int[_penalty.Length+1];
+                for(int i = 0; i< _penalty.Length; i++)
+                    newar[i] = _penalty[i];
+                _penalty = newar;
+                _penalty[_penalty.Length-1] = time;
 
             }
 
@@ -90,22 +82,15 @@ namespace Lab_6
             {
 
                 if (array == null) return;
-                if (array.Length != 1)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    for (int i = 1, j = 2; i < array.Length;)
+                    for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        if (i == 0 || array[i].TotalTime >= array[i - 1].TotalTime)
+                        if (array[j + 1].TotalTime > array[j].TotalTime)
                         {
-                            i = j;
-                            j++;
-                        }
-                        else
-                        {
-                            (array[i], array[i - 1]) = (array[i - 1], array[i]);
-                            i--;
+                            (array[j + 1], array[j]) = (array[j], array[j + 1]);
                         }
                     }
-
                 }
             }
 
