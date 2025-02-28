@@ -65,7 +65,7 @@ namespace Lab_6
         {
             private string _name;
             private Team[] _teams;
-
+            private int _index;
             public string Name => _name;
             public Team[] Teams
             {
@@ -80,49 +80,39 @@ namespace Lab_6
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[0];
+                _teams = new Team[12];
+                _index = 0;
             }
 
             public void Add(Team team)
             {
                 if (_teams == null) return;
-                Team[] newTeam = new Team[_teams.Length+1];
-                for(int i = 0; i < newTeam.Length;i++)
+                if (_index < _teams.Length)
                 {
-                    if(i==_teams.Length) newTeam[i] = team;
-                    else newTeam[i] = _teams[i];
+                    _teams[_index++] = team;
                 }
-                _teams = newTeam;
             }
             public void Add(Team[] teams)
             {
                 if (_teams == null || teams==null) return;
-                Team[] newTeams = new Team[_teams.Length+teams.Length];
-                for (int i = 0; i < newTeams.Length; i++) { 
-                    if(i==_teams.Length) newTeams[i] = teams[i-_teams.Length];
-                    else newTeams[i] = _teams[i];
+                
+                for (int i = 0; i < teams.Length; i++) { 
+                   Add(teams[i]);
                 }
-                _teams = newTeams;
+               
             }
             public void Sort() {
 
                 if (_teams == null) return;
-                if (_teams.Length != 1)
+                for (int i = 0; i < _teams.Length - 1; i++)
                 {
-                    for (int i = 1, j = 2; i < _teams.Length;)
+                    for (int j = 0; j < _teams.Length - i - 1; j++)
                     {
-                        if (i == 0 || _teams[i].TotalScore <= _teams[i - 1].TotalScore)
+                        if (_teams[j + 1].TotalScore > _teams[j].TotalScore)
                         {
-                            i = j;
-                            j++;
-                        }
-                        else
-                        {
-                            (_teams[i], _teams[i - 1]) = (_teams[i - 1], _teams[i]);
-                            i--;
+                            (_teams[j + 1], _teams[j]) = (_teams[j], _teams[j + 1]);
                         }
                     }
-
                 }
             }
 
@@ -132,31 +122,31 @@ namespace Lab_6
                 int count = 0;
                 int index1 = 0, index2 = 0;
 
-                while (count < size && index1 < group1._teams.Length && index2 < group2._teams.Length)
+                while (index1 < size/2 && index2< size/2)
                 {
-                    if (group1._teams[index1].TotalScore >= group2._teams[index2].TotalScore)
+                    if (group1.Teams[index1].TotalScore >= group2.Teams[index2].TotalScore)
                     {
-                        group.Add(group1._teams[index1]);
+                        group.Add(group1.Teams[index1]);
                         index1++;
                     }
                     else
                     {
-                        group.Add(group2._teams[index2]);
+                        group.Add(group2.Teams[index2]);
                         index2++;
                     }
                     count++;
                 }
 
-                while (count < size && index1 < group1._teams.Length)
+                while (index1<size/2)
                 {
-                    group.Add(group1._teams[index1]);
+                    group.Add(group1.Teams[index1]);
                     index1++;
                     count++;
                 }
 
-                while (count < size && index2 < group2._teams.Length)
+                while (index2<size/2)
                 {
-                    group.Add(group2._teams[index2]);
+                    group.Add(group2.Teams[index2]);
                     index2++;
                     count++;
                 }
