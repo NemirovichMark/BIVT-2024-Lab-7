@@ -72,7 +72,7 @@ namespace Lab_6
 
             public Group(string name) {
                 _name = name;
-                Team[] _teams = new Team[12];
+                _teams = new Team[12];
                 _teams_added = 0;
             }
 

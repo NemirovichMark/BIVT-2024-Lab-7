@@ -24,7 +24,7 @@ namespace Lab_6
             public Sportsman(string name, string surname) { 
                 _name = name;
                 _surname = surname;
-                _place = 18;
+                _place = 0;
                 _setted_place = false;
             }
 
@@ -59,7 +59,7 @@ namespace Lab_6
                     int sum = 0;
                     foreach (Sportsman sportsman in _sportsmen) {
                         //sum += sportsman.Place;
-                        if (5 - sportsman.Place + 1 > 0)
+                        if (5 - sportsman.Place + 1 > 0 && sportsman.Place != 0)
                         {
                             sum += 5 - sportsman.Place + 1;
                         }
@@ -71,9 +71,12 @@ namespace Lab_6
             public int TopPlace {
                 get {
                     if (_sportsmen == null) { return 0; }
-                    int maxi = -1;
-                    foreach (Sportsman sportsman in _sportsmen) { 
-                        maxi = Math.Max( maxi, sportsman.Place );
+                    int maxi = 18;
+                    foreach (Sportsman sportsman in _sportsmen) {
+                        if (sportsman.Place != 0)
+                        {
+                            maxi = Math.Min(maxi, sportsman.Place);
+                        }
                     }
                     return maxi;
                 }

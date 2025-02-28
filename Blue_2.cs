@@ -30,6 +30,7 @@ namespace Lab_6
             public int[,] Marks {
                 get
                 {
+                    if (_marks == null) { return null; }
                     int[,] m = new int[_marks.GetLength(0), _marks.GetLength(1)];
                     for (int i = 0; i < _marks.GetLength(0); i++)
                     {
@@ -61,7 +62,7 @@ namespace Lab_6
 
 
             public void Jump(int[] result) {
-                if (result == null) return;
+                if (result == null || _marks == null) return;
                 if (_estimated_jumps < 2)
                 {
                     int r = 0;
