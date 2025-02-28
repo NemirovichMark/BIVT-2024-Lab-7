@@ -86,7 +86,7 @@ namespace Lab_6
             }
             public void Add(Sportsman[] sportsmen)
             {
-                if (_sportsmen == null || sportsmen == null) Console.WriteLine(); ;
+                if (_sportsmen == null || sportsmen == null) return;
                 int ind = _sportsmen.Length;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + sportsmen.Length);
 

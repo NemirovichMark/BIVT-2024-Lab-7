@@ -40,8 +40,15 @@ namespace Lab_6
                         if( _marks[i] > max) max = _marks[i];
                         sum += _marks[i];
                     }
-                    sum -= (max + min);
-                    sum += _distance < 120 ? 60 - 2 * ((120 - _distance) / 2) : 60 +- 2 * ((_distance - 120) / 2);
+                    sum -= max;
+                    sum -= min;
+                    if (_distance > 120)
+                        sum += (60 + (_distance - 120) * 2);
+                    else
+                    {
+                        sum = sum + 60 - (120 - _distance)  * 2;
+                        if (sum < 0) sum = 0;
+                    }
                     return sum;
                 }
             }

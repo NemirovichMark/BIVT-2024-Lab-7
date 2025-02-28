@@ -32,17 +32,17 @@ namespace Lab_6
                 switch (questionNumber) {
                     case 1:
                         foreach (var response in responses)
-                            if (response.Animal != null)
+                            if (response.Animal != null && response.Animal == this.Animal)
                                 counter++;
                         break;
                     case 2:
                         foreach (var response in responses)
-                            if (response.CharacterTrait != null)
+                            if (response.CharacterTrait != null && response.CharacterTrait == this.CharacterTrait)
                                 counter++;
                         break;
                     case 3:
                         foreach (var response in responses)
-                            if (response.Concept != null)
+                            if (response.Concept != null && response.Concept == this.Concept)
                                 counter++;
                         break;
                     default:
@@ -116,47 +116,36 @@ namespace Lab_6
             {
                 if (_responses == null) return null;
 
-                string[] answers = null;
-                string[] answersDistinct = null;
-                int[] frequency = new int[0];
+                int[] frequency = new int[_responses.Length];
 
                 switch (question)
                 {
-                    case 1:
-                        answers = _responses.Where(response => response.Animal != null).Select(response => response.Animal).ToArray();
-                        answersDistinct = answers.Distinct().ToArray();
-                        Array.Resize(ref frequency, answersDistinct.Length);
-                        for (int i = 0;i < frequency.Length; i++)
+                    case 1:     //Animal
+                        for(int i = 0; i < _responses.Length; i++)
                         {
-                            frequency[i] = answers.Count(x => x == answersDistinct[i]);
+                            frequency[i] = _responses[i].CountVotes(_responses, 1);
                         }
-                        SortFrequency(answersDistinct, frequency);
-                        return answersDistinct.Take(5).ToArray();
-                    case 2:
-                        answers = _responses.Where(response => response.CharacterTrait != null).Select(response => response.CharacterTrait).ToArray();
-                        answersDistinct = answers.Distinct().ToArray();
-                        Array.Resize(ref frequency, answersDistinct.Length);
-                        for (int i = 0; i < frequency.Length; i++)
+                        SortFrequency(_responses, frequency);
+                        return _responses.Where(x => x.Animal != null).Select(x => x.Animal).Distinct().Take(5).ToArray();
+                    case 2:     //Character Trait
+                        for (int i = 0; i < _responses.Length; i++)
                         {
-                            frequency[i] = answers.Count(x => x == answersDistinct[i]);
+                            frequency[i] = _responses[i].CountVotes(_responses, 2);
                         }
-                        SortFrequency(answersDistinct, frequency);
-                        return answersDistinct.Take(5).ToArray();
-                    case 3:
-                        answers = _responses.Where(response => response.Concept != null).Select(response => response.Concept).ToArray();
-                        answersDistinct = answers.Distinct().ToArray();
-                        Array.Resize(ref frequency, answersDistinct.Length);
-                        for (int i = 0; i < frequency.Length; i++)
+                        SortFrequency(_responses, frequency);
+                        return _responses.Where(x => x.CharacterTrait != null).Select(x => x.CharacterTrait).Distinct().Take(5).ToArray();
+                    case 3:     //Concept
+                        for (int i = 0; i < _responses.Length; i++)
                         {
-                            frequency[i] = answers.Count(x => x == answersDistinct[i]);
+                            frequency[i] = _responses[i].CountVotes(_responses, 3);
                         }
-                        SortFrequency(answersDistinct, frequency);
-                        return answersDistinct.Take(5).ToArray();
+                        SortFrequency(_responses, frequency);
+                        return _responses.Where(x => x.Concept != null).Select(x => x.Concept).Distinct().Take(5).ToArray();
                     default:
                         return null;
                 }
             }
-            private void SortFrequency(string[] answers, int[] array)
+            private void SortFrequency(Response[] answers, int[] array)
             {
                 if (array.Length <= 1 || answers == null) return;
 

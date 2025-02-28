@@ -49,7 +49,7 @@ namespace Lab_6
                 }
             }
 
-            public int TopPlace
+            private int TopPlace
             {
                 get
                 {
@@ -61,7 +61,7 @@ namespace Lab_6
                 }
             }
 
-            public double TotalPoints
+            private double TotalPoints
             {
                 get
                 {
