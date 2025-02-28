@@ -18,7 +18,7 @@ namespace Lab_6
             //свойства
             public string Name => _name;
             public int[] Scores => _scores;
-           
+
             public int TotalScore
             {
                 get
@@ -33,7 +33,7 @@ namespace Lab_6
                         total += _scores[i];
                     }
                     return total;
-                }               
+                }
             }
 
             //конструктор
@@ -46,14 +46,11 @@ namespace Lab_6
             //метод
             public void PlayMatch(int result)
             {
-                if (_scores == null) 
-                {
-                    _scores = new int[0];
-                }
+                if (_scores == null) { return; }
                 Array.Resize(ref _scores, _scores.Length + 1);
                 _scores[_scores.Length - 1] = result;
             }
-            
+
             public void Print()
             {
                 Console.WriteLine($"Команда: {Name}, Очки: {string.Join(", ", Scores)}, Всего очков: {TotalScore}");
@@ -68,8 +65,8 @@ namespace Lab_6
             private int _counterTeams;
 
             public string Name => _name;
-            public Team[] Teams => _teams;            
-            
+            public Team[] Teams => _teams;
+
             public Group(string name)
             {
                 _name = name;
@@ -80,8 +77,8 @@ namespace Lab_6
 
             public void Add(ref Team team)
             {
-                if(_teams == null) return;
-                if(_counterTeams < 12)
+                if (_teams == null) return;
+                if (_counterTeams < 12)
                 {
                     _teams[_counterTeams++] = team;
                 }
@@ -91,18 +88,18 @@ namespace Lab_6
                 if (_teams == null || teams == null) return;
                 for (int i = 0; i < teams.Length; i++)
                 {
-                        Add(ref teams[i]); // Передача элемента массива по ссылке
+                    Add(ref teams[i]); // Передача элемента массива по ссылке
                 }
             }
             public void Sort()
             {
-                if(_teams == null) return;
-                for (int i = 0; i < _teams.Length - 1; i++)
+                if (_teams == null) return;
+                for (int i = 0; i < _counterTeams - 1; i++)
                 {
-                    for (int j = 0; j < _teams.Length - 1 - i; j++)
+                    for (int j = 0; j < _counterTeams - 1 - i; j++)
                     {
                         if (_teams[j].TotalScore < _teams[j + 1].TotalScore)
-                        {                            
+                        {
                             Team temp = _teams[j];
                             _teams[j] = _teams[j + 1];
                             _teams[j + 1] = temp;
@@ -114,38 +111,38 @@ namespace Lab_6
             public static Group Merge(Group group1, Group group2, int size)
             {
                 Group finalists = new Group("Финалисты");
+                if (group1.Teams == null || group2.Teams == null) return default(Group);
+                group1.Sort();
+                group2.Sort();
 
                 int index1 = 0;
                 int index2 = 0;
 
                 // Объединяем команды до достижения максимального размера
-                while (index1 < group1._teams.Length && index2 < group2._teams.Length && finalists._counterTeams < size) 
-                { 
-                    if (group1._teams[index1].TotalScore >= group2._teams[index2].TotalScore)
+                while (index1 < size / 2 && index2 < size / 2)
+                {
+                    if (group1.Teams[index1].TotalScore >= group2.Teams[index2].TotalScore)
                     {
-                        finalists.Add(ref group1._teams[index1]);
+                        finalists.Add(group1.Teams[index1]);
                         index1++;
                     }
                     else
                     {
-                        finalists.Add(ref group2._teams[index2]);
+                        finalists.Add(group2.Teams[index2]);
                         index2++;
                     }
                 }
 
-                // Если остались команды в первой группе
-                while (index1 < group1._teams.Length && finalists._teams.Length < size)
+                while (index1 < size / 2)
                 {
-                    finalists.Add(ref group1._teams[index1]);
-                    index1++;
+                    finalists.Add(group1.Teams[index1++]);
                 }
 
-                // Если остались команды во второй группе
-                while (index2 < group2._teams.Length && finalists._teams.Length < size)
+                while (index2 < size / 2)
                 {
-                    finalists.Add(ref group2._teams[index2]);
-                    index2++;
+                    finalists.Add(group2.Teams[index2++]);
                 }
+
 
                 return finalists;
             }
@@ -161,6 +158,4 @@ namespace Lab_6
 
         }
     }
-  
-    
-}
+    }
