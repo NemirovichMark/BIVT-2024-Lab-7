@@ -17,7 +17,14 @@ public class Blue_3
         // публичные свойства
         public string Name => _name;
         public string Surname => _surname;
-        public int[] PenaltyTimes => _penaltyTimes;
+        public int[] PenaltyTimes {
+            get {
+                if (_penaltyTimes == null) return null;
+                int[] copyArr = new int[_penaltyTimes.Length];
+                Array.Copy(_penaltyTimes, copyArr, _penaltyTimes.Length);
+                return copyArr;
+            }
+        }
 
         public int TotalTime {
             get {
@@ -30,7 +37,12 @@ public class Blue_3
             }
         }
 
-        public bool IsExpelled => _isExpelled;
+        public bool IsExpelled {
+            get {
+                if (_penaltyTimes == null || _penaltyTimes.Length == 0) return false;
+                return _isExpelled;
+            }
+        }
 
         // конструктор
         public Participant(string name, string surname) {
@@ -67,7 +79,6 @@ public class Blue_3
                 }
             }
         }
-
         public void Print() {
             if (!_isExpelled) {
                 Console.WriteLine($"{_name} {_surname}, Штрафное время: {TotalTime} мин");

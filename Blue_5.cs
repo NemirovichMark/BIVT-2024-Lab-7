@@ -68,8 +68,12 @@ public class Blue_5
         }
         public int TopPlace {
             get {
-                if (_sportsmen == null || _count == 0) return 0;
-                return _sportsmen.Take(_count).Min(s => s.Place);
+                if (_sportsmen == null) return 0;
+                int result = 18;
+                for (int i=0; i<_count; i++) {
+                    if (_sportsmen[i].Place < result) result = _sportsmen[i].Place;
+                }
+                return result;
             }
         }
 
@@ -84,9 +88,7 @@ public class Blue_5
         // методы
         public void Add(Sportsman sportsman)
         {
-            if (_sportsmen == null) {
-                _sportsmen = new Sportsman[6];
-            }
+            if (_sportsmen == null) return;
             if (_count < 6)
             {
                 _sportsmen[_count] = sportsman;
@@ -95,10 +97,7 @@ public class Blue_5
         }
         public void Add(Sportsman[] sportsmen)
         {
-            foreach (var sportsman in sportsmen)
-            {
-                Add(sportsman);
-            }
+            foreach (var sportsman in sportsmen) Add(sportsman);
         }
 
         public void Print()
@@ -112,6 +111,7 @@ public class Blue_5
 
         public static void Sort(Team[] teams)
         {
+            if (teams == null || teams.Length == 0) return;
             int n = teams.Length;
             for (int i = 0; i < n - 1; i++) {
                 for (int j = 0; j < n - i - 1; j++) {
