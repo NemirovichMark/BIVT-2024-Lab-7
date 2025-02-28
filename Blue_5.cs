@@ -38,6 +38,7 @@ namespace Lab_6
         {
             private string _name;
             private Sportsman[] _sportsmen;
+            private int _cnt;
 
             public string Name => _name;
             public Sportsman[] Sportsmen
@@ -94,50 +95,51 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _sportsmen = new Sportsman[0];
+                _sportsmen = new Sportsman[6];
+                _cnt = 0;
             }
             public void Add(Sportsman sportsman)
             {
-                if (_sportsmen == null) return;
-                Sportsman[] sportsmen = new Sportsman[_sportsmen.Length + 1];
-                for (int i = 0; i < sportsmen.Length; i++)
-                {
-                    if (i == _sportsmen.Length) sportsmen[i] = sportsman;
-                    else sportsmen[i] = _sportsmen[i];
-                }
-                _sportsmen = sportsmen;
+
+                if (_sportsmen == null)                
+                    _sportsmen = new Sportsman[6];
+                
+                if (_cnt < _sportsmen.Length)                
+                    _sportsmen[_cnt++] = sportsman;
+                                 
             }
             public void Add(Sportsman[] sportsmen)
             {
                 if (_sportsmen == null || sportsmen == null) return;
-                Sportsman[] newSportsmen = new Sportsman[_sportsmen.Length + sportsmen.Length];
-                for (int i = 0; i < newSportsmen.Length; i++)
+               
+                for (int i = 0; i < sportsmen.Length; i++)
                 {
-                    if (i == _sportsmen.Length) newSportsmen[i] = sportsmen[i - _sportsmen.Length];
-                    else newSportsmen[i] = sportsmen[i];
+                    Add(sportsmen[i]);
                 }
-                _sportsmen = newSportsmen;
+              
             }
             public static void Sort(Team[] teams)
             {
 
                 if (teams == null) return;
-                if (teams.Length != 1)
+                for (int i = 0; i < teams.Length - 1; i++)
                 {
-                    for (int i = 1, j = 2; i < teams.Length;)
+                    for (int j = 0; j < teams.Length - i - 1; j++)
                     {
-                        if (i == 0 || teams[i].SummaryScore > teams[i - 1].SummaryScore || (teams[i].SummaryScore == teams[i - 1].SummaryScore &&  teams[i].TopPlace > teams[i-1].TopPlace))
+                        if (teams[j + 1].SummaryScore > teams[j].SummaryScore)
                         {
-                            i = j;
-                            j++;
+                            (teams[j + 1], teams[j]) = (teams[j], teams[j + 1]);
                         }
-                        else
+                        else if (teams[j].SummaryScore == teams[j + 1].SummaryScore)
                         {
-                            (teams[i], teams[i - 1]) = (teams[i - 1], teams[i]);
-                            i--;
+                            if (teams[j].TopPlace > teams[j + 1].TopPlace)
+                            {
+                                Team temp = teams[j];
+                                teams[j] = teams[j + 1];
+                                teams[j + 1] = temp;
+                            }
                         }
                     }
-
                 }
             }
             public void Print()
