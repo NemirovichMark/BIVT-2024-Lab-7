@@ -92,24 +92,22 @@ namespace Lab_6
             {
                 get
                 {
-                    int topPlace = int.MaxValue;
+                    if(_sportsmen == null) return 0;
+                    int topPlace = 18;
                     for (int i = 0; i < _count; i++)
                     {
-                        int currentPlace = _sportsmen[i].Place;                        
-                        if (currentPlace == 0)
+                        if (_sportsmen[i].Place < topPlace)
                         {
-                            currentPlace = 18;
-                        }
-                        if (currentPlace < topPlace)
-                        {
-                            topPlace = currentPlace;
+                            topPlace = _sportsmen[i].Place;
                         }
                     }
-                    return topPlace == int.MaxValue ? 0 : topPlace;
+                    return topPlace;
                 }
             }
             public void Add(Sportsman sportsman)
             {
+                if (_sportsmen == null) return;
+
                 if (_count < _sportsmen.Length) // Проверяем, есть ли место в массиве
                 {
                     _sportsmen[_count] = sportsman;

@@ -18,8 +18,16 @@ namespace Lab_6
             // свойства
             public string Name => _name;
             public string Surname => _surname;
-            public int[] PenaltyTimes => _penaltytimes;
-
+            public int[] PenaltyTimes
+            {
+                get
+                 {
+                    if (_penaltytimes == null) return null;
+                    int[] copyArr = new int[_penaltytimes.Length];
+                    Array.Copy(_penaltytimes, copyArr, _penaltytimes.Length);
+                    return copyArr;
+                }
+            }
 
             public int TotalTime
             {
@@ -64,7 +72,8 @@ namespace Lab_6
 
             // методы
             public void PlayMatch(int time)
-            {                
+            {
+                if (_penaltytimes == null) { return; }
                 Array.Resize(ref _penaltytimes, _penaltytimes.Length + 1); //(ссылка, новый размер)
                 _penaltytimes[_penaltytimes.Length - 1] = time; 
             }

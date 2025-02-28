@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,7 @@ namespace Lab_6
         {
             private string _name;        //название группы
             private Team[] _teams;       //массив команд (где каждый элемент является объектом типа Team!)
+            private int _counterTeams;
 
             public string Name => _name;
             public Team[] Teams => _teams;            
@@ -71,38 +73,30 @@ namespace Lab_6
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[0];
+                _teams = new Team[12];
+
+                _counterTeams = 0;
             }
 
             public void Add(ref Team team)
             {
-                if (_teams.Length < 12) 
+                if(_teams == null) return;
+                if(_counterTeams < 12)
                 {
-                    Array.Resize(ref _teams, _teams.Length + 1);
-                    _teams[_teams.Length - 1] = team;
-                }
-                else
-                {
-                    Console.WriteLine("12 команд набрано.");
+                    _teams[_counterTeams++] = team;
                 }
             }
             public void Add(params Team[] teams)
             {
+                if (_teams == null || teams == null) return;
                 for (int i = 0; i < teams.Length; i++)
                 {
-                    if (_teams.Length < 12)
-                    {
                         Add(ref teams[i]); // Передача элемента массива по ссылке
-                    }
-                    else
-                    {
-                        Console.WriteLine("12 команд набрано.");
-                        break;
-                    }
                 }
             }
             public void Sort()
             {
+                if(_teams == null) return;
                 for (int i = 0; i < _teams.Length - 1; i++)
                 {
                     for (int j = 0; j < _teams.Length - 1 - i; j++)
@@ -125,8 +119,8 @@ namespace Lab_6
                 int index2 = 0;
 
                 // Объединяем команды до достижения максимального размера
-                while (index1 < group1._teams.Length && index2 < group2._teams.Length && finalists._teams.Length < size)
-                {
+                while (index1 < group1._teams.Length && index2 < group2._teams.Length && finalists._counterTeams < size) 
+                { 
                     if (group1._teams[index1].TotalScore >= group2._teams[index2].TotalScore)
                     {
                         finalists.Add(ref group1._teams[index1]);
@@ -159,9 +153,9 @@ namespace Lab_6
             {
                 Console.WriteLine($"Группа: {_name}");
                 Console.WriteLine("Команды:");
-                foreach (var team in _teams)
+                for (int i = 0; i < _counterTeams; i++) // Используем _counterTeams вместо _teams.Length
                 {
-                    team.Print();
+                    _teams[i].Print();
                 }
             }
 
