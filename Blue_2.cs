@@ -20,7 +20,7 @@ public class Blue_2
         public string Surname => _surname;
         public int[,] Marks {
             get {
-                if (_marks == null) return new int[0, 0];
+                if (_marks == null) return null;
                 int[,] copy_marks = new int[_marks.GetLength(0), _marks.GetLength(1)];
                 for (int i = 0; i < _marks.GetLength(0); i++) {
                     for (int j = 0; j < _marks.GetLength(1); j++) copy_marks[i, j] = _marks[i, j];

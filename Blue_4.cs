@@ -15,7 +15,7 @@ public class Blue_4
         public string Name => _name;
         public int[] Scores {
             get {
-                if (_scores == null) return new int[0];
+                if (_scores == null) return null;
                 return _scores.ToArray();
             }
         }
@@ -37,7 +37,7 @@ public class Blue_4
         }
         // методы
         public void PlayMatch(int result) {
-            if (_scores == null) _scores = new int[0];
+            if (_scores == null) return;
             Array.Resize(ref _scores, _scores.Length + 1);
             _scores[_scores.Length - 1] = result;
         }
@@ -68,6 +68,7 @@ public class Blue_4
 
         // методы
         public void Add(Team team) {
+            if (_teams == null) return;
             if (_countOfTeams < 12) {
                 _teams[_countOfTeams] = team;
                 _countOfTeams++;
@@ -75,6 +76,7 @@ public class Blue_4
         }
 
         public void Add(Team[] newTeams) {
+            if (_teams == null || newTeams == null) return;
             foreach (var team in newTeams) {
                 if (_countOfTeams < 12) {
                     _teams[_countOfTeams++] = team;
@@ -82,6 +84,7 @@ public class Blue_4
             }
         }
         public void Sort() {
+            if (_teams == null) return;
             for (int i = 0; i < _countOfTeams - 1; i++) {
                 for (int j = 0; j < _countOfTeams - i - 1; j++) {
                     if (_teams[j].TotalScore < _teams[j + 1].TotalScore) {
@@ -93,6 +96,7 @@ public class Blue_4
             }
         }
         public static Group Merge(Group group1, Group group2, int size) {
+            if (group1.Teams == null || group2.Teams == null) return default(Group);
             if (size <= 0) return default(Group);
             Group result = new Group("Финалисты");
             int firstIndex = 0;
