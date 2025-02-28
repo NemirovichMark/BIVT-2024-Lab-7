@@ -55,26 +55,28 @@ namespace Lab_6
 
             public void Jump(int[] result)
             {
-                if (result == null || result.Length != 5 || _globalI>1 || _marks==null) return;
+                if (result == null || _globalI > 1 || _marks == null) return;
 
-                switch (_globalI) {
-                    case 0:
-                        for(int j = 0; j< _marks.GetLength(1); j++)
-                        {
-                            _marks[0, j] = result[j];
-                        }
-                        _globalI++;
-                        break;
-                    case 1:
-                        for (int j = 0; j < _marks.GetLength(1); j++)
-                        {
-                            _marks[1, j] = result[j];
-                        }
-                        _globalI++;
-                        break;
-                 }
+                if (_globalI == 0)
+                {
 
+                    for (int j = 0; j < _marks.GetLength(1); j++)
+                    {
+                        _marks[0, j] = result[j];
+                    }
+                    _globalI++;
+                }
+                else if (_globalI == 1)
+                {
+                    for (int j = 0; j < _marks.GetLength(1); j++)
+                    {
+                        _marks[1, j] = result[j];
+                    }
+                    _globalI++;
+                }
             }
+
+
 
 
 
@@ -82,22 +84,15 @@ namespace Lab_6
             {
 
                 if (array == null) return;
-                if (array.Length != 1)
+                for (int i = 0; i < array.Length - 1; i++)
                 {
-                    for (int i = 1, j = 2; i < array.Length;)
+                    for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        if (i == 0 || array[i].TotalScore <= array[i - 1].TotalScore)
+                        if (array[j + 1].TotalScore > array[j].TotalScore) 
                         {
-                            i = j;
-                            j++;
-                        }
-                        else
-                        {
-                            (array[i], array[i - 1]) = (array[i - 1], array[i]);
-                            i--;
+                            (array[j + 1], array[j]) = (array[j], array[j + 1]);
                         }
                     }
-
                 }
             }
 
@@ -108,3 +103,5 @@ namespace Lab_6
         }
     }
 }
+
+
