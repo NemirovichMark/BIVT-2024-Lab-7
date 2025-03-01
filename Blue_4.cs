@@ -3,31 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab_6
 {
-    internal class Blue_4
+    public class Blue_4
     {
         public struct Team
         {
             private string name;
             private int[] scores;
 
-            public string Name
-            {
-                get
-                {
-                    if (name == null) return "";
-                    return name;
-                }
-            }
-
+            public string Name => name;
             public int[] Scores
             {
                 get
                 {
-                    if (scores == null) return new int[0];
-                    return scores;
+                    if (scores == null) return null;
+                    int[] copy = new int[scores.Length];
+                    Array.Copy(scores, copy, copy.Length);
+                    return copy;
                 }
             }
 
@@ -38,10 +33,11 @@ namespace Lab_6
                     if (scores == null) return 0;
 
                     int total = 0;
-                    foreach (int score in scores)
+                    for (int i = 0; i < scores.Length; i++)
                     {
-                        total += score;
+                        total += scores[i];
                     }
+
                     return total;
                 }
             }
@@ -49,21 +45,23 @@ namespace Lab_6
             public Team(string name)
             {
                 this.name = name;
-                this.scores = new int[30];
+                this.scores = new int[0];
             }
-
+            public void Print()
+            {
+            }
             public void PlayMatch(int result)
             {
                 if (scores == null) return;
 
+                int[] newScores = new int[scores.Length + 1];
+
                 for (int i = 0; i < scores.Length; i++)
                 {
-                    if (scores[i] == 0)
-                    {
-                        scores[i] = result;
-                        break;
-                    }
+                    newScores[i] = scores[i];
                 }
+                newScores[newScores.Length - 1] = result;
+                scores = newScores;
             }
         }
 
@@ -71,24 +69,9 @@ namespace Lab_6
         {
             private string name;
             private Team[] teams;
-
-            public string Name
-            {
-                get
-                {
-                    if (name == null) return "";
-                    return name;
-                }
-            }
-
-            public Team[] Teams
-            {
-                get
-                {
-                    if (teams == null) return new Team[0];
-                    return teams;
-                }
-            }
+            public string Name => name;
+            public Team[] Teams => teams;
+           
 
             public Group(string name)
             {
@@ -141,6 +124,10 @@ namespace Lab_6
 
                 return finalists;
             }
+
+
+            public void Print() { }
+
         }
     }
 }

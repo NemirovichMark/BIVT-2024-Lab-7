@@ -3,40 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Lab_6
 {
-    internal class Blue_3
+    public class Blue_3
     {
         public struct Participant
         {
             private readonly string name;
             private readonly string surname;
-            private readonly int[] penaltyTimes;
-            public string Name
-            {
-                get
-                {
-                    if (name == null) return "";
-                    return name;
-                }
-            }
-            public string Surname
-            {
-                get
-                {
-                    if (surname == null) return "";
-                    return surname;
-                }
-            }
+            private int[] penaltyTimes;
+
+            public string Name => name;
+            public string Surname => surname;
             public int[] PenaltyTimes
             {
                 get
                 {
-                    if (penaltyTimes == null) return new int[0];
-                    return penaltyTimes;
+                    if (penaltyTimes == null) return null;
+                    int[] copy = new int[penaltyTimes.Length];
+                    Array.Copy(penaltyTimes, copy, copy.Length);
+                    return copy;
                 }
             }
+
             public int TotalTime
             {
                 get
@@ -70,22 +61,18 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.penaltyTimes = new int[30];
+                penaltyTimes = new int[0];
             }
 
             public void PlayMatch(int time)
             {
-                if (penaltyTimes == null)
-                    return;
+                if (penaltyTimes == null) return;
 
-                for (int i = 0; i < penaltyTimes.Length; i++)
-                {
-                    if (penaltyTimes[i] == 0)
-                    {
-                        penaltyTimes[i] = time;
-                        break;
-                    }
-                }
+
+                int[] newArray = new int[penaltyTimes.Length + 1];
+                Array.Copy(penaltyTimes, newArray, penaltyTimes.Length);
+                penaltyTimes = newArray;
+                penaltyTimes[penaltyTimes.Length - 1] = time;
             }
 
 
@@ -93,6 +80,10 @@ namespace Lab_6
             {
                 Array.Sort(array, (x, y) => x.TotalTime.CompareTo(y.TotalTime));
             }
+
+
+            public void Print() { }
+
         }
     }
 }
