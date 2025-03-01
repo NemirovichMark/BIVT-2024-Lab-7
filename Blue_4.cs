@@ -119,7 +119,8 @@ namespace Lab_6
             public static Group Merge(Group group1, Group group2, int size)
             {
                 Group group = new Group("Финалисты");
-                int count = 0;
+                group1.Sort();
+                group2.Sort();
                 int index1 = 0, index2 = 0;
 
                 while (index1 < size/2 && index2< size/2)
@@ -134,21 +135,21 @@ namespace Lab_6
                         group.Add(group2.Teams[index2]);
                         index2++;
                     }
-                    count++;
+                    
                 }
 
                 while (index1<size/2)
                 {
                     group.Add(group1.Teams[index1]);
                     index1++;
-                    count++;
+                    
                 }
 
                 while (index2<size/2)
                 {
                     group.Add(group2.Teams[index2]);
                     index2++;
-                    count++;
+                    
                 }
 
                 return group;
