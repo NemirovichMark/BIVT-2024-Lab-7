@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Lab_6;
 
+
 namespace Lab_6
 {
     public class Blue_4
@@ -15,11 +16,12 @@ namespace Lab_6
             private int[] _scores;
 
             public string Name => _name;
+
             public int[] Scores
             {
                 get
                 {
-                    if (_scores == null) return null;
+                    if (_scores == null) return Array.Empty<int>();
                     int[] copy = new int[_scores.Length];
                     Array.Copy(_scores, copy, _scores.Length);
                     return copy;
@@ -30,7 +32,8 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_scores == null || _scores.Length == 0) return 0;
+                    if (_scores == null) return 0;
+
                     int total = 0;
                     for (int i = 0; i < _scores.Length; i++)
                     {
@@ -53,7 +56,7 @@ namespace Lab_6
                 {
                     newScores[i] = _scores[i];
                 }
-                newScores[_scores.Length] = result;
+                newScores[newScores.Length - 1] = result;
                 _scores = newScores;
             }
 
@@ -70,38 +73,37 @@ namespace Lab_6
             private int _ind;
 
             public string Name => _name;
-            public Team[] Teams => _teams;
+
+            public Team[] Teams
+            {
+                get
+                {
+                    Team[] filledTeams = new Team[_ind];
+                    Array.Copy(_teams, filledTeams, _ind);
+                    return filledTeams;
+                }
+            }
 
             public Group(string name)
             {
                 _name = name;
-                _teams = new Team[12]; 
-                _ind = 0; 
+                _teams = new Team[12];
+                _ind = 0;
             }
 
             public void Add(Team team)
             {
-               
-                if (_ind >= _teams.Length)
+                if (_ind < _teams.Length)
                 {
-                    Console.WriteLine("Группа уже заполнена");
-                    return;
+                    _teams[_ind] = team;
+                    _ind++;
                 }
-
-                _teams[_ind] = team;
-                _ind++;
             }
 
             public void Add(Team[] teams)
             {
-                
-                if (_ind + teams.Length > _teams.Length)
-                {
-                    Console.WriteLine("Недостаточно места для добавления всех команд.");
-                    return;
-                }
+                if (teams == null || teams.Length == 0) return;
 
-                
                 for (int i = 0; i < teams.Length; i++)
                 {
                     Add(teams[i]);
@@ -110,7 +112,7 @@ namespace Lab_6
 
             public void Sort()
             {
-                if (_teams == null || _teams.Length == 0) return;
+                if (_ind <= 1) return;
 
                 for (int i = 0; i < _ind - 1; i++)
                 {
@@ -133,7 +135,9 @@ namespace Lab_6
 
                 while (i < group1._ind && j < group2._ind && result._ind < size)
                 {
-                    if (group1._teams[i].TotalScore >= group2._teams[j].TotalScore)
+                    if (group1._teams[i].TotalScore > group2._teams[j].TotalScore ||
+                        (group1._teams[i].TotalScore == group2._teams[j].TotalScore &&
+                         string.Compare(group1._teams[i].Name, group2._teams[j].Name, StringComparison.Ordinal) < 0))
                     {
                         result.Add(group1._teams[i++]);
                     }
@@ -158,9 +162,6 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.WriteLine($"Группа: {_name}");
-                Console.WriteLine("Команды:");
-
                 for (int i = 0; i < _ind; i++)
                 {
                     Console.WriteLine($"Команда {i + 1}:");

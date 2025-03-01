@@ -23,23 +23,16 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _place = 0; 
+                _place = 0;
             }
 
             public void SetPlace(int place)
             {
-                if (_place != 0) 
+                if (_place != 0)
                 {
                     Console.WriteLine("Место уже установлено");
                     return;
                 }
-
-                if (place < 1 || place > 18)
-                {
-                    Console.WriteLine("Некорректное значение места");
-                    return;
-                }
-
                 _place = place;
             }
 
@@ -56,31 +49,29 @@ namespace Lab_6
             private int _count;
 
             public string Name => _name;
-
             public Sportsman[] Sportsmen => _sportsmen;
 
             public int SummaryScore
             {
                 get
                 {
-                    if (_sportsmen == null || _sportsmen.Length == 0) return 0;
+                    if (_sportsmen == null || _count == 0)
+                        return 0;
 
-                    int score = 0;
-
-                    foreach (var sportsman in _sportsmen)
+                    int totalScore = 0;
+                    for (int i = 0; i < _count; i++)
                     {
-                        switch (sportsman.Place)
+                        switch (_sportsmen[i].Place)
                         {
-                            case 1: score += 5; break;
-                            case 2: score += 4; break;
-                            case 3: score += 3; break;
-                            case 4: score += 2; break;
-                            case 5: score += 1; break;
+                            case 1: totalScore += 5; break;
+                            case 2: totalScore += 4; break;
+                            case 3: totalScore += 3; break;
+                            case 4: totalScore += 2; break;
+                            case 5: totalScore += 1; break;
                             default: break;
                         }
                     }
-
-                    return score;
+                    return totalScore;
                 }
             }
 
@@ -88,21 +79,18 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_sportsmen == null || _sportsmen.Length == 0) return 0;
+                    if (_sportsmen == null || _count == 0)
+                        return 18;
 
-                    int topPlace = int.MaxValue;
-                    bool hasPlace = false;
-
-                    foreach (var sportsman in _sportsmen)
+                    int topPlace = 18;
+                    for (int i = 0; i < _count; i++)
                     {
-                        if (sportsman.Place > 0 && sportsman.Place < topPlace)
+                        if (_sportsmen[i].Place < topPlace && _sportsmen[i].Place != 0)
                         {
-                            topPlace = sportsman.Place;
-                            hasPlace = true;
+                            topPlace = _sportsmen[i].Place;
                         }
                     }
-
-                    return hasPlace ? topPlace : 0;
+                    return topPlace;
                 }
             }
 
@@ -131,31 +119,28 @@ namespace Lab_6
                 }
             }
 
-            public void Add(Sportsman[] sportsmen)
-            {
-                foreach (var sportsman in sportsmen)
-                {
-                    Add(sportsman);
-                }
-            }
 
-            public void Print()
+            public static void Print(Team[] teams)
             {
-                Console.WriteLine($"{Name} {SummaryScore} {TopPlace}");
+                foreach (var team in teams)
+                {
+                    Console.WriteLine($"{team.Name} {team.SummaryScore} {team.TopPlace}");
+                }
             }
 
 
             public static void Sort(Team[] teams)
             {
-                if (teams == null || teams.Length == 0) return;
+                if (teams == null || teams.Length == 0)
+                    return;
 
                 for (int i = 0; i < teams.Length - 1; i++)
                 {
                     for (int j = 0; j < teams.Length - 1 - i; j++)
                     {
-                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore
-                            || (teams[j].SummaryScore == teams[j + 1].SummaryScore &&
-                                teams[j].TopPlace > teams[j + 1].TopPlace))
+                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore ||
+                            (teams[j].SummaryScore == teams[j + 1].SummaryScore &&
+                             teams[j].TopPlace > teams[j + 1].TopPlace))
                         {
                             Team temp = teams[j];
                             teams[j] = teams[j + 1];
