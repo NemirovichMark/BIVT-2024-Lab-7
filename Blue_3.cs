@@ -15,8 +15,6 @@ namespace Lab_6
             private string _surname;
             private int[] _penaltytimes;
 
-            private int _count;
-
             // свойства
             public string Name { get { return _name; } }
             public string Surname { get { return _surname; } }
@@ -64,17 +62,15 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _penaltytimes = new int[10];
-
-                _count = 0;
+                _penaltytimes = new int[0];
             }
 
             // остальные методы
             public void PlayMatch(int time)
             {
                 if (_penaltytimes == null) return;
-                _penaltytimes[_count] = time;
-                _count++;
+                Array.Resize(ref _penaltytimes, _penaltytimes.Length + 1);
+                _penaltytimes[_penaltytimes.Length - 1] = time;
             }
 
             public static void Sort(Participant[] array)

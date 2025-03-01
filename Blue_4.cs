@@ -16,8 +16,6 @@ namespace Lab_6
             private string _name;
             private int[] _scores;
 
-            private int _count;
-
             //cвойства
             public string Name { get { return _name; } }
             public int[] Scores
@@ -52,17 +50,15 @@ namespace Lab_6
             public Team(string name)
             {
                 _name = name;
-                _scores = new int[20];
-
-                _count = 0;
+                _scores = new int[0];
             }
 
             //остальные методы
             public void PlayMatch(int result)
             {
                 if (_scores == null) return;
-                _scores[_count] = result;
-                _count++;
+                Array.Resize(ref _scores, _scores.Length + 1);
+                _scores[_scores.Length - 1] = result;
             }
 
             public void Print()
