@@ -81,7 +81,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_sportsmen == null) return 0;
+                    if (_sportsmen == null) return 18;
                     int winner = 18;
                     for (int i = 0; i < _sportsmen.Length; i++)
                     {
@@ -99,12 +99,12 @@ namespace Lab_6
 
                 _count = 0;
             }
-            public void Add(Sportsman sportsmen)
+            public void Add(Sportsman sportsman)
             {
                 if (_sportsmen == null || _count >= 6) return;
                 if (_count < 6)
                 {
-                    _sportsmen[_count++] = sportsmen;
+                    _sportsmen[_count++] = sportsman;
                 }
             }
             public void Add(Sportsman[] sportsmen)
