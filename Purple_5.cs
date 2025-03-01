@@ -27,7 +27,8 @@ namespace Lab_6
             public int CountVotes(Response[] responses, int questionNumber)
             {
                 if (responses == null || questionNumber > 3 || questionNumber < 1) return 0;
-                string elem = (questionNumber == 1 ? _animal : questionNumber == 2 ? _characterTrait : _concept); 
+                string elem = (questionNumber == 1 ? _animal : questionNumber == 2 ? _characterTrait : _concept);
+                if(elem == null) return 0;
                 return responses.Count(r => 
                     (questionNumber == 1 ? r.Animal : questionNumber == 2 ? r.CharacterTrait : r.Concept) == elem);
             }

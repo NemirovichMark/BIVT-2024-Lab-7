@@ -112,7 +112,7 @@ namespace Lab_6
                 Array.Resize(ref group._sportsmen, x._sportsmen.Length + y._sportsmen.Length);
                 int i = 0, j = 0, k = 0;
                 while (i != x._sportsmen.Length && j != y._sportsmen.Length) {
-                    if (x._sportsmen[i].Time < y._sportsmen[j].Time) group._sportsmen[k++] = x._sportsmen[i++];
+                    if (x._sportsmen[i].Time <= y._sportsmen[j].Time) group._sportsmen[k++] = x._sportsmen[i++];
                     else group._sportsmen[k++] = y._sportsmen[j++];
                 }
 
@@ -132,11 +132,11 @@ namespace Lab_6
                 Console.WriteLine();
             }
 
-            /*public static void PrintTable(Group group)
+            public static void PrintTable(Group group)
             {
                 Console.WriteLine("Name\tSurname\tTime");
                 foreach (Sportsman sportsman in group.Sportsmen) Console.WriteLine($"{sportsman.Name}\t{sportsman.Surname}\t{sportsman.Time}");
-            }*/
+            }
         }
     }
 }
