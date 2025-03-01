@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 
@@ -16,7 +16,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_name == null) return default;
                     return _name;
                 }
             }
@@ -24,10 +23,18 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_surname == null) return default;
                     return _surname;
                 }
             }
+
+            public double[] Jumps
+            {
+                get
+                {
+                    return (double[])_jumps.Clone(); 
+                }
+            }
+
 
             public double BestJump
             {
@@ -50,6 +57,7 @@ namespace Lab_6
 
             public void Jump(double result)
             {
+                if (_jumps == null) return;
                 if (_jumps != null)
                 {
                     for (int i = 0; i < _jumps.Length; i++)
@@ -61,6 +69,7 @@ namespace Lab_6
                         }
                     }
                 }
+                
             }
 
             public static void Sort(Participant[] array)
