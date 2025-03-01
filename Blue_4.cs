@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static Lab_6.Blue_4;
+using static System.Formats.Asn1.AsnWriter;
 
 namespace Lab_6
 {
@@ -50,14 +51,15 @@ namespace Lab_6
                 Console.Write($"{_name} ");
                 if (_scores == null)
                 {
-                    Console.WriteLine("0");
+                    Console.Write("0");
                 }
                 else {
-                    foreach (int score in _scores) {
-                        Console.Write($"{score} ");
-                    }
-                    Console.WriteLine();
+                    //foreach (int score in _scores) {
+                    //    Console.Write($"{score} ");
+                    //}
+                    Console.Write($"{TotalScore} ");
                 }
+                Console.WriteLine();
             }
         }
 
@@ -77,9 +79,10 @@ namespace Lab_6
             }
 
             public void Add(Team team_to_add) {
-                if (_teams.Length >= 12)
+                if (_teams_added >= 12)
                 {
-                    Console.WriteLine("В группе уже есть 12 команд");
+                    //Console.WriteLine("В группе уже есть 12 команд");
+                    return;
                 }
                 else {
                     if (_teams == null) return;
@@ -91,21 +94,18 @@ namespace Lab_6
 
             public void Add(Team[] teams_to_add)
             {
-                if (_teams.Length >= 12)
+                if (_teams_added >= 12)
                 {
-                    Console.WriteLine("В группе уже есть 12 команд.");
+                    // Console.WriteLine("В группе уже есть 12 команд.");
+                    return;
                 }
-                else if (_teams.Length + teams_to_add.Length > 12)
+                else if (_teams_added + teams_to_add.Length > 12)
                 {
-                    Console.WriteLine("Добавьте в группу меньше команд.");
+                    //Console.WriteLine("Добавьте в группу меньше команд.");
+                    return;
                 }
                 else {
-                    if (_teams == null) return;
-                    //int old_len = _teams.Length;
-                    //Array.Resize(ref _teams, _teams.Length + teams_to_add.Length);
-                    //for (int i = 0; i < _teams.Length; i++) {
-                    //    _teams[old_len + i] = teams_to_add[i];
-                    //}
+                    if (_teams == null || teams_to_add == null) return;
                     for (int i = 0; i < teams_to_add.Length; i++) {
                         _teams[_teams_added++] = teams_to_add[i];
                     }
@@ -114,32 +114,18 @@ namespace Lab_6
 
             public void Sort() {
                 if (_teams == null) return;
-                for (int i = 0; i < _teams.Length; i++) {
-                    for (int j = i; j < _teams.Length; j++) {
-                        if (_teams[i].TotalScore < _teams[j].TotalScore) { 
-                            Team tmp = _teams[i];
-                            _teams[i] = _teams[j];
-                            _teams[j] = tmp;
-                        }
-                    }
-                }
+                Team[] sorted_teams = null;
+                sorted_teams = _teams.OrderByDescending(t => t.TotalScore).ToArray();
+                _teams = sorted_teams;
             }
-
-            //private static bool CheckSort(Group group1, Group group2) {
-            //    for (int i = 0; i < group1.Teams.Length - 1; i++) {
-            //        if (group1.Teams[i + 1].TotalScore < group1.Teams[i].TotalScore) { 
-            //            return false;
-            //        }
-            //    }
-            //    return true;
-            //}
 
             public static Group Merge(Group group1, Group group2, int size) {
                 Group group = new Group("Финалисты");
                 int i = 0, j = 0, k = 0;
                 while (i < group1.Teams.Length && j < group2.Teams.Length)
                 {
-                    if (group1.Teams[i].TotalScore < group2.Teams[j].TotalScore)
+                    if (k == size) return group;
+                    if (group1.Teams[i].TotalScore >= group2.Teams[j].TotalScore)
                     {
                         group.Add(group1.Teams[i++]);
                     }
@@ -151,10 +137,12 @@ namespace Lab_6
 
                 while (i < group1.Teams.Length)
                 {
+                    if (k == size) return group;
                     group.Add(group1.Teams[i++]);
                 }
                 while (j < group2.Teams.Length)
                 {
+                    if (k == size) return group;
                     group.Add(group2.Teams[j++]);
                 }
 
@@ -163,7 +151,7 @@ namespace Lab_6
 
             public void Print()
             {
-                Console.Write($"{_name} ");
+                Console.WriteLine($"{_name} ");
                 foreach (Team team in _teams)
                 {
                     team.Print();
