@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 
 
@@ -18,7 +17,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_name == null) return default;
                     return _name;
                 }
             }
@@ -26,7 +24,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_surname == null) return default;
                     return _surname;
                 }
             }
@@ -35,7 +32,6 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return default;
                     return _marks;
                 }
             }
@@ -44,6 +40,7 @@ namespace Lab_6
             {
                 get
                 {
+                    if (_marks == null || _marks.Length == 0) return 0; 
                     double sum = 0;
                     for (int i = 0; i < _marks.Length; i++)
                     {
@@ -54,6 +51,7 @@ namespace Lab_6
             }
             public static void SortByAvgMark(Student[] array)
             {
+                if (array == null) return;
                 for (int i = 1, j = 2; i < array.Length;)
                 {
                     if (i == 0 || array[i].AvgMark <= array[i - 1].AvgMark)
@@ -98,7 +96,7 @@ namespace Lab_6
             }
         }
 
-        public class Group
+        public struct Group
         {
             private string _name;
             private Student[] _students;
@@ -144,16 +142,16 @@ namespace Lab_6
                 }
             }
 
-            public static int StudentsCount(Group group)
+            private static int StudentsCount(Group group)
             {
                 if (group._students == null) return 0;
                 return group._studentCount;
             }
 
-            public Group(string name, int initialCapacity = 30)
+            public Group(string name)
             {
                 _name = name;
-                _capacity = initialCapacity;
+                _capacity = 30;
                 _students = new Student[_capacity];
                 _studentCount = 0;
             }
