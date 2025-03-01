@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Purple_3
+    public class Purple_3
     {
         public struct Participant
         {
@@ -198,6 +198,19 @@ namespace Lab_6
                             i--;
                         }
                     }
+                }
+            }
+            void Print()
+            {
+                Console.WriteLine("{0}, {1}", _name, _surname);
+                foreach (double c in _places)
+                {
+                    Console.Write("{0}, ", c);
+                }
+                Console.WriteLine();
+                foreach (double c in _marks)
+                {
+                    Console.Write("{0}, ", c);
                 }
             }
         }

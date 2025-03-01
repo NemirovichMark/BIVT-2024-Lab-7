@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Purple_4
+    public class Purple_4
     {
         public struct Sportsman
         {
@@ -21,12 +21,12 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _time = -1;
+                _time = 0;
             }
 
             public void Run(double time)
             {
-                if (_time == -1) _time = time;
+                if (_time == 0) _time = time;
             }
 
             public void Print()
@@ -59,12 +59,13 @@ namespace Lab_6
             }
             public void Add(Sportsman s)
             {
+                if (_sportsmen == null) return;
                 Array.Resize(ref _sportsmen, _sportsmen.Length + 1);
                 _sportsmen[_sportsmen.Length - 1] = s;
             }
             public void Add(Sportsman[] s)
             {
-                if (s == null) return;
+                if (s == null || _sportsmen == null) return;
                 int l = _sportsmen.Length;
                 Array.Resize(ref _sportsmen, s.Length + l);
                 Array.Copy(s, 0, _sportsmen, l, s.Length);
@@ -77,11 +78,21 @@ namespace Lab_6
             }
             public void Sort()
             {
-                if (_sportsmen == null) return;
-                Array.Sort(_sportsmen, (x, y) => x.Time.CompareTo(y.Time));
+                int n = _sportsmen.Length;
+                for (int i = 0; i<n; i++)
+                {
+                    for (int j = 1; j<n - i; j++)
+                    {
+                        if (_sportsmen[j].Time < _sportsmen[j - 1].Time)
+                        {
+                            (_sportsmen[j], _sportsmen[j - 1]) = (_sportsmen[j - 1], _sportsmen[j]);
+                        }
+                    }
+                }
             }
             public static Group Merge(Group g1, Group g2)
-            {                
+            {
+                if (g1.Sportsmen == null || g2.Sportsmen == null) return new Group("Финалисты");
                 int i = 0, j = 0;
                 Sportsman[] s1 = g1.Sportsmen, s2 = g2.Sportsmen;
                 int l1 = s1.Length, l2 = s2.Length;

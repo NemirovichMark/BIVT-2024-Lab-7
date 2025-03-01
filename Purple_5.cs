@@ -8,7 +8,7 @@ using static Lab_6.Purple_5;
 
 namespace Lab_6
 {
-    internal class Purple_5
+    public class Purple_5
     {
         public struct Response
         {
@@ -35,13 +35,13 @@ namespace Lab_6
                 {
                     switch (questionNumber)
                     {
-                        case 0:
+                        case 1:
                             ans += ((response.Animal == "" || response.Animal == null) ? 0 : 1);
                             break;
-                        case 1:
+                        case 2:
                             ans += ((response.CharacterTrait == "" || response.CharacterTrait == null) ? 0 : 1);
                             break;
-                        case 2:
+                        case 3:
                             ans += ((response.Concept == "" || response.Concept == null) ? 0 : 1);
                             break;
                     }
@@ -59,7 +59,7 @@ namespace Lab_6
             Response[] _responce;
 
             public string Name { get { return _name; } }
-            public Response[] Response { get { return (Response[])_responce.Clone(); } }
+            public Response[] Responses { get { return (Response[])_responce.Clone(); } }
             public Research(string name)
             {
                 _name = name;
@@ -67,7 +67,7 @@ namespace Lab_6
             }
             public void Add(string[] answers)
             {
-                if (answers == null || answers.Length != 3) return;
+                if (answers == null || answers.Length != 3 || _responce == null) return;
                 Response a = new Response(answers[0], answers[1], answers[2]);
                 Array.Resize(ref _responce, _responce.Length + 1);
                 _responce[_responce.Length - 1] = a;
@@ -75,6 +75,7 @@ namespace Lab_6
            
             public string[] GetTopResponses(int question)
             {
+                if (_responce == null) return null;
                 string[] resp = new string[_responce.Length];
                 for (int i = 0; i<_responce.Length; i++)
                 {

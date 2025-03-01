@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-    internal class Purple_2
+    public class Purple_2
     {
         public struct Participant
         {
@@ -22,7 +22,7 @@ namespace Lab_6
             }
             public string Name { get { return _name; } }
             public string Surname { get { return _surname; } }
-            public double Distance { get { return _distance; } }
+            public int Distance { get { return _distance; } }
             public int[] Marks { 
                 get {
                     if (_marks == null) return null;
@@ -61,7 +61,17 @@ namespace Lab_6
             public static void Sort(Participant[] array)
             {
                 if (array == null) return;
-                Array.Sort(array, (x, y) => y.Result.CompareTo(x.Result));
+                int n = array.Length;
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 1; j<n-1; j++)
+                    {
+                        if (array[j].Result < array[j - 1].Result)
+                        {
+                            (array[j], array[j - 1]) = (array[j - 1], array[j]);
+                        }
+                    }
+                }
             }
             public void Print()
             {

@@ -47,7 +47,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_marks == null) return 0;
+                    if (_marks == null || _coefs == null) return 0;
                     int mn = 1000000, mx = -100000000;
                     double totalsum = 0;
                     for (int jump = 0; jump<4; jump++)
@@ -96,15 +96,38 @@ namespace Lab_6
                 }
                 _jumpIndex++;
             }
-
-        }
-        public static void Sort(Participant[] array)
-        {
-            if (array == null)
+            public static void Sort(Participant[] array)
             {
-                return;
+                if (array == null) return;
+
+                int n = array.Length;
+                for (int i = 0; i<n; i++)
+                {
+                    for (int j = 1; j<n - i; j++)
+                    {
+                        if (array[j].TotalScore > array[j - 1].TotalScore)
+                        {
+                            (array[j], array[j - 1]) = (array[j - 1], array[j]);
+                        }
+                    }
+                }
             }
-            Array.Sort(array, (x,y) => y.TotalScore.CompareTo(x.TotalScore));
+            public void Print()
+            {
+                Console.WriteLine("{0}, {1}", _name, _surname);
+                foreach (double c in _coefs){
+                    Console.Write("{0}, ", c);
+                }
+                Console.WriteLine();
+                for (int i = 0; i < _marks.GetLength(0); i++)
+                {
+                    for (int j = 0; j< _marks.GetLength(1); j++)
+                    {
+                        Console.Write("{0:d}", _marks[i, j]);
+                    }
+                    Console.WriteLine();
+                }
+            }
         }
 
     }
