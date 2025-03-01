@@ -222,9 +222,9 @@ namespace Lab_6
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
             Console.WriteLine("Green_5");
-            Green_5.Group bntm = new Green_5.Group("БНТМ");
-            Green_5.Group bek = new Green_5.Group("БЭК");
-            Green_5.Group bpm = new Green_5.Group("БПМ");
+            Green_5.Group bntm = new Green_5.Group("БНТМ", 10);
+            Green_5.Group bek = new Green_5.Group("БЭК", 10);
+            Green_5.Group bpm = new Green_5.Group("БПМ", 10);
 
             // Студенты БНТМ
             Green_5.Student[] bntmStudents =
@@ -248,7 +248,8 @@ namespace Lab_6
             };
             for (int i = 0; i < bntmStudents.Length; i++)
             {
-                foreach (var mark in bntmMarks[i]) {
+                foreach (var mark in bntmMarks[i])
+                {
                     bntmStudents[i].Exam(mark);
                 }
                 bntm.Add(bntmStudents[i]);
@@ -299,10 +300,13 @@ namespace Lab_6
                 bpm.Add(bpmStudents[i]);
             }
 
-            // Вывод средних оценок групп
-            Console.WriteLine($"БНТМ: {bntm.AvgMark:F2}");
-            Console.WriteLine($"БЭК: {bek.AvgMark:F2}");
-            Console.WriteLine($"БПМ: {bpm.AvgMark:F2}");
+            Green_5.Group[] groups = { bntm, bek, bpm };
+            Green_5.Group.SortByAvgMark(groups);
+
+            foreach (var group in groups)
+            {
+                Console.WriteLine($"{group.Name}: {group.AvgMark:F2}");
+            }
         }
     }
 }

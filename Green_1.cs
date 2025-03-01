@@ -39,13 +39,13 @@ namespace Lab_6
                 _surname = surname;
                 _group = group;
                 _trainer = trainer;
-                _result = -1;
+                _result = 0;
             }
 
             //остальные методы
             public void Run(double result)
             {
-                if (_result == -1)
+                if (_result == 0)
                 {
                     _result = result;
                     if (result <= _standard)

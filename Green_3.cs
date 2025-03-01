@@ -18,14 +18,38 @@ namespace Lab_6
             //свойства
             public string Name => _name;
             public string Surname => _surname;
-            public int[] Marks => _marks;
+            public int[] Marks
+            {
+                get
+                {
+                    if (_marks == null) return null;
+                    int[] copy = new int[_marks.Length];
+                    Array.Copy(_marks, copy, _marks.Length);
+                    return copy;
+                }
+            }
             public bool IsExpelled => _isExpelled;
             public double AvgMark
             {
                 get
                 {
                     if (_marks == null || _marks.Length == 0) return 0;
-                    return _marks.Average();
+
+                    int sum = 0;
+                    int count = 0;
+                    for (int i = 0; i < _marks.Length; i++)
+                    {
+                        sum += _marks[i];
+                        count++;
+                        if (_marks[i] <=2)
+                        {
+                            break;
+                        }
+                    }
+
+                    if (count == 0) return 0;
+
+                    return (double)sum / count;
                 }
             }
 
@@ -34,21 +58,22 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _marks = new int[3] { 2, 2, 2 };
+                _marks = new int[3] {0, 0, 0};
                 _isExpelled = false;
             }
             public void Exam(int mark)
             {
                 if (_isExpelled) return;
                 if (mark < 2 || mark > 5) return;
-                if (mark == 2)
+
+                if (mark <= 2)
                 {
                     _isExpelled = true;
-                    return;
                 }
+
                 for (int i = 0; i < _marks.Length; i++)
                 {
-                    if (_marks[i] == 2)
+                    if (_marks[i] == 0)
                     {
                         _marks[i] = mark;
                         break;

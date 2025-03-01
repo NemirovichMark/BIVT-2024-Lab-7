@@ -10,15 +10,24 @@ namespace Lab_6
     {
         public struct Student
         {
-            //поля
+            // поля
             private string _name;
             private string _surname;
             private int[] _marks;
 
-            //свойства
-            public string Name  => _name;
-            public string Surname  => _surname;
-            public int[] Marks  => _marks;
+            // свойства
+            public string Name => _name;
+            public string Surname => _surname;
+            public int[] Marks
+            {
+                get
+                {
+                    if (_marks == null) return null;
+                    int[] copy = new int[_marks.Length];
+                    Array.Copy(_marks, copy, _marks.Length);
+                    return copy;
+                }
+            }
             public double AvgMark
             {
                 get
@@ -28,7 +37,7 @@ namespace Lab_6
                 }
             }
 
-            //конструкторы
+            // конструкторы
             public Student(string name, string surname)
             {
                 _name = name;
@@ -36,10 +45,9 @@ namespace Lab_6
                 _marks = new int[5];
             }
 
-            //остальные методы
+            // остальные методы
             public void Exam(int mark)
             {
-                if (_marks == null) return;
                 if (mark < 2 || mark > 5) return;
                 for (int i = 0; i < _marks.Length; i++)
                 {
@@ -51,54 +59,60 @@ namespace Lab_6
                 }
             }
 
-            public static void SortByAvgMark(Student [] array)
-            {
-                if (array == null) return;
-                for (int i = 0; i < array.Length - 1; i++)
-                {
-                    for (int j = 0; j < array.Length - 1 - i; j++)
-                    {
-                        if (array[j].AvgMark < array[j+1].AvgMark)
-                        {
-                            (array[j],array[j+1])=(array[j+1],array[j]);
-                        }
-                    }
-                }
-            }
-
             public void Print()
             {
-                Console.WriteLine($"{Name} {Surname} {AvgMark}");
+                Console.WriteLine($"{Name} {Surname} {AvgMark:F2}");
             }
         }
 
         public struct Group
         {
-            //поля
+            // поля
             private string _name;
-            private List<Student> _students;
+            private Student[] _students;
+            private int _studentCount;
 
-            //свойства
+            // свойства
             public string Name => _name;
-            public List<Student> Students => _students;
-            public double AvgMark => _students.Average(s => s.AvgMark); // лямбда выражение для каждого студента мы берем его свойсвто среднее занчение
+            public Student[] Students => _students;
+            public double AvgMark
+            {
+                get
+                {
+                    if (_studentCount == 0) return 0;
+                    double totalAvg = 0;
+                    for (int i = 0; i < _studentCount; i++)
+                    {
+                        totalAvg += _students[i].AvgMark;
+                    }
+                    return totalAvg / _studentCount;
+                }
+            }
 
-
-            //конструкторы
-            public Group(string name)
+            // конструкторы
+            public Group(string name, int maxStudents)
             {
                 _name = name;
-                _students = new List<Student>();
+                _students = new Student[maxStudents];
+                _studentCount = 0;
             }
 
-            //остальные методы
+            // остальные методы
             public void Add(Student student)
             {
-                _students.Add(student);
+                if (_studentCount < _students.Length)
+                {
+                    _students[_studentCount] = student;
+                    _studentCount++;
+                }
             }
+
             public void Add(params Student[] students)
             {
-                _students.AddRange(students);
+                foreach (var student in students)
+                {
+                    Add(student);
+                }
             }
 
             public static void SortByAvgMark(Group[] groups)
@@ -109,20 +123,17 @@ namespace Lab_6
                     {
                         if (groups[j].AvgMark < groups[j + 1].AvgMark)
                         {
-                            Group temp = groups[j];
-                            groups[j] = groups[j + 1];
-                            groups[j + 1] = temp;
+                            (groups[j], groups[j + 1]) = (groups[j + 1], groups[j]);   
                         }
                     }
                 }
             }
-
             public void Print()
             {
                 Console.WriteLine($"{_name} {AvgMark:F2}");
-                foreach (var student in _students)
+                for (int i = 0; i < _studentCount; i++)
                 {
-                    student.Print();
+                    _students[i].Print();
                 }
             }
         }
