@@ -41,17 +41,8 @@ namespace Lab_6
             private int _cnt;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen
-            {
-                get
-                {
-                    if (_sportsmen == null) return null;
-                    Sportsman[] sporty = new Sportsman[_sportsmen.Length];
-                    for (int i = 0; i < _sportsmen.Length; i++)
-                        sporty[i] = _sportsmen[i];
-                    return sporty;
-                }
-            }
+            public Sportsman[] Sportsmen => _sportsmen;
+           
 
             public int SummaryScore
             {
@@ -68,7 +59,7 @@ namespace Lab_6
                             case 3: sum += 3; break;
                             case 4: sum += 2; break;
                             case 5: sum += 1; break;
-                            default: sum += 0; break;
+                            default: break;
                         }
 
                     }
@@ -85,7 +76,7 @@ namespace Lab_6
                     int top = int.MaxValue;
                     foreach(var sportsmen in _sportsmen)
                     {
-                        if(sportsmen.Place<top)
+                        if(sportsmen.Place<top && top !=0)
                             top = sportsmen.Place;
                     }
                     return top;
@@ -101,8 +92,8 @@ namespace Lab_6
             public void Add(Sportsman sportsman)
             {
 
-                if (_sportsmen == null)                
-                    _sportsmen = new Sportsman[6];
+                if (_sportsmen == null) return;                
+                    
                 
                 if (_cnt < _sportsmen.Length)                
                     _sportsmen[_cnt++] = sportsman;
@@ -134,9 +125,7 @@ namespace Lab_6
                         {
                             if (teams[j].TopPlace > teams[j + 1].TopPlace)
                             {
-                                Team temp = teams[j];
-                                teams[j] = teams[j + 1];
-                                teams[j + 1] = temp;
+                                (teams[j+1],  teams[j]) = (teams[j], teams[j+1]);
                             }
                         }
                     }
