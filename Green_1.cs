@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Linq;
 
 
@@ -15,7 +15,7 @@ namespace Lab_6
             private double _result;
 
             
-            public static readonly double Standard; 
+            private static readonly double Standard; 
             private static int PassedTheStandardCount; 
 
             
