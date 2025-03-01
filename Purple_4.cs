@@ -132,11 +132,11 @@ namespace Lab_6
                 Console.WriteLine();
             }
 
-            public static void PrintTable(Group group)
-            {
-                Console.WriteLine("Name\tSurname\tTime");
-                foreach (Sportsman sportsman in group.Sportsmen) Console.WriteLine($"{sportsman.Name}\t{sportsman.Surname}\t{sportsman.Time}");
-            }
+            // public static void PrintTable(Group group)
+            // {
+            //     Console.WriteLine("Name\tSurname\tTime");
+            //     foreach (Sportsman sportsman in group.Sportsmen) Console.WriteLine($"{sportsman.Name}\t{sportsman.Surname}\t{sportsman.Time}");
+            // }
         }
     }
 }
