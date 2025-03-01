@@ -46,8 +46,8 @@ namespace Lab_6
                 get
                 {
                     if (_sportsmen == null) return null;
-                    Sportsman[] sporty = new Sportsman[Sportsmen.Length];
-                    for (int i = 0; i < Sportsmen.Length; i++)
+                    Sportsman[] sporty = new Sportsman[_sportsmen.Length];
+                    for (int i = 0; i < _sportsmen.Length; i++)
                         sporty[i] = _sportsmen[i];
                     return sporty;
                 }
