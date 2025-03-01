@@ -86,7 +86,7 @@ namespace Lab_6
                 {
                     for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        if (array[j + 1].TotalTime > array[j].TotalTime)
+                        if (array[j + 1].TotalTime < array[j].TotalTime)
                         {
                             (array[j + 1], array[j]) = (array[j], array[j + 1]);
                         }
