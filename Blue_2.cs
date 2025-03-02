@@ -6,13 +6,10 @@ using System.Threading.Tasks;
 
 namespace Lab_6
 {
-
-
     public class Blue_2
     {
         public struct Participant
         {
-
             private string name;
             private string surname;
             private int[,] marks;
@@ -36,13 +33,14 @@ namespace Lab_6
                     return surname;
                 }
             }
+
             public int[,] Marks
             {
                 get
                 {
                     if (marks == null)
                     {
-                        return null; 
+                        return null;
                     }
                     int[,] marksCopy = new int[marks.GetLength(0), marks.GetLength(1)];
                     Array.Copy(marks, marksCopy, marks.Length);
@@ -55,13 +53,15 @@ namespace Lab_6
                 get
                 {
                     int sum = 0;
-                    if (marks == null)
+                    if (marks == null || marks.GetLength(0) == 0 || marks.GetLength(1) == 0)
                     {
                         return 0;
-                    }      
-                    for (int i = 0; i < 5; i++)
+                    }
+
+                    // Исправление: перебор массива marks с учетом реальных размеров
+                    for (int i = 0; i < marks.GetLength(0); i++)
                     {
-                        for (int j = 0; j < 2; j++)
+                        for (int j = 0; j < marks.GetLength(1); j++)
                         {
                             sum += marks[i, j];
                         }
@@ -69,50 +69,53 @@ namespace Lab_6
                     return sum;
                 }
             }
+
             public Participant(string name, string surname)
             {
                 this.name = name;
                 this.surname = surname;
-                this.marks = new int[2, 5];
+                this.marks = new int[2, 5];  // 2 строки, 5 столбцов
             }
+
             public void Jump(int[] result)
             {
-                if (marks == null)
-                {
-                    return;
-                }
-                int jump = 0;
-                for (int i = 0; i < 5; i++)
-                {
-                    if (marks[i, jump] != 0)
-                    {
-                        jump = 1;
-                        break;
-                    }
-                }
-                if (jump == 1)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        if (marks[i, jump] != 0)
-                        {
-                            jump = -1;
-                            break;
-                        }
-                    }
-                }
-                if (jump != -1 && result.Length == 5)
-                {
-                    for (int i = 0; i < 5; i++)
-                    {
-                        marks[i, jump] = result[i];
-                    }
-                }
-                else
+                if (marks == null || result.Length != marks.GetLength(1))
                 {
                     return;
                 }
 
+                int jump = -1; // Изначально jump равен -1
+                for (int i = 0; i < marks.GetLength(0); i++)
+                {
+                    // Проверка на пустые значения в marks для выявления первого ненулевого значения
+                    if (marks[i, 0] != 0)
+                    {
+                        jump = 0;
+                        break;
+                    }
+                }
+
+                if (jump == -1)
+                {
+                    for (int i = 0; i < marks.GetLength(0); i++)
+                    {
+                        // Проверка второго столбца для замены
+                        if (marks[i, 1] != 0)
+                        {
+                            jump = 1;
+                            break;
+                        }
+                    }
+                }
+
+                // Если нашли подходящий столбец (jump = 0 или 1) и результат имеет нужную длину
+                if (jump != -1 && result.Length == marks.GetLength(1))
+                {
+                    for (int i = 0; i < marks.GetLength(0); i++)
+                    {
+                        marks[i, jump] = result[i];  // Заполнение marks на найденной позиции
+                    }
+                }
             }
 
             public static void Sort(Participant[] array)
@@ -138,12 +141,12 @@ namespace Lab_6
                     for (int j = 0; j < columns; j++)
                     {
                         Console.Write(marks[i, j]);
-                        if (j < columns - 1) 
+                        if (j < columns - 1)
                         {
                             Console.Write(" ");
                         }
                     }
-                    Console.WriteLine(); 
+                    Console.WriteLine();
                 }
             }
         }
