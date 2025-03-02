@@ -17,7 +17,16 @@ namespace Lab_6
 
             //свойства
             public string Name => _name;
-            public int[] Scores => _scores;
+            public int[] Scores
+            {
+                get
+                {
+                    if (_scores == null) return null;
+                    int[] copyArray = new int[_scores.Length];
+                    Array.Copy(_scores, copyArray, copyArray.Length);
+                    return copyArray;
+                }
+            }
 
             public int TotalScore
             {
@@ -111,9 +120,8 @@ namespace Lab_6
             public static Group Merge(Group group1, Group group2, int size)
             {
                 Group finalists = new Group("Финалисты");
+
                 if (group1.Teams == null || group2.Teams == null) return default(Group);
-                group1.Sort();
-                group2.Sort();
 
                 int index1 = 0;
                 int index2 = 0;
@@ -142,8 +150,6 @@ namespace Lab_6
                 {
                     finalists.Add(group2.Teams[index2++]);
                 }
-
-
                 return finalists;
             }
             public void Print()

@@ -15,6 +15,7 @@ namespace Lab_6
             private string _surname;
             private int[,] _marks;
 
+            private int _counterJump;
             //свойства
             public string Name => _name;
             public string Surname => _surname;
@@ -59,34 +60,19 @@ namespace Lab_6
                 _name = name;
                 _surname = surname;
                 _marks = new int[2, 5];
+                _counterJump = 0;
             }
 
             //методы
             public void Jump(int[] result)
             {
-                if (result == null || result.Length != 5) { return; }
+                if (result == null || _marks == null || _counterJump >= 2) { return; }
 
-                for (int i = 0; i < 2; i++)
+                for (int j = 0; j < 5; j++) 
                 {
-                    bool isJumpEmpty = true;
-                    for (int j = 0; j < 5; j++)
-                    {
-                        if (_marks[i, j] != 0)
-                        {
-                            isJumpEmpty = false;
-                            break;
-                        }
-                    }
-
-                    if (isJumpEmpty)
-                    {
-                        for (int j = 0; j < 5; j++)
-                        {
-                            _marks[i, j] = result[j];
-                        }
-                        return;
-                    }
+                    _marks[_counterJump, j] = result[j];
                 }
+                _counterJump++;
             }
             public static void Sort(Participant[] array)
             {
