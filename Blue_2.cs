@@ -22,7 +22,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if(marks == null) return null;
+                    if(marks == null || marks.Length==0) return null;
                     int[,] copyArray = new int[marks.GetLength(0), marks.GetLength(1)];
                     Array.Copy(marks, copyArray, marks.Length);
                     return copyArray;
@@ -32,7 +32,7 @@ namespace Lab_6
             {
                 get
                 {
-                    if (marks == null) return 0; // Проверка на инициализацию
+                    if (marks == null || marks.Length==0) return 0; // Проверка на инициализацию
 
                     int total = 0;
                     for (int i = 0; i < marks.GetLength(0); i++)
@@ -72,7 +72,10 @@ namespace Lab_6
                 {
                     scoresToTake = 5; 
                 }
-
+                if (marks == null || marks.Length == 0)
+                {
+                    return;
+                }
                 for (int i = 0; i < marks.GetLength(0); i++)
                 {
                     bool isEmpty = true;
