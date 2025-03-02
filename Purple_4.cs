@@ -44,16 +44,17 @@ namespace Lab_6
             private Sportsman[] _sportsmen;
 
             public string Name => _name;
-            public Sportsman[] Sportsmen
-            {
-                get
-                {
-                    if (_sportsmen == null) return null;
-                    Sportsman[] sportsmen = new Sportsman[_sportsmen.Length];
-                    Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
-                    return sportsmen;
-                }
-            }
+
+            public Sportsman[] Sportsmen => _sportsmen;
+            // {
+            //     get
+            //     {
+            //         if (_sportsmen == null) return null;
+            //         Sportsman[] sportsmen = new Sportsman[_sportsmen.Length];
+            //         Array.Copy(_sportsmen, sportsmen, _sportsmen.Length);
+            //         return sportsmen;
+            //     }
+            // }
 
             public Group(string name)
             {
@@ -101,11 +102,13 @@ namespace Lab_6
                 Group group = new Group("Финалисты");
                 if (x._sportsmen == null && y._sportsmen == null) return group;
                 if (x._sportsmen == null) {
-                    Array.Copy(y._sportsmen, group._sportsmen, y._sportsmen.Length);
+                    // Array.Copy(y._sportsmen, group._sportsmen, y._sportsmen.Length);
+                    group._sportsmen = y._sportsmen;
                     return group;
                 }
                 if (y._sportsmen == null) {
-                    Array.Copy(x._sportsmen, group._sportsmen, x._sportsmen.Length);
+                    // Array.Copy(x._sportsmen, group._sportsmen, x._sportsmen.Length);
+                    group._sportsmen = x._sportsmen;
                     return group;
                 }
 
