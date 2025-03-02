@@ -72,9 +72,9 @@ namespace Lab_6
             {
                 get
                 {
-                    if (_sportsmen == null) return 18;
+                    if (_sportsmen == null) return 0;
                     int winner = 18;
-                    for (int i = 0; i < _sportsmen.Length; i++)
+                    for (int i = 0; i < _count; i++)
                     {
                         if (_sportsmen[i].Place < winner) winner = _sportsmen[i].Place;
                     }
