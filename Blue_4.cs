@@ -99,19 +99,19 @@ namespace Lab_6
             //остальные методы
             public void Add(Team teams)
             {
-                if (_teams == null || _count >= 12) return;
-                if (_count < 12)
+                if (_teams == null || _count >= _teams.Length) return;
+                if (_count < _teams.Length)
                 {
                     _teams[_count++] = teams;
                 }
             }
             public void Add(Team[] teams)
             {
-                if (_teams == null || _count >= 12) return;
+                if (_teams == null || _count >= _teams.Length) return;
                 for (int i = 0; i < _teams.Length; i++)
                 {
-                    if (_count >= 12) return;
-                    if (_count < 12)
+                    if (_count >= _teams.Length) return;
+                    if (_count < _teams.Length)
                     {
                         _teams[_count++] = teams[i];
                     }
@@ -136,7 +136,7 @@ namespace Lab_6
             {
                 Group merged = new Group("Финалисты");
                 int i = 0, j = 0;
-                while (i < size && j < size)
+                while (i < size / 2 && j < size / 2)
                 {
                     if (group1._teams[i].TotalScore >= group2._teams[j].TotalScore)
                     {
@@ -149,12 +149,12 @@ namespace Lab_6
                         j++;
                     }
                 }
-                while (i < size)
+                while (i < size / 2)
                 {
                     merged.Add(group1._teams[i]);
                     i++;
                 }
-                while (j < size)
+                while (j < size / 2)
                 {
                     merged.Add(group2._teams[j]);
                     j++;
