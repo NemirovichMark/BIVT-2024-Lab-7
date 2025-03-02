@@ -67,16 +67,7 @@ namespace Lab_6
             private Team[] _teams;
             private int _index;
             public string Name => _name;
-            public Team[] Teams
-            {
-                get
-                {
-                    if (_teams == null) return default(Team[]);
-                    Team[] res = new Team[_teams.Length];
-                    for (int i = 0; i < _teams.Length; i++) res[i] = _teams[i];
-                    return res;
-                }
-            }
+            public Team[] Teams => _teams;
             public Group(string name)
             {
                 _name = name;
