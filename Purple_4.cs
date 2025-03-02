@@ -31,6 +31,7 @@ namespace Lab_6
             {
                 if (!_isNoTime) return;
                 _time = time;
+                _isNoTime = false;
             }
 
             public void Print()

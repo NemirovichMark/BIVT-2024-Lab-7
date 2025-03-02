@@ -159,8 +159,8 @@ namespace Lab_6
                     else
                     {
                         var temp = array[i];
-                        array[i-1] = array[i];
-                        array[i] = temp;
+                        array[i] = array[i-1];
+                        array[i-1] = temp;
                         var a = answers[i];
                         answers[i] = answers[i - 1];
                         answers[i-1] = a;

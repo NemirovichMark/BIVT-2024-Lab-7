@@ -75,10 +75,11 @@ namespace Lab_6
 
                 for (int i = 1, j = 2; i < array.Length;)
                 {
-                    if (i == 0 || array[i - 1].Result > array[i].Result)
+                    if (i == 0 || array[i - 1].Result >= array[i].Result)
                     {
                         i = j;
                         j++;
+                        Console.WriteLine(1);
                     }
                     else
                     {
