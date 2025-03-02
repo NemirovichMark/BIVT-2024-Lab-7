@@ -7,86 +7,89 @@ using Lab_6;
 
 namespace Lab_6
 {
-    public struct Participant
+    public class Blue_2
     {
-        private string _name;
-        private string _surname;
-        private int[,] _marks;
-
-        public string Name => _name;
-        public string Surname => _surname;
-        public int[,] Marks => _marks;
-
-        public int TotalScore
+        public struct Participant
         {
-            get
+            private string _name;
+            private string _surname;
+            private int[,] _marks;
+
+            public string Name => _name;
+            public string Surname => _surname;
+            public int[,] Marks => _marks;
+
+            public int TotalScore
             {
-                int sum = 0;
+                get
+                {
+                    int sum = 0;
+                    for (int i = 0; i < 2; i++)
+                    {
+                        for (int j = 0; j < 5; j++)
+                        {
+                            sum += _marks[i, j];
+                        }
+                    }
+                    return sum;
+                }
+            }
+
+            public Participant(string name, string surname)
+            {
+                _name = name;
+                _surname = surname;
+                _marks = new int[2, 5];
+            }
+
+            public void Jump(int[] result)
+            {
+                if (result == null || result.Length != 5) return;
+
                 for (int i = 0; i < 2; i++)
                 {
-                    for (int j = 0; j < 5; j++)
+                    bool isJumpEmpty = _marks[i, 0] == 0;
+                    if (isJumpEmpty)
                     {
-                        sum += _marks[i, j];
+                        for (int j = 0; j < 5; j++)
+                        {
+                            _marks[i, j] = result[j];
+                        }
+                        break;
                     }
                 }
-                return sum;
             }
-        }
 
-        public Participant(string name, string surname)
-        {
-            _name = name;
-            _surname = surname;
-            _marks = new int[2, 5];
-        }
-
-        public void Jump(int[] result)
-        {
-            if (result == null || result.Length != 5) return;
-
-            for (int i = 0; i < 2; i++)
+            public static void Sort(Participant[] array)
             {
-                bool isJumpEmpty = _marks[i, 0] == 0;
-                if (isJumpEmpty)
+                if (array == null || array.Length == 0) return;
+
+                int index = 1;
+                int lastSorted = 0;
+
+                while (index < array.Length)
                 {
-                    for (int j = 0; j < 5; j++)
+                    if (index == 0 || array[index - 1].TotalScore >= array[index].TotalScore)
                     {
-                        _marks[i, j] = result[j];
+                        lastSorted = index;
+                        index++;
                     }
-                    break;
+                    else
+                    {
+                        var temp = array[index];
+                        array[index] = array[index - 1];
+                        array[index - 1] = temp;
+
+                        index = lastSorted;
+                        lastSorted--;
+                    }
                 }
             }
-        }
 
-        public static void Sort(Participant[] array)
-        {
-            if (array == null || array.Length == 0) return;
-
-            int index = 1;
-            int lastSorted = 0;
-
-            while (index < array.Length)
+            public void Print()
             {
-                if (index == 0 || array[index - 1].TotalScore >= array[index].TotalScore)
-                {
-                    lastSorted = index;
-                    index++;
-                }
-                else
-                {
-                    var temp = array[index];
-                    array[index] = array[index - 1];
-                    array[index - 1] = temp;
-
-                    index = lastSorted;
-                    lastSorted--;
-                }
+                Console.WriteLine($"Name: {Name}, Surname: {Surname}, Total_score: {TotalScore}");
             }
-        }
-
-        public void Print()
-        {
-            Console.WriteLine($"Name: {Name}, Surname: {Surname}, Total_score: {TotalScore}");
         }
     }
 }

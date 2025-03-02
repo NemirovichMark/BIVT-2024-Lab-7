@@ -119,6 +119,25 @@ namespace Lab_6
                 }
             }
 
+            public void Add(Sportsman[] sportsmen)
+            {
+                if (sportsmen == null || sportsmen.Length == 0)
+                    return;
+
+                foreach (var sportsman in sportsmen)
+                {
+                    if (_count < 6)
+                    {
+                        _sportsmen[_count] = sportsman;
+                        _count++;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Команда уже заполнена");
+                        break;
+                    }
+                }
+            }
 
             public static void Print(Team[] teams)
             {
@@ -127,7 +146,6 @@ namespace Lab_6
                     Console.WriteLine($"{team.Name} {team.SummaryScore} {team.TopPlace}");
                 }
             }
-
 
             public static void Sort(Team[] teams)
             {
@@ -138,9 +156,9 @@ namespace Lab_6
                 {
                     for (int j = 0; j < teams.Length - 1 - i; j++)
                     {
-                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore ||
-                            (teams[j].SummaryScore == teams[j + 1].SummaryScore &&
-                             teams[j].TopPlace > teams[j + 1].TopPlace))
+                        if (teams[j].SummaryScore < teams[j + 1].SummaryScore
+                            || (teams[j].SummaryScore == teams[j + 1].SummaryScore &&
+                                teams[j].TopPlace > teams[j + 1].TopPlace))
                         {
                             Team temp = teams[j];
                             teams[j] = teams[j + 1];
