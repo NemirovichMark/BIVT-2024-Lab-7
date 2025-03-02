@@ -1,75 +1,35 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_6
 {
-
-
     public class Blue_2
     {
         public struct Participant
         {
-
             private string name;
             private string surname;
             private int[,] marks;
+            private int ind;
 
-            public void Print()
-            {
-                Console.Write("Name: ");
-                Console.WriteLine(name);
+            public string Name => this.name;
+            public string Surname => this.surname;
 
-                Console.Write("Surname: ");
-                Console.WriteLine(surname);
-
-                Console.Write("Marks: ");
-                if (marks == null)
-                {
-                    return;
-                }
-                for (int i = 0; i < marks.GetLength(0); i++)
-                {
-                    for (int j = 0; j < marks.GetLength(1); j++)
-                    {
-                        Console.Write(marks[i, j]);
-                        Console.Write(" ");
-                    }
-                    Console.WriteLine();
-                }
-            }
-
-            public string Name
-            {
-                get
-                {
-                    if (name == null)
-                        return null;
-                    return name;
-                }
-            }
-
-            public string Surname
-            {
-                get
-                {
-                    if (surname == null)
-                        return null;
-                    return surname;
-                }
-            }
             public int[,] Marks
             {
                 get
                 {
-                    if (marks == null)
+                    if (this.marks == null || this.marks.GetLength(0) == 0 || this.marks.GetLength(1) == 0)
                     {
-                        return null; 
+                        return null;
                     }
-                    int[,] copy = new int[marks.GetLength(0), marks.GetLength(1)];
-                    Array.Copy(marks, copy, marks.Length);
+                    int[,] copy = new int[this.marks.GetLength(0), this.marks.GetLength(1)];
+                    for (int i = 0; i < this.marks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < this.marks.GetLength(1); j++)
+                        {
+                            copy[i, j] = this.marks[i, j];
+                        }
+                    }
                     return copy;
                 }
             }
@@ -78,19 +38,20 @@ namespace Lab_6
             {
                 get
                 {
-                    int total = 0;
-                    if (marks == null)
+                    if (this.marks == null || this.marks.GetLength(0) == 0 || this.marks.GetLength(1) == 0)
                     {
                         return 0;
                     }
-                    for (int i = 0; i < marks.GetLength(0); i++)
+
+                    int sum = 0;
+                    for (int i = 0; i < this.marks.GetLength(0); i++)
                     {
-                        for (int j = 0; j < marks.GetLength(1); j++)
+                        for (int j = 0; j < this.marks.GetLength(1); j++)
                         {
-                            total += marks[i, j];
+                            sum += this.marks[i, j];
                         }
                     }
-                    return total;
+                    return sum;
                 }
             }
 
@@ -99,61 +60,71 @@ namespace Lab_6
                 this.name = name;
                 this.surname = surname;
                 this.marks = new int[2, 5];
-                for (int i = 0; i < marks.GetLength(0); i++)
-                {
-                    for (int j = 0; j < marks.GetLength(1); j++)
-                    {
-                        marks[i, j] = -1;
-                    }
-                }
-               }
+                this.ind = 0;
+            }
 
             public void Jump(int[] result)
             {
-                if (marks == null)
+                if (this.marks == null || this.marks.GetLength(0) == 0 || this.marks.GetLength(1) == 0 || result == null || result.Length == 0 || this.ind > 1)
                 {
                     return;
                 }
 
-                for (int i = 0; i < marks.GetLength(0); i++)
+                if (this.ind == 0)
                 {
-                    if (marks[i, 0] != -1)
+                    for (int i = 0; i < 5; i++)
                     {
-                        continue;
+                        this.marks[0, i] = result[i];
                     }
-
-
-                    for (int j = 0; j < marks.GetLength(1); j++)
+                    this.ind++;
+                }
+                else if (this.ind == 1)
+                {
+                    for (int i = 0; i < 5; i++)
                     {
-                        marks[i, j] = result[j];
+                        this.marks[1, i] = result[i];
                     }
-                    break;
+                    this.ind++;
                 }
             }
 
-
             public static void Sort(Participant[] array)
             {
-                if (array == null)
+                if (array == null || array.Length == 0)
                 {
                     return;
                 }
 
                 for (int i = 0; i < array.Length - 1; i++)
                 {
-
                     for (int j = 0; j < array.Length - i - 1; j++)
                     {
-                        if (array[j].TotalScore > array[j + 1].TotalScore)
+                        if (array[j + 1].TotalScore > array[j].TotalScore)
                         {
-                            Participant temp = array[j];
-                            array[j] = array[j + 1];
-                            array[j + 1] = temp;
+                            (array[j + 1], array[j]) = (array[j], array[j + 1]);
                         }
                     }
                 }
+            }
 
-               
+            public void Print()
+            {
+                Console.WriteLine(this.name);
+                Console.WriteLine(this.surname);
+
+                if (this.marks != null)
+                {
+                    for (int i = 0; i < this.marks.GetLength(0); i++)
+                    {
+                        for (int j = 0; j < this.marks.GetLength(1); j++)
+                        {
+                            Console.Write(this.marks[i, j]);
+                        }
+                        Console.WriteLine();
+                    }
+                }
+
+                Console.WriteLine(this.TotalScore);
             }
         }
     }
