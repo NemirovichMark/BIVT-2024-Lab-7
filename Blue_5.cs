@@ -48,22 +48,20 @@ namespace Lab_6
             {
                 get
                 {
-                    if(_sportsmen == null) return 0;
+                    if (_sportsmen == null) return 0;
                     int sum = 0;
-                    foreach (var sportsmen in _sportsmen)
+                    for (int i = 0; i < _cnt; i++)
                     {
-                        switch (sportsmen.Place)
+                        switch (_sportsmen[i].Place)
                         {
                             case 1: sum += 5; break;
                             case 2: sum += 4; break;
                             case 3: sum += 3; break;
                             case 4: sum += 2; break;
                             case 5: sum += 1; break;
-                            default: break;
+                            default: sum += 0; break;
                         }
-
                     }
-                        
                     return sum;
                 }
             }
@@ -73,11 +71,11 @@ namespace Lab_6
                 get
                 {
                     if (_sportsmen == null) return 0;
-                    int top = int.MaxValue;
-                    foreach(var sportsmen in _sportsmen)
+                    int top = 18;
+                    for (int i = 0; i < _cnt; i++)
                     {
-                        if(sportsmen.Place<top && top !=0)
-                            top = sportsmen.Place;
+                        if (_sportsmen[i].Place < top)
+                            top = _sportsmen[i].Place;
                     }
                     return top;
                 }
@@ -95,7 +93,7 @@ namespace Lab_6
                 if (_sportsmen == null) return;                
                     
                 
-                if (_cnt < _sportsmen.Length)                
+                if (_cnt < 6)                
                     _sportsmen[_cnt++] = sportsman;
                                  
             }
