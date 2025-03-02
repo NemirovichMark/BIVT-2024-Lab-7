@@ -58,7 +58,6 @@ namespace Lab_6
                         return 0;
                     }
 
-                    // Исправление: перебор массива marks с учетом реальных размеров
                     for (int i = 0; i < marks.GetLength(0); i++)
                     {
                         for (int j = 0; j < marks.GetLength(1); j++)
@@ -74,7 +73,7 @@ namespace Lab_6
             {
                 this.name = name;
                 this.surname = surname;
-                this.marks = new int[2, 5];  // 2 строки, 5 столбцов
+                this.marks = new int[2, 5];  
             }
 
             public void Jump(int[] result)
@@ -84,10 +83,10 @@ namespace Lab_6
                     return;
                 }
 
-                int jump = -1; // Изначально jump равен -1
+                int jump = -1; 
                 for (int i = 0; i < marks.GetLength(0); i++)
                 {
-                    // Проверка на пустые значения в marks для выявления первого ненулевого значения
+                
                     if (marks[i, 0] != 0)
                     {
                         jump = 0;
@@ -99,7 +98,7 @@ namespace Lab_6
                 {
                     for (int i = 0; i < marks.GetLength(0); i++)
                     {
-                        // Проверка второго столбца для замены
+                        
                         if (marks[i, 1] != 0)
                         {
                             jump = 1;
@@ -108,12 +107,12 @@ namespace Lab_6
                     }
                 }
 
-                // Если нашли подходящий столбец (jump = 0 или 1) и результат имеет нужную длину
+                
                 if (jump != -1 && result.Length == marks.GetLength(1))
                 {
                     for (int i = 0; i < marks.GetLength(0); i++)
                     {
-                        marks[i, jump] = result[i];  // Заполнение marks на найденной позиции
+                        marks[i, jump] = result[i];  
                     }
                 }
             }
