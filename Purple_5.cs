@@ -33,11 +33,11 @@ namespace Lab_6 {
 
                 switch (questionNumber) {
                     case 1:
-                        return responses.Count(resp => resp.Animal != null && resp.Animal.Length > 0);
+                        return responses.Count(resp => resp.Animal == _animal && _animal != null);
                     case 2:
-                        return responses.Count(resp => resp.CharacterTrait != null && resp.CharacterTrait.Length > 0);
+                        return responses.Count(resp => resp.CharacterTrait == _characterTrait && _characterTrait != null);
                     case 3:
-                        return responses.Count(resp => resp.Concept != null && resp.Concept.Length > 0);
+                        return responses.Count(resp => resp.Concept == _concept && _concept != null);
                     default:
                         return 0;
                 }
