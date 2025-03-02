@@ -50,16 +50,7 @@ namespace Lab_6
 
             // свойства
             public string Name { get { return _name; } }
-            public Sportsman[] Sportsmen
-            {
-                get
-                {
-                    if (_sportsmen == null) return null;
-                    Sportsman[] array = new Sportsman[_sportsmen.Length];
-                    Array.Copy(_sportsmen, array, array.Length);
-                    return array;
-                }
-            }
+            public Sportsman[] Sportsmen {  get { return _sportsmen; } }
             public int SummaryScore
             {
                 get
