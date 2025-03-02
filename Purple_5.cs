@@ -15,29 +15,19 @@ namespace Lab_6 {
             public string CharacterTrait => _characterTrait;
             public string Concept => _concept;
 
-            public static string GetQuestionByNumber(Response resp, int questionNumber) {
-                switch (questionNumber) {
-                    case 1:
-                        return resp.Animal;
-                    case 2:
-                        return resp.CharacterTrait;
-                    case 3:
-                        return resp.Concept;
-                    default:
-                        return null;
-                }
-            }
-
             public int CountVotes(Response[] responses, int questionNumber) {
                 if (responses == null || !(questionNumber >= 1 && questionNumber <= 3)) return 0;
 
                 switch (questionNumber) {
                     case 1:
-                        return responses.Count(resp => resp.Animal == _animal && _animal != null);
+                        string question = _animal;
+                        return responses.Count(resp => resp.Animal == question && question != null);
                     case 2:
-                        return responses.Count(resp => resp.CharacterTrait == _characterTrait && _characterTrait != null);
+                        string question2 = _characterTrait;
+                        return responses.Count(resp => resp.CharacterTrait == question2 && question2 != null);
                     case 3:
-                        return responses.Count(resp => resp.Concept == _concept && _concept != null);
+                        string question3 = _concept;
+                        return responses.Count(resp => resp.Concept == question3 && question3 != null);
                     default:
                         return 0;
                 }
@@ -83,7 +73,7 @@ namespace Lab_6 {
                 int counter = 0;
 
                 for (int i = 0; i < _responses.Length; i++) {
-                    string answer = Response.GetQuestionByNumber(_responses[i], question);
+                    string answer = Research.GetQuestionByNumber(_responses[i], question);
                     if (answer == null) continue;
 
                     questionResponses[counter++] = answer;
@@ -125,13 +115,26 @@ namespace Lab_6 {
                 return uniqueResponses;
             }
 
+            private static string GetQuestionByNumber(Response resp, int questionNumber) {
+                switch (questionNumber) {
+                    case 1:
+                        return resp.Animal;
+                    case 2:
+                        return resp.CharacterTrait;
+                    case 3:
+                        return resp.Concept;
+                    default:
+                        return null;
+                }
+            }
+
             private int GetAnswerCount(int question, string answer) {
                 if (answer == null || _responses == null || !(question >= 1 && question <=3)) return 0;
 
                 int res = 0;
 
                 foreach (var resp in _responses) {
-                    if (Response.GetQuestionByNumber(resp, question) == answer) res++;
+                    if (Research.GetQuestionByNumber(resp, question) == answer) res++;
                 }
 
                 return res;
