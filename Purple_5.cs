@@ -69,9 +69,7 @@ namespace Lab_6
                 get
                 {
                     if (_responses == null) return default(Response[]);
-                    Response[] responses = new Response[_responses.Length ];
-                    Array.Copy(_responses, responses, responses.Length );
-                    return responses;
+                    return _responses;
                 }
             }
 
@@ -117,30 +115,54 @@ namespace Lab_6
                 if (_responses == null) return null;
 
                 int[] frequency = new int[_responses.Length];
+                int[] f = new int[0];
+                string[] unique = new string[0];
+                string[] responses = new string[0];
 
                 switch (question)
                 {
                     case 1:     //Animal
-                        for(int i = 0; i < _responses.Length; i++)
+                        responses = _responses.Select(x => x.Animal).ToArray();
+                        unique = responses.Distinct().ToArray();
+                        Array.Resize(ref f, unique.Length);
+                        for (int i = 0; i < _responses.Length; i++)
                         {
                             frequency[i] = _responses[i].CountVotes(_responses, 1);
                         }
-                        SortFrequency(_responses, frequency);
-                        return _responses.Where(x => x.Animal != null).Select(x => x.Animal).Distinct().Take(5).ToArray();
+                        for (int i = 0; i < f.Length; i++)
+                        {
+                            f[i] = frequency[Array.IndexOf(responses, unique[i])];
+                        }
+                        SortFrequency(unique, f);
+                        return unique.Where(x => x != null).Take(5).ToArray();
                     case 2:     //Character Trait
+                        responses = _responses.Select(x => x.CharacterTrait).ToArray();
+                        unique = responses.Distinct().ToArray();
+                        Array.Resize(ref f, unique.Length);
                         for (int i = 0; i < _responses.Length; i++)
                         {
                             frequency[i] = _responses[i].CountVotes(_responses, 2);
                         }
-                        SortFrequency(_responses, frequency);
-                        return _responses.Where(x => x.CharacterTrait != null).Select(x => x.CharacterTrait).Distinct().Take(5).ToArray();
+                        for (int i = 0; i < f.Length; i++)
+                        {
+                            f[i] = frequency[Array.IndexOf(responses, unique[i])];
+                        }
+                        SortFrequency(unique, f);
+                        return unique.Where(x => x != null).Take(5).ToArray();
                     case 3:     //Concept
+                        responses = _responses.Select(x => x.Concept).ToArray();
+                        unique = responses.Distinct().ToArray();
+                        Array.Resize(ref f, unique.Length);
                         for (int i = 0; i < _responses.Length; i++)
                         {
                             frequency[i] = _responses[i].CountVotes(_responses, 3);
                         }
-                        SortFrequency(_responses, frequency);
-                        return _responses.Where(x => x.Concept != null).Select(x => x.Concept).Distinct().Take(5).ToArray();
+                        for (int i = 0; i < f.Length; i++)
+                        {
+                            f[i] = frequency[Array.IndexOf(responses, unique[i])];
+                        }
+                        SortFrequency(unique, f);
+                        return unique.Where(x => x != null).Take(5).ToArray();
                     default:
                         return null;
                 }
@@ -164,6 +186,29 @@ namespace Lab_6
                         var a = answers[i];
                         answers[i] = answers[i - 1];
                         answers[i-1] = a;
+                        i--;
+                    }
+                }
+            }
+            private void SortFrequency(string[] answers, int[] array)
+            {
+                if (array.Length <= 1 || answers == null) return;
+
+                for (int i = 1, j = 2; i < array.Length;)
+                {
+                    if (i == 0 || array[i - 1] >= array[i])
+                    {
+                        i = j;
+                        j++;
+                    }
+                    else
+                    {
+                        var temp = array[i];
+                        array[i] = array[i - 1];
+                        array[i - 1] = temp;
+                        var a = answers[i];
+                        answers[i] = answers[i - 1];
+                        answers[i - 1] = a;
                         i--;
                     }
                 }

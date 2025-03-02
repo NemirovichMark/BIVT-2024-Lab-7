@@ -53,9 +53,7 @@ namespace Lab_6
                 get
                 {
                     if (_sportsmen == null) return default(Sportsman[]);
-                    Sportsman[] sportsmen = new Sportsman[_sportsmen.Length];
-                    Array.Copy(_sportsmen, sportsmen, sportsmen.Length);
-                    return sportsmen;
+                    return _sportsmen;
                 }
             }
 
