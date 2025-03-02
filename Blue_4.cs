@@ -99,14 +99,10 @@ namespace Lab_6
                     // Console.WriteLine("В группе уже есть 12 команд.");
                     return;
                 }
-                else if (_teams_added + teams_to_add.Length > 12)
-                {
-                    //Console.WriteLine("Добавьте в группу меньше команд.");
-                    return;
-                }
                 else {
                     if (_teams == null || teams_to_add == null) return;
                     for (int i = 0; i < teams_to_add.Length; i++) {
+                        if (_teams_added >= 12) { break; }
                         _teams[_teams_added++] = teams_to_add[i];
                     }
                 }
