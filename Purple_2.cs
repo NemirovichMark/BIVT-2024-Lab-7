@@ -1,5 +1,3 @@
-
-
 namespace Lab_6 {
     public class Purple_2
     {
@@ -52,7 +50,7 @@ namespace Lab_6 {
                     Participant key = array[i];
                     int j = i - 1;
 
-                    while (j >= 0 && array[j].Distance < key.Distance) {
+                    while (j >= 0 && array[j].Result < key.Result) {
                         array[j + 1] = array[j];
                         j--;
                     }
