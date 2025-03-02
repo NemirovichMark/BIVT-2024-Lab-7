@@ -39,13 +39,13 @@ namespace Lab_6
                 _surname = surname;
                 _group = group;
                 _trainer = trainer;
-                _result = 0;
+                _result = double.MaxValue;;
             }
 
             //остальные методы
             public void Run(double result)
             {
-                if (_result == 0)
+                if (_result == double.MaxValue)
                 {
                     _result = result;
                     if (result <= _standard)

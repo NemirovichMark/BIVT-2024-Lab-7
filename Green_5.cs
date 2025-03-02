@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Lab_6
 {
@@ -10,12 +7,12 @@ namespace Lab_6
     {
         public struct Student
         {
-            // поля
+            // Поля
             private string _name;
             private string _surname;
             private int[] _marks;
 
-            // свойства
+            // Свойства
             public string Name => _name;
             public string Surname => _surname;
             public int[] Marks
@@ -33,25 +30,31 @@ namespace Lab_6
                 get
                 {
                     if (_marks == null || _marks.Length == 0) return 0;
-                    return _marks.Average();
+                    var validMarks = _marks.Where(mark => mark != -1).ToArray();
+                    if (validMarks.Length == 0) return 0;
+                    return validMarks.Average();
                 }
             }
 
-            // конструкторы
+            // Конструкторы
             public Student(string name, string surname)
             {
                 _name = name;
                 _surname = surname;
                 _marks = new int[5];
+                for (int i = 0; i < _marks.Length; i++)
+                {
+                    _marks[i] = -1;
+                }
             }
 
-            // остальные методы
+            // Методы
             public void Exam(int mark)
             {
                 if (mark < 2 || mark > 5) return;
                 for (int i = 0; i < _marks.Length; i++)
                 {
-                    if (_marks[i] == 0)
+                    if (_marks[i] == -1)
                     {
                         _marks[i] = mark;
                         break;
@@ -67,12 +70,14 @@ namespace Lab_6
 
         public struct Group
         {
-            // поля
+            // Поля
             private string _name;
             private Student[] _students;
             private int _studentCount;
 
-            // свойства
+            private const int MaxStudents = 30;
+
+            // Свойства
             public string Name => _name;
             public Student[] Students => _students;
             public double AvgMark
@@ -81,23 +86,28 @@ namespace Lab_6
                 {
                     if (_studentCount == 0) return 0;
                     double totalAvg = 0;
+                    int validStudents = 0;
                     for (int i = 0; i < _studentCount; i++)
                     {
-                        totalAvg += _students[i].AvgMark;
+                        if (_students[i].AvgMark > 0)
+                        {
+                            totalAvg += _students[i].AvgMark;
+                            validStudents++;
+                        }
                     }
-                    return totalAvg / _studentCount;
+                    return validStudents == 0 ? 0 : totalAvg / validStudents;
                 }
             }
 
-            // конструкторы
-            public Group(string name, int maxStudents)
+            // Конструкторы
+            public Group(string name)
             {
                 _name = name;
-                _students = new Student[maxStudents];
+                _students = new Student[MaxStudents];
                 _studentCount = 0;
             }
 
-            // остальные методы
+            // Методы
             public void Add(Student student)
             {
                 if (_studentCount < _students.Length)
@@ -123,11 +133,12 @@ namespace Lab_6
                     {
                         if (groups[j].AvgMark < groups[j + 1].AvgMark)
                         {
-                            (groups[j], groups[j + 1]) = (groups[j + 1], groups[j]);   
+                            (groups[j], groups[j + 1]) = (groups[j + 1], groups[j]);
                         }
                     }
                 }
             }
+
             public void Print()
             {
                 Console.WriteLine($"{_name} {AvgMark:F2}");

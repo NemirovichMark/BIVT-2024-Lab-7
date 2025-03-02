@@ -19,16 +19,25 @@ namespace Lab_6
             //свойства
             public string Name  => _name;
             public string Surname  => _surname;
-            public double[] Jumps => _jumps;
+            public int[] Jumps
+            {
+                get
+                {
+                    if (_jumps == null) return null;
+                    int[] copy = new int[_jumps.Length];
+                    Array.Copy(_jumps, copy, _jumps.Length);
+                    return copy;
+                }
+            }
             public double BestJump
             {
                 get
                 {
                     if (_jumps == null || _jumps.Length == 0) return 0;
-                    double best = _jumps[0];
+                    double best = -1;
                     foreach (double jump in _jumps)
                     {
-                        if (jump > best)
+                        if (jump > best && jump != -1)
                             best = jump;
                     }
                     return best;
@@ -40,7 +49,7 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _jumps = new double[3];
+                _jumps = new double[3] { -1, -1, -1 };
             }
 
             //остальные методы
@@ -49,7 +58,7 @@ namespace Lab_6
                 if (_jumps == null) return;
                 for (int i = 0; i < _jumps.Length; i++)
                 {
-                    if (_jumps[i] == 0)
+                    if (_jumps[i] == -1)
                     {
                         _jumps[i] = result;
                         return;

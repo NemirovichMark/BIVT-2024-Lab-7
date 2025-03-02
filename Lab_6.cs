@@ -222,9 +222,9 @@ namespace Lab_6
             //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             
             Console.WriteLine("Green_5");
-            Green_5.Group bntm = new Green_5.Group("БНТМ", 10);
-            Green_5.Group bek = new Green_5.Group("БЭК", 10);
-            Green_5.Group bpm = new Green_5.Group("БПМ", 10);
+            Green_5.Group bntm = new Green_5.Group("БНТМ");
+            Green_5.Group bek = new Green_5.Group("БЭК");
+            Green_5.Group bpm = new Green_5.Group("БПМ");
 
             // Студенты БНТМ
             Green_5.Student[] bntmStudents =

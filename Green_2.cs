@@ -24,7 +24,19 @@ namespace Lab_6
                 get
                 {
                     if (_marks == null || _marks.Length == 0) return 0;
-                    return _marks.Average();
+
+                    int sum = 0;
+                    int count = 0;
+                    foreach (int mark in _marks)
+                    {
+                        if (mark != 0)
+                        {
+                            sum += mark;
+                            count++;
+                        }
+                    }
+                    if (count == 0) return 0;
+                    return (double)sum / count;
                 }
             }
             public bool IsExcellent

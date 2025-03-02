@@ -37,18 +37,15 @@ namespace Lab_6
 
                     int sum = 0;
                     int count = 0;
-                    for (int i = 0; i < _marks.Length; i++)
+                    foreach (int mark in _marks)
                     {
-                        sum += _marks[i];
-                        count++;
-                        if (_marks[i] <=2)
+                        if (mark != 0)
                         {
-                            break;
+                            sum += mark;
+                            count++;
                         }
                     }
-
                     if (count == 0) return 0;
-
                     return (double)sum / count;
                 }
             }
@@ -58,19 +55,13 @@ namespace Lab_6
             {
                 _name = name;
                 _surname = surname;
-                _marks = new int[3] {0, 0, 0};
+                _marks = new int[3];
                 _isExpelled = false;
             }
             public void Exam(int mark)
             {
                 if (_isExpelled) return;
                 if (mark < 2 || mark > 5) return;
-
-                if (mark <= 2)
-                {
-                    _isExpelled = true;
-                }
-
                 for (int i = 0; i < _marks.Length; i++)
                 {
                     if (_marks[i] == 0)
@@ -78,6 +69,10 @@ namespace Lab_6
                         _marks[i] = mark;
                         break;
                     }
+                }
+                if (mark <= 2)
+                {
+                    _isExpelled = true;
                 }
             }
             public static void SortByAvgMark(Student [] array)
