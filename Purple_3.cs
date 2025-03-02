@@ -102,40 +102,32 @@ namespace Lab_6 {
 
             public static void Sort(Participant[] array) {
                 if (array == null) return;
-                for (int i = 1; i < array.Length; i++) {
-                    Participant key = array[i];
-                    int j = i - 1;
-                    
-                    while (j >= 0) {
-                        int scoreComparison = key.Score.CompareTo(array[j].Score);
-                        if (scoreComparison < 0) {
-                            array[j + 1] = array[j];
-                        } else if (scoreComparison == 0) {
-                            bool hasHigherPlace = false;
-                            for (int k = 0; k < 7; k++) {
-                                if (key.Places[k] < array[j].Places[k]) {
-                                    hasHigherPlace = true;
-                                    break;
-                                } else if (key.Places[k] > array[j].Places[k]) {
-                                    hasHigherPlace = false;
-                                    break;
-                                }
-                            }
+                for (int i = 0; i < array.Length - 1; i++) {
+                    for (int j = 0; j < array.Length - (i + 1); j++) {
+                        Participant first = array[j], second = array[j+1];
+                        if (first._places == null || first._marks == null || second._places == null || second._marks == null) continue;
 
-                            if (!hasHigherPlace) {
-                                double totalMarksA = array[j].Marks.Sum();
-                                double totalMarksB = key.Marks.Sum();
-                                if (totalMarksB < totalMarksA) break;
+                        if (first.Score > second.Score) {
+                            (array[j], array[j + 1]) = (second, first);
+                        } else if (first.Score == second.Score) {
+                            bool flag = false;
+                            int maxFirst = first._places.Min();
+                            int maxSecond = second._places.Min();
+
+                            if (maxFirst != maxSecond) {
+                                flag = true;
+                                if (maxSecond < maxFirst)
+                                    (array[j], array[j+1]) = (second, first);
+                            } else {
+                                double firstSum = first._marks.Sum();
+                                double secondSum = second._marks.Sum();
+                                if (firstSum < secondSum)
+                                    (array[j], array[j+1]) = (second, first);
                             }
-                            array[j + 1] = array[j];
-                        } else {
-                            break;
                         }
-                        j--;
+                        
                     }
-                    array[j + 1] = key;
                 }
-
             }
 
             public void Print() {
