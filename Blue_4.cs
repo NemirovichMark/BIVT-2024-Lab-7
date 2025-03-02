@@ -87,7 +87,7 @@ namespace Lab_6
             public void Add(Team team)
             {
                 if (_teams == null) return;
-                if (_index < _teams.Length)
+                if (_index < 12)
                 {
                     _teams[_index++] = team;
                 }
@@ -96,7 +96,7 @@ namespace Lab_6
             {
                 if (_teams == null || teams==null) return;
                 
-                for (int i = 0; i < teams.Length; i++) { 
+                for (int i = 0; i < 12; i++) { 
                    Add(teams[i]);
                 }
                
@@ -118,6 +118,8 @@ namespace Lab_6
 
             public static Group Merge(Group group1, Group group2, int size)
             {
+                if (group1.Teams == null || group2.Teams == null) return default(Group);
+                if (size <= 0) return default(Group);
                 Group group = new Group("Финалисты");
                 group1.Sort();
                 group2.Sort();
