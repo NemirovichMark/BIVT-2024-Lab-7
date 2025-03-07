@@ -28,11 +28,9 @@ namespace Lab_7{
                 int [] copy = new int[_Marks.Length];
                 Array.Copy(_Marks, copy, _Marks.Length);
 
-                if (_Distance >= 120){ res += (_Distance - 120) * 2;}
-                else{ res -= (120 - _Distance) * 2;}
+                if (_Distance >= _Target){ res += (_Distance - _Target) * 2;}
+                else{ res -= (120 - _Target) * 2;}
                 res += copy.Sum() - copy.Max() - copy.Min();
-
-                res += _Distance >= _Target ? 60 : 0;
 
                 return res < 0 ? 0 : res;
             }
@@ -122,15 +120,13 @@ namespace Lab_7{
                 }
             }
         }
-        public class JuniorSkiJumping : SkiJumping
-        {
+        public class JuniorSkiJumping : SkiJumping{
             public JuniorSkiJumping() 
                 : base("100m", 100) 
             { }
         }
 
-        public class ProSkiJumping : SkiJumping
-        {
+        public class ProSkiJumping : SkiJumping{
             public ProSkiJumping() 
                 : base("150m", 150) 
             { }
