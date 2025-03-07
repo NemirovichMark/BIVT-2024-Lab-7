@@ -124,7 +124,7 @@ namespace Lab_7{
             public double[] Moods{
                 get{
                     if (_Moods == null) return null;
-                    double[] copy = new  double[4];
+                    double[] copy = new  double[5];
                     Array.Copy(_Moods,copy, _Moods.Length);
                     return copy;
                 }
