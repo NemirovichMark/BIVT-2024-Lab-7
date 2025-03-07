@@ -18,7 +18,7 @@ namespace Lab_7
     {
         static void Main()
         {
-            Test_Purple_1_2();
+            //Test_Purple_1_2();
             //Test_Purple_2_2();
             //Test_Purple_2_3();
             //Test_Purple_3_3();
