@@ -14,8 +14,8 @@ namespace Lab_7
     {
         public class Sportsman
         {
-            private string _name;
-            private string _surname;
+            private readonly string _name;
+            private readonly string _surname;
             private double _time;
             public string Name
             {
@@ -103,7 +103,6 @@ namespace Lab_7
                     return _name;
                 }
             }
-
             public Sportsman[] Sportsmen
             {
                 get
@@ -286,10 +285,22 @@ namespace Lab_7
                 Sportsman.Sort(men);
                 Sportsman.Sort(women);
 
-                for (int i = 0, m = 0, w = 0; i < men.Length + women.Length - 1; i+=2)
+                int m = 0, w = 0, i = 0;
+
+                while (m < men.Length && w < women.Length)
                 {
-                    _sportsmen[i] = men[m++];
-                    _sportsmen[i] = women[w++];
+                    _sportsmen[i++] = men[m++];
+                    _sportsmen[i++] = women[w++];
+                }
+
+                while (m < men.Length)
+                {
+                    _sportsmen[i++] = men[m++];
+                }
+
+                while (w < women.Length)
+                {
+                    _sportsmen[i++] = women[w++];
                 }
 
                 Array.Resize(ref _sportsmen, men.Length + women.Length);

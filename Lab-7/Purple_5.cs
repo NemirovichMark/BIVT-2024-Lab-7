@@ -184,6 +184,7 @@ namespace Lab_7
                     return researchesCopy;
                 }
             }
+
             static Report()
             {
                 _id = 1;
@@ -197,7 +198,7 @@ namespace Lab_7
             {
                 DateTime timeNow = DateTime.Now;
 
-                string reseachName = $"No_{_id}_{timeNow.Month:00}/{timeNow.Year % 100:00}";
+                string reseachName = $"No_{_id++}_{timeNow.Month:00}/{timeNow.Year % 100:00}";
 
                 if (_researches is null)
                     _researches = new Research[0];

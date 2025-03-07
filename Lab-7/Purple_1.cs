@@ -12,8 +12,8 @@ namespace Lab_7
     {
         public class Participant
         {
-            private string _name;
-            private string _surname;
+            private readonly string _name;
+            private readonly string _surname;
             private double[] _coefs;
             private int[,] _marks;
             private int _jumpIndex;
@@ -329,8 +329,6 @@ namespace Lab_7
                 }
             }
         }
-
-       
 
         public static void PrintArr(int[] arr)
         {

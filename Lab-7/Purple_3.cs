@@ -11,15 +11,15 @@ namespace Lab_7
     {
         public struct Participant
         {
-            private string _name;
-            private string _surname;
+            private readonly string _name;
+            private readonly string _surname;
             private double[] _marks;
             private int[] _places;
             private int _curMark;
             private int _score;
             private double _totalMark;
 
-            public string Name
+            public readonly string Name
             {
                 get
                 {
@@ -27,7 +27,7 @@ namespace Lab_7
                 }
             }
 
-            public string Surname
+            public readonly string Surname
             {
                 get
                 {
@@ -269,7 +269,7 @@ namespace Lab_7
                 if (_participants == null || _participants.Length == 0 || _offsetParticipants == _participants.Length) return;
 
                 if (_moods is null || marks is null || _moods.Length != marks.Length)
-                
+
                 for (int i = 0; i < _moods.Length; i++)
                 {
                         _participants[_offsetParticipants].Evaluate(marks[i] * _moods[i]);
@@ -304,6 +304,7 @@ namespace Lab_7
 
             }
 
+
         }
 
         public class FigureSkating: Skating
@@ -329,6 +330,7 @@ namespace Lab_7
                     moods[i] *= (1 + (i + 1) / 100.0);
             }
         }
+
         public static void PrintArr(int[] arr)
         {
             if (arr == null || arr.Length == 0)
@@ -346,8 +348,6 @@ namespace Lab_7
                 Console.Write($"{arr[i]} ");
             Console.WriteLine();
         }
-
-
 
     }
 }
