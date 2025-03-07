@@ -122,6 +122,14 @@ public class Purple_1
             jumper.Jump(_Judges.Select(judge => judge.CreateMark()).ToArray());
         }
 
+        public void Add(Participant participant){
+                if (_Participants == null) return;
+
+                Array.Resize(ref _Participants , _Participants .Length + 1);
+                _Participants[_Participants.Length-1] = participant;
+                Evaluate(_Participants[_Participants.Length-1]);
+            }
+
         public void Add(Participant[] participants){
                 if (participants == null || _Participants == null) return;
 
@@ -131,12 +139,13 @@ public class Purple_1
 
                 for (int i = 0; i < participants.Length; i++) {
                     _Participants[currentLength + i] = participants[i];
+                    Evaluate(_Participants[currentLength + i]);
                 }
         }
 
         public void Sort(){
             _Participants = _Participants.OrderByDescending(x => x.TotalScore).ToArray();
-        }
+        }     
     }
 }
 }
