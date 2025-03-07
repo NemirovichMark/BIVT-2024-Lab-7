@@ -7,7 +7,6 @@ namespace Lab_7{
         private string _Surname;
         private int _Distance;
         private int[] _Marks;
-        private int _Target;
 
         public string Name  => _Name;
         public string Surname => _Surname;
@@ -22,32 +21,20 @@ namespace Lab_7{
             }
         }
         public int Result{
-            get{
-                if (_Marks == null) return 0;
-                int res = 60;
-                int [] copy = new int[_Marks.Length];
-                Array.Copy(_Marks, copy, _Marks.Length);
-
-                if (_Distance >= _Target){ res += (_Distance - _Target) * 2;}
-                else{ res -= (120 - _Target) * 2;}
-                res += copy.Sum() - copy.Max() - copy.Min();
-
-                return res < 0 ? 0 : res;
-            }
-        
+            get;
+            private set;
         }
         public Participant(string name, string surname){
             _Name = name;
             _Surname = surname;
             _Marks = new int[5];
             _Distance = 0;
-            _Target = 100;
         }
         public void Jump(int distance, int[] marks, int target){
             if (_Marks == null || marks == null) return;
             _Distance = distance;
-            _Target = target;
             Array.Copy(marks,_Marks, Math.Min(_Marks.Length, marks.Length));
+            Result = Math.Max(0, marks.Sum() - marks.Min() - marks.Max() + 60 + (_Distance - target) * 2);
         }
 
         public static void Sort(Participant[] array){
